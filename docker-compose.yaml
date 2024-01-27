@@ -1,0 +1,30 @@
+name: network-monitor
+
+services:
+  database:
+    image: mysql:8.3.0
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  app-production:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    profiles: ['production']
+  app-development:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - ./src:/usr/src/app/src
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    profiles: ['development']
