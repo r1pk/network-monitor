@@ -2,6 +2,7 @@ name: network-monitor
 
 services:
   database:
+    container_name: database
     image: mysql:8.3.0
     ports:
       - 3306:3306
@@ -13,6 +14,7 @@ services:
       # `MYSQL_ROOT_PASSWORD` variable is required by the MySQL image and should be changed for production environment
       MYSQL_ROOT_PASSWORD: 7RKgi4rYL287o9c69KvpEqx0Ue6KYtS3
   app-production:
+    container_name: app-production
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,6 +23,7 @@ services:
       - ${APPLICATION_PORT}:${APPLICATION_PORT}
     profiles: ['production']
   app-development:
+    container_name: app-development
     build:
       context: .
       dockerfile: Dockerfile

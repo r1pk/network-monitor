@@ -16,7 +16,7 @@ RUN npm ci
 COPY . .
 
 ENV TSC_WATCHFILE PriorityPollingInterval
-CMD ["npm", "run", "start:dev"]
+ENTRYPOINT ["npm", "run", "start:dev"]
 ##< DEVELOPMENT >##
 
 ##> BUILDER <##
