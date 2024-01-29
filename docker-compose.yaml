@@ -5,7 +5,7 @@ services:
     container_name: database
     image: mysql:8.3.0
     ports:
-      - 3306:3306
+      - ${DATABASE_PORT}:3306
     environment:
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_USER: ${DATABASE_USER}
@@ -13,6 +13,10 @@ services:
 
       # `MYSQL_ROOT_PASSWORD` variable is required by the MySQL image and should be changed for production environment
       MYSQL_ROOT_PASSWORD: 7RKgi4rYL287o9c69KvpEqx0Ue6KYtS3
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
   app-production:
     container_name: app-production
     build:
@@ -21,6 +25,9 @@ services:
       target: production
     ports:
       - ${APPLICATION_PORT}:${APPLICATION_PORT}
+    depends_on:
+      database:
+        condition: service_healthy
     profiles: ['production']
   app-development:
     container_name: app-development
@@ -32,4 +39,7 @@ services:
       - ./src:/usr/src/app/src
     ports:
       - ${APPLICATION_PORT}:${APPLICATION_PORT}
+    depends_on:
+      database:
+        condition: service_healthy
     profiles: ['development']
