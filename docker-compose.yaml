@@ -14,9 +14,20 @@ services:
       # `MYSQL_ROOT_PASSWORD` variable is required by the MySQL image and should be changed for production environment
       MYSQL_ROOT_PASSWORD: 7RKgi4rYL287o9c69KvpEqx0Ue6KYtS3
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 10s
       retries: 10
+
+  adminer:
+    container_name: adminer
+    image: adminer:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      database:
+        condition: service_healthy
+    profiles: ['development']
+
   app-production:
     container_name: app-production
     build:
@@ -29,6 +40,7 @@ services:
       database:
         condition: service_healthy
     profiles: ['production']
+
   app-development:
     container_name: app-development
     build:
