@@ -1,7 +1,7 @@
 ##> BASE <##
 FROM node:21-alpine3.18 AS base
 
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash speedtest-cli
 RUN npm i npm@latest -g
 ##< BASE >##
 
