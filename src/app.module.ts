@@ -22,7 +22,7 @@ import { InternetSpeedSnapshotModule } from './internet-speed-snapshot/internet-
         database: configService.get('DATABASE_NAME'),
 
         autoLoadEntities: true,
-        synchronize: configService.get('NODE_ENV') === 'development',
+        synchronize: configService.get('DATABASE_SYNCHRONIZE') === 'true',
       }),
       inject: [ConfigService],
     }),
