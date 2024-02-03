@@ -5,10 +5,10 @@ export class InternetSpeedSnapshot {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: true })
+  @Column({ default: 0 })
   download: number;
 
-  @Column({ nullable: true })
+  @Column({ default: 0 })
   upload: number;
 
   @Column({ nullable: true })
