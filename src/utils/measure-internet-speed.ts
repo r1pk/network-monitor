@@ -1,6 +1,6 @@
 import { ExecException, exec } from 'child_process';
 
-export interface InternetPerformance {
+export interface InternetSpeedResult {
   download: number;
   upload: number;
   ping: number;
@@ -10,7 +10,7 @@ export interface InternetPerformance {
   timestamp: string;
 }
 
-export const measureInternetPerformance = async (): Promise<InternetPerformance> => {
+export const measureInternetSpeed = async (): Promise<InternetSpeedResult> => {
   return new Promise((resolve, reject) => {
     exec('speedtest-cli --json', (error: ExecException, output: string) => {
       if (error) {
