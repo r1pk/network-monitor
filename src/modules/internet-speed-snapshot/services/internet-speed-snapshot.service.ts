@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InternetSpeedSnapshot } from '../entities/internet-speed-snapshot.entity';
-import { measureInternetSpeed } from '../../utils/measure-internet-speed';
+import { measureInternetSpeed } from '../../../utils/measure-internet-speed';
 
 @Injectable()
 export class InternetSpeedSnapshotService {
