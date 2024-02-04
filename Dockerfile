@@ -1,7 +1,12 @@
 ##> BASE <##
-FROM node:21-alpine3.18 AS base
+FROM node:21.6.1-bookworm AS base
 
-RUN apk add --no-cache bash speedtest-cli
+RUN apt-get install bash curl
+
+RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
+RUN apt-get install speedtest
+RUN speedtest --accept-license --accept-gdpr
+
 RUN npm i npm@latest -g
 ##< BASE >##
 

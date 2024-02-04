@@ -1,24 +1,35 @@
 import { ExecException, exec } from 'child_process';
 
-export interface InternetSpeedResult {
+export interface InternetSpeed {
   download: number;
   upload: number;
-  ping: number;
-  server: {
-    host: string;
-  };
-  timestamp: string;
+  latency: number;
+  jitter: number;
+  loss: number;
+  host: string;
+  url: string;
 }
 
-export const measureInternetSpeed = async (): Promise<InternetSpeedResult> => {
+export const measureInternetSpeed = async (): Promise<InternetSpeed> => {
   return new Promise((resolve, reject) => {
-    exec('speedtest-cli --json', (error: ExecException, output: string) => {
+    exec('speedtest --format=json', (error: ExecException, stdout: string) => {
       if (error) {
         return reject(error);
       }
 
       try {
-        return resolve(JSON.parse(output));
+        const output = JSON.parse(stdout);
+        const result: InternetSpeed = {
+          download: output.download.bandwidth,
+          upload: output.upload.bandwidth,
+          latency: output.ping.latency,
+          jitter: output.ping.jitter,
+          loss: output.packetLoss,
+          host: output.server.host,
+          url: output.result.url,
+        };
+
+        return resolve(result);
       } catch (error) {
         return reject(error);
       }

@@ -22,8 +22,11 @@ export class InternetSpeedSnapshotService {
 
       internetSpeedSnapshot.download = currentInternetSpeed.download;
       internetSpeedSnapshot.upload = currentInternetSpeed.upload;
-      internetSpeedSnapshot.ping = currentInternetSpeed.ping;
-      internetSpeedSnapshot.host = currentInternetSpeed.server.host;
+      internetSpeedSnapshot.latency = currentInternetSpeed.latency;
+      internetSpeedSnapshot.jitter = currentInternetSpeed.jitter;
+      internetSpeedSnapshot.loss = currentInternetSpeed.loss;
+      internetSpeedSnapshot.host = currentInternetSpeed.host;
+      internetSpeedSnapshot.url = currentInternetSpeed.url;
     } catch (error) {
       this.logger.error(`Internet speed measurement failed`, error.stack);
     } finally {

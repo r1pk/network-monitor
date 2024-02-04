@@ -5,17 +5,26 @@ export class InternetSpeedSnapshot {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: 0 })
+  @Column({ nullable: true })
   download: number;
 
-  @Column({ default: 0 })
+  @Column({ nullable: true })
   upload: number;
 
   @Column({ nullable: true })
-  ping: number;
+  latency: number;
+
+  @Column({ nullable: true })
+  jitter: number;
+
+  @Column({ nullable: true })
+  loss: number;
 
   @Column({ nullable: true })
   host: string;
+
+  @Column({ nullable: true })
+  url: string;
 
   @CreateDateColumn()
   timestamp: Date;
