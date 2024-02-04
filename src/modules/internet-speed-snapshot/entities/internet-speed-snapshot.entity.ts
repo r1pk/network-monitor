@@ -18,7 +18,7 @@ export class InternetSpeedSnapshot {
   jitter: number;
 
   @Column({ nullable: true })
-  loss: number;
+  loss: string;
 
   @Column({ nullable: true })
   host: string;

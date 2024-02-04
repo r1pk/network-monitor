@@ -15,22 +15,22 @@ export class InternetSpeedSnapshotService {
 
   @Cron(CronExpression.EVERY_5_MINUTES)
   async performCyclicInternetSpeedMeasurement(): Promise<void> {
-    const internetSpeedSnapshot = new InternetSpeedSnapshot();
+    const snapshot = new InternetSpeedSnapshot();
 
     try {
-      const currentInternetSpeed = await measureInternetSpeed();
+      const measurementResult = await measureInternetSpeed();
 
-      internetSpeedSnapshot.download = currentInternetSpeed.download;
-      internetSpeedSnapshot.upload = currentInternetSpeed.upload;
-      internetSpeedSnapshot.latency = currentInternetSpeed.latency;
-      internetSpeedSnapshot.jitter = currentInternetSpeed.jitter;
-      internetSpeedSnapshot.loss = currentInternetSpeed.loss;
-      internetSpeedSnapshot.host = currentInternetSpeed.host;
-      internetSpeedSnapshot.url = currentInternetSpeed.url;
+      snapshot.download = measurementResult.download;
+      snapshot.upload = measurementResult.upload;
+      snapshot.latency = measurementResult.latency;
+      snapshot.jitter = measurementResult.jitter;
+      snapshot.loss = measurementResult.loss;
+      snapshot.host = measurementResult.host;
+      snapshot.url = measurementResult.url;
     } catch (error) {
       this.logger.error(`Internet speed measurement failed`, error.stack);
     } finally {
-      this.repository.save(internetSpeedSnapshot);
+      this.repository.save(snapshot);
     }
   }
 

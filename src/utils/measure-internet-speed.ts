@@ -1,16 +1,16 @@
 import { ExecException, exec } from 'child_process';
 
-export interface InternetSpeed {
+export interface InternetSpeedMeasurementResult {
   download: number;
   upload: number;
   latency: number;
   jitter: number;
-  loss: number;
+  loss: string;
   host: string;
   url: string;
 }
 
-export const measureInternetSpeed = async (): Promise<InternetSpeed> => {
+export const measureInternetSpeed = async (): Promise<InternetSpeedMeasurementResult> => {
   return new Promise((resolve, reject) => {
     exec('speedtest --format=json', (error: ExecException, stdout: string) => {
       if (error) {
@@ -19,7 +19,7 @@ export const measureInternetSpeed = async (): Promise<InternetSpeed> => {
 
       try {
         const output = JSON.parse(stdout);
-        const result: InternetSpeed = {
+        const result: InternetSpeedMeasurementResult = {
           download: output.download.bandwidth,
           upload: output.upload.bandwidth,
           latency: output.ping.latency,
