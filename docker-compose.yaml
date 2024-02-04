@@ -1,8 +1,8 @@
 name: network-monitor
 
 services:
-  database:
-    container_name: database
+  app-database:
+    container_name: app-database
     image: mysql:8.3.0
     ports:
       - ${DATABASE_PORT}:3306
@@ -18,40 +18,40 @@ services:
       timeout: 10s
       retries: 10
 
-  adminer:
-    container_name: adminer
-    image: adminer:latest
-    ports:
-      - 8080:8080
-    depends_on:
-      database:
-        condition: service_healthy
-    profiles: ['development']
-
-  app-production:
-    container_name: app-production
+  app-node:
+    container_name: app-node
     build:
       context: .
       dockerfile: Dockerfile
-      target: production
-    ports:
-      - ${APPLICATION_PORT}:${APPLICATION_PORT}
-    depends_on:
-      database:
-        condition: service_healthy
-    profiles: ['production']
-
-  app-development:
-    container_name: app-development
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: development
     volumes:
       - ./src:/usr/src/app/src
     ports:
       - ${APPLICATION_PORT}:${APPLICATION_PORT}
     depends_on:
-      database:
+      app-database:
+        condition: service_healthy
+    profiles: ['base']
+
+  app-node-production:
+    container_name: app-node-production
+    extends: app-node
+    build:
+      target: production
+    profiles: ['production']
+
+  app-node-development:
+    container_name: app-node-development
+    extends: app-node
+    build:
+      target: development
+    profiles: ['development']
+
+  app-adminer:
+    container_name: app-adminer
+    image: adminer:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      app-database:
         condition: service_healthy
     profiles: ['development']
