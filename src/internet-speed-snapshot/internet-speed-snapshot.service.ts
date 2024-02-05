@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { Repository } from 'typeorm';
@@ -7,8 +7,6 @@ import { InternetSpeedSnapshot } from './internet-speed-snapshot.entity';
 
 @Injectable()
 export class InternetSpeedSnapshotService {
-  private readonly logger = new Logger(InternetSpeedSnapshotService.name);
-
   constructor(
     @InjectRepository(InternetSpeedSnapshot) private readonly repository: Repository<InternetSpeedSnapshot>,
   ) {}
@@ -26,7 +24,6 @@ export class InternetSpeedSnapshotService {
 
       exec('speedtest --format=json', (error, stdout) => {
         if (error) {
-          this.logger.warn('Internet speed measurement failed', error.stack);
           snapshot.log = error.message;
 
           return resolve(snapshot);
