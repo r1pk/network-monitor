@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { InternetSpeedSnapshotService } from './services/internet-speed-snapshot.service';
-import { InternetSpeedSnapshotController } from './controllers/internet-speed-snapshot.controller';
-import { InternetSpeedSnapshot } from './entities/internet-speed-snapshot.entity';
+import { InternetSpeedSnapshotService } from './internet-speed-snapshot.service';
+import { InternetSpeedSnapshotController } from './internet-speed-snapshot.controller';
+import { InternetSpeedSnapshot } from './internet-speed-snapshot.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([InternetSpeedSnapshot])],

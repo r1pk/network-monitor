@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import { InternetSpeedSnapshotService } from '../services/internet-speed-snapshot.service';
-import { InternetSpeedSnapshot } from '../entities/internet-speed-snapshot.entity';
+import { InternetSpeedSnapshotService } from './internet-speed-snapshot.service';
+import { InternetSpeedSnapshot } from './internet-speed-snapshot.entity';
 
 @Controller('internet-speed-snapshot')
 export class InternetSpeedSnapshotController {

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScheduleModule } from '@nestjs/schedule';
-import { InternetSpeedSnapshotModule } from './modules/internet-speed-snapshot/internet-speed-snapshot.module';
+import { InternetSpeedSnapshotModule } from './internet-speed-snapshot/internet-speed-snapshot.module';
 
 @Module({
   imports: [

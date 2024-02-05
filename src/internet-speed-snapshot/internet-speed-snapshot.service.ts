@@ -2,8 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { InternetSpeedSnapshot } from '../entities/internet-speed-snapshot.entity';
-import { measureInternetSpeed } from '../../../utils/measure-internet-speed';
+import { InternetSpeedSnapshot } from './internet-speed-snapshot.entity';
+import { measureInternetSpeed } from '../utils/measure-internet-speed';
 
 @Injectable()
 export class InternetSpeedSnapshotService {
