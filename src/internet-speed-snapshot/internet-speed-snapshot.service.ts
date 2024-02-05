@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
+import { Repository } from 'typeorm';
+import { exec } from 'child_process';
 import { InternetSpeedSnapshot } from './internet-speed-snapshot.entity';
-import { measureInternetSpeed } from '../utils/measure-internet-speed';
 
 @Injectable()
 export class InternetSpeedSnapshotService {
@@ -14,27 +14,39 @@ export class InternetSpeedSnapshotService {
   ) {}
 
   @Cron(CronExpression.EVERY_5_MINUTES)
-  async performCyclicInternetSpeedMeasurement(): Promise<void> {
-    const snapshot = new InternetSpeedSnapshot();
-
-    try {
-      const measurementResult = await measureInternetSpeed();
-
-      snapshot.download = measurementResult.download;
-      snapshot.upload = measurementResult.upload;
-      snapshot.latency = measurementResult.latency;
-      snapshot.jitter = measurementResult.jitter;
-      snapshot.loss = measurementResult.loss;
-      snapshot.host = measurementResult.host;
-      snapshot.url = measurementResult.url;
-    } catch (error) {
-      this.logger.error(`Internet speed measurement failed`, error.stack);
-    } finally {
+  performCyclicInternetSpeedMeasurement(): Promise<void> {
+    return this.measureInternetSpeed().then((snapshot) => {
       this.repository.save(snapshot);
-    }
+    });
   }
 
-  async getInternetSpeedSnapshots(): Promise<InternetSpeedSnapshot[]> {
+  measureInternetSpeed(): Promise<InternetSpeedSnapshot> {
+    return new Promise((resolve) => {
+      const snapshot = new InternetSpeedSnapshot();
+
+      exec('speedtest --format=json', (error, stdout) => {
+        if (error) {
+          this.logger.warn('Internet speed measurement failed', error.stack);
+          snapshot.log = error.message;
+
+          return resolve(snapshot);
+        }
+
+        const output = JSON.parse(stdout);
+
+        snapshot.download = output.download.bandwidth;
+        snapshot.upload = output.upload.bandwidth;
+        snapshot.ping = output.ping.latency;
+        snapshot.loss = output.packetLoss;
+        snapshot.host = output.server.host;
+        snapshot.url = output.result.url;
+
+        resolve(snapshot);
+      });
+    });
+  }
+
+  getInternetSpeedSnapshots(): Promise<InternetSpeedSnapshot[]> {
     return this.repository.find({ order: { timestamp: 'DESC' } });
   }
 }

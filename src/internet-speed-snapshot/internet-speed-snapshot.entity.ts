@@ -12,10 +12,7 @@ export class InternetSpeedSnapshot {
   upload: number;
 
   @Column({ nullable: true })
-  latency: number;
-
-  @Column({ nullable: true })
-  jitter: number;
+  ping: number;
 
   @Column({ nullable: true })
   loss: string;
@@ -25,6 +22,9 @@ export class InternetSpeedSnapshot {
 
   @Column({ nullable: true })
   url: string;
+
+  @Column({ nullable: true, type: 'text' })
+  log: string;
 
   @CreateDateColumn()
   timestamp: Date;
