@@ -22,7 +22,7 @@ services:
     container_name: app-node
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./.docker/Dockerfile
     volumes:
       - ./src:/usr/src/app/src
     ports:
