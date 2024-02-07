@@ -15,7 +15,7 @@ export class InternetSpeedSnapshot {
   ping: number;
 
   @Column({ nullable: true })
-  loss: string;
+  loss: number;
 
   @Column({ nullable: true })
   host: string;
