@@ -24,8 +24,6 @@ export class InternetSpeedSnapshotService {
 
       exec('speedtest --format=json', (error, stdout) => {
         if (error) {
-          snapshot.log = error.message;
-
           return resolve(snapshot);
         }
 
@@ -38,7 +36,7 @@ export class InternetSpeedSnapshotService {
         snapshot.host = output.server.host;
         snapshot.url = output.result.url;
 
-        resolve(snapshot);
+        return resolve(snapshot);
       });
     });
   }

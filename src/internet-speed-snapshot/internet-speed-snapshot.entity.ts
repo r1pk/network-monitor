@@ -23,9 +23,6 @@ export class InternetSpeedSnapshot {
   @Column({ nullable: true })
   url: string;
 
-  @Column({ nullable: true, type: 'text' })
-  log: string;
-
   @CreateDateColumn()
   timestamp: Date;
 }
