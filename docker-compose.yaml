@@ -13,6 +13,8 @@ services:
 
       # `MYSQL_ROOT_PASSWORD` variable is required by the MySQL image and should be changed for production environment
       MYSQL_ROOT_PASSWORD: 7RKgi4rYL287o9c69KvpEqx0Ue6KYtS3
+    networks:
+      - network-monitor
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 10s
@@ -27,6 +29,8 @@ services:
       - ./src:/usr/src/app/src
     ports:
       - ${APPLICATION_PORT}:${APPLICATION_PORT}
+    networks:
+      - network-monitor
     depends_on:
       app-database:
         condition: service_healthy
@@ -55,3 +59,7 @@ services:
       app-database:
         condition: service_healthy
     profiles: ['development']
+
+networks:
+  network-monitor:
+    driver: bridge
