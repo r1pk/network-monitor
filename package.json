@@ -21,6 +21,7 @@
     "@nestjs/mapped-types": "^2.0.4",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/schedule": "^4.0.0",
+    "@nestjs/serve-static": "^4.0.1",
     "@nestjs/typeorm": "^10.0.1",
     "mysql2": "^3.9.1",
     "reflect-metadata": "^0.1.13",

@@ -43,6 +43,7 @@ FROM base AS production
 
 WORKDIR /usr/src/app
 
+COPY --from=builder /usr/src/app/public ./public
 COPY --from=builder /usr/src/app/dist ./dist
 COPY --from=builder /usr/src/app/package*.json .
 COPY --from=builder /usr/src/app/.env* .
