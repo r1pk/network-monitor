@@ -4,7 +4,7 @@
 
 ## Installation
 
-In order for the application to work properly, the [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) application must be installed on your operating system. The installation process is described on the manufacturer's website for this software.
+In order for the application to work properly, the [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) application must be installed on your system. Installation process is described at [Ookla SpeedTest CLI page](https://www.speedtest.net/apps/cli).
 
 Use the [NPM](https://www.npmjs.com/) package manager to install all required application dependencies.
 
@@ -32,24 +32,24 @@ In order to create the initial database structure, the `DATABASE_SYNCHRONIZE` op
 ## Usage
 
 ```bash
-# Starting the application in development mode
+# Start the application in development mode
 npm run start:dev
 
-# Starting the application in production mode
+# Start the application in production mode
 npm run start:prod
 ```
 
 Once started, the application will take measurements of the Internet speed in 5-minute cycles.
 
-Results of the Internet speed measurements, presented in an elegant way, can be checked at `127.0.0.1:3000` (replace `3000` with the port set in your `.env`/`.env.local` file).
+Results of the Internet speed measurements, presented in an elegant way, can be viewed at `127.0.0.1:3000` (replace `3000` with the port set in your `.env`/`.env.local` file).
 
 ## Docker
 
 Application has a Docker configuration that simplifies the process of running the application in development and production mode.
 
-Launching an application using Docker requires only basic editing of the `.env` file.
+Launching an application with Docker requires only basic edits to the `.env` file.
 
-(_it is recommended that you edit the `.env` file, otherwise you will have to pass the location of a different file each time you try to launch the application in Docker_).
+(_it is recommended to edit the `.env` file, otherwise you will have to pass the location of a different file each time you try to launch the application in Docker_).
 
 - `DATABASE_HOST` - database host should be defined as `app-database` (name of the database container)
 - `DATABASE_SYNCHRONIZE` - option should be set to `true` when the application is launched in the docker for the first time to create the basic structure of the database.
@@ -57,10 +57,10 @@ Launching an application using Docker requires only basic editing of the `.env` 
 Next, start the container with the appropriate profile.
 
 ```bash
-# Running the application in production mode
+# Run the application in production mode
 docker compose --profile production up -d --build
 
-# Running the application in development mode with hot reload
+# Run the application in development mode with hot reload
 docker compose --profile development up -d --build
 ```
 
