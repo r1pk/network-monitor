@@ -44,4 +44,23 @@ export class InternetSpeedSnapshotService {
   getInternetSpeedSnapshots(limit?: number): Promise<InternetSpeedSnapshot[]> {
     return this.repository.find({ take: limit, order: { timestamp: 'DESC' } });
   }
+
+  getInternetSpeedSummary(since?: string): Promise<object | undefined> {
+    const builder = this.repository.createQueryBuilder('internet_speed_snapshot');
+
+    builder.select([
+      'avg(internet_speed_snapshot.download) as download',
+      'avg(internet_speed_snapshot.upload) as upload',
+      'avg(internet_speed_snapshot.ping) as ping',
+      'avg(internet_speed_snapshot.loss) as loss',
+    ]);
+
+    if (since !== undefined) {
+      builder.where('internet_speed_snapshot.timestamp >= :since', {
+        since: since,
+      });
+    }
+
+    return builder.getRawOne();
+  }
 }

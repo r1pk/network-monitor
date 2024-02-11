@@ -21,6 +21,10 @@ import { join } from 'path';
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
 
+        extra: {
+          decimalNumbers: true,
+        },
+
         host: configService.get('DATABASE_HOST'),
         port: configService.get('DATABASE_PORT'),
         username: configService.get('DATABASE_USER'),

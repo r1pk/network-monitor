@@ -17,4 +17,9 @@ export class InternetSpeedSnapshotController {
       return snapshots.at(0);
     });
   }
+
+  @Get('/summary')
+  getSummary(@Query('since') since?: string): Promise<object | undefined> {
+    return this.service.getInternetSpeedSummary(since);
+  }
 }
