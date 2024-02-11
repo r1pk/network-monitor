@@ -41,7 +41,7 @@ export class InternetSpeedSnapshotService {
     });
   }
 
-  getInternetSpeedSnapshots(): Promise<InternetSpeedSnapshot[]> {
-    return this.repository.find({ order: { timestamp: 'DESC' } });
+  getInternetSpeedSnapshots(limit?: number): Promise<InternetSpeedSnapshot[]> {
+    return this.repository.find({ take: limit, order: { timestamp: 'DESC' } });
   }
 }

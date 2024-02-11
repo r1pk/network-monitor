@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query, ParseIntPipe } from '@nestjs/common';
 import { InternetSpeedSnapshotService } from './internet-speed-snapshot.service';
 import { InternetSpeedSnapshot } from './internet-speed-snapshot.entity';
 
@@ -7,7 +7,14 @@ export class InternetSpeedSnapshotController {
   constructor(private readonly service: InternetSpeedSnapshotService) {}
 
   @Get()
-  getSnapshots(): Promise<InternetSpeedSnapshot[]> {
-    return this.service.getInternetSpeedSnapshots();
+  getSnapshots(@Query('limit', new ParseIntPipe({ optional: true })) limit?: number): Promise<InternetSpeedSnapshot[]> {
+    return this.service.getInternetSpeedSnapshots(limit);
+  }
+
+  @Get('/last')
+  getLastSnapshot(): Promise<InternetSpeedSnapshot | undefined> {
+    return this.service.getInternetSpeedSnapshots(1).then((snapshots) => {
+      return snapshots.at(0);
+    });
   }
 }
