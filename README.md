@@ -41,7 +41,7 @@ npm run start:prod
 
 Once started, the application will take measurements of the Internet speed in 5-minute cycles.
 
-You can view the results of the measurements at any time at `127.0.0.1:3000/api/internet-speed-snapshot` (replace `3000` with the port set in your `.env`/`.env.local` file).
+Results of the Internet speed measurements, presented in an elegant way, can be checked at `127.0.0.1:3000` (replace `3000` with the port set in your `.env`/`.env.local` file).
 
 ## Docker
 
