@@ -45,42 +45,84 @@ const loadLastSnapshotContent = async () => {
   updateContainerContent(container, content);
 };
 
-const initializeInternetPerformanceChart = async () => {
-  const canvas = document.querySelector('#internet-performance-chart');
-
+const initializeDashboardCharts = async () => {
   const response = await fetch('/api/internet-speed-snapshot/?limit=288');
   const snapshots = await response.json().then((results) => results.reverse());
 
-  const chart = new Chart(canvas, {
+  const labels = snapshots.map((snapshot) => new Date(snapshot.timestamp).toLocaleTimeString());
+  const options = {
+    elements: {
+      line: {
+        borderWidth: 1,
+      },
+      point: {
+        radius: 1,
+      },
+    },
+  };
+
+  new Chart(document.querySelector('#chart-download'), {
     type: 'line',
     data: {
-      labels: snapshots.map((snapshot) => new Date(snapshot.timestamp).toLocaleTimeString()),
+      labels: labels,
       datasets: [
         {
           label: 'Download [Mbps]',
           data: snapshots.map((snapshot) => convertInternetSpeedUnit(snapshot.download ?? 0)),
-          lineTension: 0.1,
-        },
-        {
-          label: 'Upload [Mbps]',
-          data: snapshots.map((snapshot) => convertInternetSpeedUnit(snapshot.upload ?? 0)),
-          lineTension: 0.1,
-        },
-        {
-          label: 'Ping [ms]',
-          data: snapshots.map((snapshot) => snapshot.ping ?? 0),
-          lineTension: 0.1,
-        },
-        {
-          label: 'Packet loss [%]',
-          data: snapshots.map((snapshot) => snapshot.loss ?? 0),
-          lineTension: 0.1,
         },
       ],
     },
+    options: options,
   });
 
-  window.chart = chart;
+  new Chart(document.querySelector('#chart-upload'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Upload [Mbps]',
+          data: snapshots.map((snapshot) => convertInternetSpeedUnit(snapshot.upload ?? 0)),
+        },
+      ],
+    },
+    options: options,
+  });
+
+  new Chart(document.querySelector('#chart-ping'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Ping [ms]',
+          data: snapshots.map((snapshot) => snapshot.ping ?? 0),
+        },
+      ],
+    },
+    options: options,
+  });
+
+  new Chart(document.querySelector('#chart-loss'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Packet Loss [%]',
+          data: snapshots.map((snapshot) => snapshot.loss ?? 0),
+        },
+      ],
+    },
+    options: Object.assign({}, options, {
+      scales: {
+        y: {
+          min: 0,
+          max: 100,
+        },
+      },
+    }),
+  });
 };
 
 const initializeNetworkMonitorDashboard = () => {
@@ -88,7 +130,7 @@ const initializeNetworkMonitorDashboard = () => {
     loadOverallSummaryContent();
     loadRecentSummaryContent();
     loadLastSnapshotContent();
-    initializeInternetPerformanceChart();
+    initializeDashboardCharts();
   } catch (error) {
     console.error('Failed to initialize the Network Monitor dashboard', error);
   }

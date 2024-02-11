@@ -20,7 +20,7 @@
                         <header class="card-header">
                             <p class="card-header-title">Summary (overall)</p>
                             <span class="card-header-icon" title="Summary of internet performance based on all available data">
-                                <i class="bx bxs-info-circle bx-sm"></i>
+                                <i class="bx bx-info-circle bx-sm"></i>
                             </span>
                         </header>
                         <div class="card-content is-family-monospace">
@@ -38,7 +38,7 @@
                         <header class="card-header">
                             <p class="card-header-title">Summary (recent)</p>
                             <span class="card-header-icon" title="Summary of internet performance based on data from the last 24 hours">
-                                <i class="bx bxs-info-circle bx-sm"></i>
+                                <i class="bx bx-info-circle bx-sm"></i>
                             </span>
                         </header>
                         <div class="card-content is-family-monospace">
@@ -56,7 +56,7 @@
                         <header class="card-header">
                             <p class="card-header-title">Last Snapshot</p>
                             <span class="card-header-icon" title="Details of the latest internet speed measurement">
-                                <i class="bx bxs-info-circle bx-sm"></i>
+                                <i class="bx bx-info-circle bx-sm"></i>
                             </span>
                         </header>
                         <div class="card-content is-family-monospace">
@@ -82,16 +82,57 @@
                 </div>
             </div>
             <div class="columns">
-                <div class="column">
+                <div class="column is-12-mobile is-6-desktop">
                     <div class="card">
                         <header class="card-header">
-                            <p class="card-header-title">Performance Chart</p>
-                            <span class="card-header-icon" title="Chart of internet performance over the last 24 hours">
-                                <i class="bx bx-stats bx-sm"></i>
+                            <p class="card-header-title">Download Speed Chart</p>
+                            <span class="card-header-icon" title="Chart of download speed values based on data from the last 24 hours">
+                                <i class="bx bx-download bx-sm"></i>
                             </span>
                         </header>
                         <div class="card-content">
-                            <canvas id="internet-performance-chart"></canvas>
+                            <canvas id="chart-download"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-12-mobile is-6-desktop">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Upload Speed Chart</p>
+                            <span class="card-header-icon" title="Chart of upload speed values based on data from the last 24 hours">
+                                <i class="bx bx-upload bx-sm"></i>
+                            </span>
+                        </header>
+                        <div class="card-content">
+                            <canvas id="chart-upload"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-12-mobile is-6-desktop">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Ping Chart</p>
+                            <span class="card-header-icon" title="Chart of ping values based on data from the last 24 hours">
+                                <i class="bx bx-time-five bx-sm"></i>
+                            </span>
+                        </header>
+                        <div class="card-content">
+                            <canvas id="chart-ping"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-12-mobile is-6-desktop">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Packet Loss Chart</p>
+                            <span class="card-header-icon" title="Chart of packet loss values based on data from the last 24 hours">
+                                <i class="bx bx-transfer bx-sm"></i>
+                            </span>
+                        </header>
+                        <div class="card-content">
+                            <canvas id="chart-loss"></canvas>
                         </div>
                     </div>
                 </div>
