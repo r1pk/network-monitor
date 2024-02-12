@@ -1,12 +1,12 @@
 # Network-Monitor
 
-[Nest.js](https://nestjs.com/) application designed to perform routine Internet stability tests for monitoring purposes using [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli).
+Application designed to perform routine Internet stability tests for monitoring purposes. It uses [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) to efficiently manage and execute these tests.
 
 ## Installation
 
-In order for the application to work properly, the [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) application must be installed on your system. Installation process is described at [Ookla SpeedTest CLI page](https://www.speedtest.net/apps/cli).
+Before using the application, make sure that the [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) application is installed on your system. Installation procedure can be found on the [Ookla SpeedTest CLI page](https://www.speedtest.net/apps/cli).
 
-Use the [NPM](https://www.npmjs.com/) package manager to install all required application dependencies.
+Next, use the [NPM](https://www.npmjs.com/) package manager to install required dependencies:
 
 ```bash
 npm install
@@ -14,20 +14,20 @@ npm install
 
 ## Configuration
 
-Edit the `.env` or `.env.local` file to change basic application settings.
+Adjust application settings by editing `.env` or `.env.local` file.
 
-Brief description for each available option:
+Below is a brief description of each available option:
 
-- `NODE_ENV` - environment in which the application runs, e.g. `development` or `production`.
-- `APPLICATION_PORT` - port on which the application will listen for requests.
-- `DATABASE_HOST` - database host.
-- `DATABASE_PORT` - database port.
-- `DATABASE_NAME` - database name.
-- `DATABASE_USER` - database user.
-- `DATABASE_PASSWORD` - database password for a previously defined user.
-- `DATABASE_SYNCHRONIZE` - Determines whether or not the database should be updated on the basis of the defined entities.
+- `NODE_ENV`: Environment in which the application is running, such as `development` or `production`.
+- `APPLICATION_PORT`: Port on which the application will listen for requests.
+- `DATABASE_HOST`: Database host.
+- `DATABASE_PORT`: Database port.
+- `DATABASE_NAME`: Database name.
+- `DATABASE_USER`: Database user.
+- `DATABASE_PASSWORD`: Password for the database user.
+- `DATABASE_SYNCHRONIZE`: Determines whether or not to perform a database update based on the defined entities.
 
-In order to create the initial database structure, the `DATABASE_SYNCHRONIZE` option should be set to `true` during the initial startup.
+Initialize the database structure by setting the `DATABASE_SYNCHRONIZE` option to `true` at the first start.
 
 ## Usage
 
@@ -39,22 +39,22 @@ npm run start:dev
 npm run start:prod
 ```
 
-Once started, the application will take measurements of the Internet speed in 5-minute cycles.
+Once started, the application will perform Internet speed measurements in 5-minute cycles.
 
-Results of the Internet speed measurements, presented in an elegant way, can be viewed at `127.0.0.1:3000` (replace `3000` with the port set in your `.env`/`.env.local` file).
+Go to `127.0.0.1:3000` in your web browser to see the results of the Internet speed measurements in an elegant form.
 
 ## Docker
 
-Application has a Docker configuration that simplifies the process of running the application in development and production mode.
+The application comes with a Docker configuration that simplifies the process of running it in both `development` and `production` modes.
 
-Launching an application with Docker requires only basic edits to the `.env` file.
+Starting an application with Docker requires only basic edits to the `.env` file.
 
-(_it is recommended to edit the `.env` file, otherwise you will have to pass the location of a different file each time you try to launch the application in Docker_).
+(_it's recommended to edit the `.env` file to avoid the need to pass the location of a different file each time you launch the application in Docker_)
 
-- `DATABASE_HOST` - database host should be defined as `app-database` (name of the database container)
-- `DATABASE_SYNCHRONIZE` - option should be set to `true` when the application is launched in the docker for the first time to create the basic structure of the database.
+- `DATABASE_HOST`: Set the database host to `app-database`, which is the name of the database container.
+- `DATABASE_SYNCHRONIZE`: Set this option to `true` for the first time the application is launched in Docker to create the basic structure of the database.
 
-Next, start the container with the appropriate profile.
+Next, start the container with the appropriate profile:
 
 ```bash
 # Run the application in production mode
