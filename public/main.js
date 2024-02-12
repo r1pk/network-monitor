@@ -74,7 +74,7 @@ const createDashboardCharts = async () => {
   };
 
   createLineChart({
-    selector: '#chart-download',
+    selector: '#download-chart',
     labels: labels,
     dataset: {
       label: 'Download [Mbps]',
@@ -84,7 +84,7 @@ const createDashboardCharts = async () => {
   });
 
   createLineChart({
-    selector: '#chart-upload',
+    selector: '#upload-chart',
     labels: labels,
     dataset: {
       label: 'Upload [Mbps]',
@@ -94,7 +94,7 @@ const createDashboardCharts = async () => {
   });
 
   createLineChart({
-    selector: '#chart-ping',
+    selector: '#ping-chart',
     labels: labels,
     dataset: {
       label: 'Ping [ms]',
@@ -104,7 +104,7 @@ const createDashboardCharts = async () => {
   });
 
   createLineChart({
-    selector: '#chart-loss',
+    selector: '#loss-chart',
     labels: labels,
     dataset: {
       label: 'Packet Loss [%]',
