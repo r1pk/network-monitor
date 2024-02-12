@@ -64,9 +64,11 @@ const createDashboardCharts = async () => {
     elements: {
       line: {
         borderWidth: 1,
+        borderColor: '#0a0a0a',
       },
       point: {
         radius: 1,
+        borderColor: '#0a0a0a',
       },
     },
   };
