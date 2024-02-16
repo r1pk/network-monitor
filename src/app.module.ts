@@ -32,7 +32,7 @@ import { join } from 'path';
         database: config.get('DATABASE_NAME'),
 
         autoLoadEntities: true,
-        synchronize: config.get('DATABASE_SYNCHRONIZE') === 'true',
+        synchronize: config.get('DATABASE_SYNC_ENABLED') === 'true',
       }),
       inject: [ConfigService],
     }),

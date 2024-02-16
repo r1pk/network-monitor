@@ -18,16 +18,16 @@ Adjust application settings by editing `.env` or `.env.local` file.
 
 Below is a brief description of each available option:
 
-- `NODE_ENV`: Environment in which the application is running, such as `development` or `production`.
-- `APPLICATION_PORT`: Port on which the application will listen for requests.
+- `NODE_ENV`: Application environment: `development` or `production`.
+- `APP_PORT`: Application port.
 - `DATABASE_HOST`: Database host.
 - `DATABASE_PORT`: Database port.
 - `DATABASE_NAME`: Database name.
 - `DATABASE_USER`: Database user.
 - `DATABASE_PASSWORD`: Password for the database user.
-- `DATABASE_SYNCHRONIZE`: Determines whether or not to perform a database update based on the defined entities.
+- `DATABASE_SYNC_ENABLED`: Determines whether or not to perform a database update based on the defined entities.
 
-Initialize the database structure by setting the `DATABASE_SYNCHRONIZE` option to `true` at the first start.
+Initialize the database structure by setting the `DATABASE_SYNC_ENABLED` option to `true` at the first start.
 
 ## Usage
 
@@ -52,7 +52,7 @@ Starting an application with Docker requires only basic edits to the `.env` file
 (_it's recommended to edit the `.env` file to avoid the need to pass the location of a different file each time you launch the application in Docker_)
 
 - `DATABASE_HOST`: Set the database host to `app-database`, which is the name of the database container.
-- `DATABASE_SYNCHRONIZE`: Set this option to `true` for the first time the application is launched in Docker to create the basic structure of the database.
+- `DATABASE_SYNC_ENABLED`: Set this option to `true` for the first time the application is launched in Docker to create the basic structure of the database.
 
 Next, start the container with the appropriate profile:
 

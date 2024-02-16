@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = app.get(ConfigService).get<number>('APPLICATION_PORT', 3000);
+  const port = app.get(ConfigService).get<number>('APP_PORT', 3000);
 
   app.setGlobalPrefix('api');
 

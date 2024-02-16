@@ -26,7 +26,7 @@ services:
       context: .
       dockerfile: ./.docker/Dockerfile
     ports:
-      - ${APPLICATION_PORT}:${APPLICATION_PORT}
+      - ${APP_PORT}:${APP_PORT}
     networks:
       - internal-network
     depends_on:
