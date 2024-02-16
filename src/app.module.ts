@@ -18,21 +18,21 @@ import { join } from 'path';
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
+      useFactory: (config: ConfigService) => ({
         type: 'mysql',
 
         extra: {
           decimalNumbers: true,
         },
 
-        host: configService.get('DATABASE_HOST'),
-        port: configService.get('DATABASE_PORT'),
-        username: configService.get('DATABASE_USER'),
-        password: configService.get('DATABASE_PASSWORD'),
-        database: configService.get('DATABASE_NAME'),
+        host: config.get('DATABASE_HOST'),
+        port: config.get('DATABASE_PORT'),
+        username: config.get('DATABASE_USER'),
+        password: config.get('DATABASE_PASSWORD'),
+        database: config.get('DATABASE_NAME'),
 
         autoLoadEntities: true,
-        synchronize: configService.get('DATABASE_SYNCHRONIZE') === 'true',
+        synchronize: config.get('DATABASE_SYNCHRONIZE') === 'true',
       }),
       inject: [ConfigService],
     }),
