@@ -26,6 +26,11 @@ Below is a brief description of each available option:
 - `DATABASE_USER`: Database user.
 - `DATABASE_PASSWORD`: Password for the database user.
 - `DATABASE_SYNC_ENABLED`: Determines whether or not to perform a database update based on the defined entities.
+- `SPEEDTEST_CLI_ARGS`: Allows passing additional arguments to Ookla SpeedTest CLI.
+
+|                                                                                                                                 ⚠️ IMPORTANT                                                                                                                                 |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Option `SPEEDTEST_CLI_ARGS` can be used to include additional arguments in the command that is executed during each Internet speed test. However, it is important to note that the `-f, -format` argument is overridden by default to maintain proper application operation. |
 
 Initialize the database structure by setting the `DATABASE_SYNC_ENABLED` option to `true` at the first start.
 
