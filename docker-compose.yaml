@@ -2,7 +2,7 @@ name: network-monitor
 
 services:
   app-database:
-    container_name: app-database
+    container_name: nm-app-database
     image: mysql:8.3.0
     ports:
       - ${DATABASE_PORT}:3306
@@ -21,7 +21,7 @@ services:
       retries: 10
 
   app-node:
-    container_name: app-node
+    container_name: nm-app-node
     build:
       context: .
       dockerfile: ./.docker/Dockerfile
@@ -35,14 +35,14 @@ services:
     profiles: ['base']
 
   app-node-production:
-    container_name: app-node-production
+    container_name: nm-app-node-production
     extends: app-node
     build:
       target: production
     profiles: ['production']
 
   app-node-development:
-    container_name: app-node-development
+    container_name: nm-app-node-development
     extends: app-node
     build:
       target: development
@@ -52,7 +52,7 @@ services:
     profiles: ['development']
 
   app-adminer:
-    container_name: app-adminer
+    container_name: nm-app-adminer
     image: adminer:latest
     ports:
       - 8080:8080
