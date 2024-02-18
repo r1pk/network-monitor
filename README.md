@@ -1,6 +1,6 @@
 # Network-Monitor
 
-Application designed to perform routine Internet stability tests for monitoring purposes. It uses [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) to efficiently manage and execute these tests.
+Application created using [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli), designed to perform routine Internet stability tests for monitoring purposes.
 
 ## Installation
 
@@ -15,8 +15,6 @@ npm install
 ## Configuration
 
 Adjust application settings by editing `.env` or `.env.local` file.
-
-Below is a brief description of each available option:
 
 - `NODE_ENV`: Application environment: `development` or `production`.
 - `APP_PORT`: Application port.
@@ -50,7 +48,7 @@ Go to `127.0.0.1:3000` in your web browser to see the results of the Internet sp
 
 ## Docker
 
-The application comes with a Docker configuration that simplifies the process of running it in both `development` and `production` modes.
+Included Docker configuration simplifies the process of launching the application in both `development` and `production` modes.
 
 Starting an application with Docker requires only basic edits to the `.env` file.
 
@@ -75,4 +73,4 @@ docker compose --profile development up -d --build
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](LICENSE.md)
