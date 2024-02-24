@@ -11,14 +11,14 @@ export class InternetSpeedSnapshotController {
     return this.service.getInternetSpeedSnapshots(limit);
   }
 
-  @Get('/last')
+  @Get('last')
   getLastSnapshot(): Promise<InternetSpeedSnapshot | undefined> {
     return this.service.getInternetSpeedSnapshots(1).then((snapshots) => {
       return snapshots.at(0);
     });
   }
 
-  @Get('/summary')
+  @Get('summary')
   getSummary(@Query('since') since?: string): Promise<object | undefined> {
     return this.service.getInternetSpeedSummary(since);
   }
