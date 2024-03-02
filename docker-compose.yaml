@@ -1,11 +1,11 @@
+version: '3.8'
 name: network-monitor
 
 services:
-  app-database:
-    container_name: nm-app-database
+  database:
     image: mysql:8.3.0
     ports:
-      - ${DATABASE_PORT}:3306
+      - 3306:3306
     environment:
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_USER: ${DATABASE_USER}
@@ -20,8 +20,7 @@ services:
       timeout: 10s
       retries: 10
 
-  app-node:
-    container_name: nm-app-node
+  node:
     build:
       context: .
       dockerfile: ./.docker/Dockerfile
@@ -29,36 +28,33 @@ services:
       - ${APP_PORT}:${APP_PORT}
     networks:
       - internal-network
-    depends_on:
-      app-database:
-        condition: service_healthy
     profiles: ['base']
 
-  app-node-production:
-    container_name: nm-app-node-production
-    extends: app-node
+  node-production:
+    extends: node
     build:
       target: production
+    depends_on:
+      database:
+        condition: service_healthy
     profiles: ['production']
 
-  app-node-development:
-    container_name: nm-app-node-development
-    extends: app-node
+  node-development:
+    extends: node
     build:
       target: development
     volumes:
       - ./public:/usr/src/app/public
       - ./src:/usr/src/app/src
+    depends_on:
+      database:
+        condition: service_healthy
     profiles: ['development']
 
-  app-adminer:
-    container_name: nm-app-adminer
+  adminer:
     image: adminer:latest
     ports:
       - 8080:8080
-    depends_on:
-      app-database:
-        condition: service_healthy
     profiles: ['development']
 
 networks:

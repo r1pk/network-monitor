@@ -54,7 +54,8 @@ Starting an application with Docker requires only basic edits to the `.env` file
 
 (_it's recommended to edit the `.env` file to avoid the need to pass the location of a different file each time you launch the application in Docker_)
 
-- `DATABASE_HOST`: Set the database host to `app-database`, which is the name of the database container.
+- `DATABASE_HOST`: Set the database host to `database`, which is the name of the database container.
+- `DATABASE_PORT`: Set the database port to `3306`, which is the default port of the MySQL server in database container.
 - `DATABASE_SYNC_ENABLED`: Set this option to `true` for the first time the application is launched in Docker to create the basic structure of the database.
 
 Next, start the container with the appropriate profile:
