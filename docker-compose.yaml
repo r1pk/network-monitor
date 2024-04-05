@@ -13,6 +13,8 @@ services:
 
       # `MYSQL_ROOT_PASSWORD` variable is required by the MySQL image and should be changed for production environment
       MYSQL_ROOT_PASSWORD: 7RKgi4rYL287o9c69KvpEqx0Ue6KYtS3
+    volumes:
+      - database-data:/var/lib/mysql
     networks:
       - internal-network
     healthcheck:
@@ -56,6 +58,9 @@ services:
     ports:
       - 8080:8080
     profiles: ['development']
+
+volumes:
+  database-data:
 
 networks:
   internal-network:
