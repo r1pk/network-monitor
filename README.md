@@ -42,7 +42,7 @@ npm run start:dev
 npm run start:prod
 ```
 
-Once started, the application will perform Internet speed measurements in 5-minute cycles.
+Once started, the application will perform Internet speed measurements in 1-minute cycles.
 
 Go to `127.0.0.1:3000` in your web browser to see the results of the Internet speed measurements in an elegant form.
 

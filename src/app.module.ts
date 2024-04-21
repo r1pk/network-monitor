@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScheduleModule } from '@nestjs/schedule';
-import { InternetSpeedSnapshotModule } from './internet-speed-snapshot/internet-speed-snapshot.module';
+import { SpeedTestModule } from './speed-test/speed-test.module';
 import { join } from 'path';
 
 @Module({
@@ -37,7 +37,7 @@ import { join } from 'path';
       inject: [ConfigService],
     }),
     ScheduleModule.forRoot(),
-    InternetSpeedSnapshotModule,
+    SpeedTestModule,
   ],
   controllers: [],
   providers: [],

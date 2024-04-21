@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
 
 @Entity()
-export class InternetSpeedSnapshot {
+export class SpeedTestResult {
   @PrimaryGeneratedColumn()
   id: number;
 
