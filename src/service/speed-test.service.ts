@@ -13,7 +13,7 @@ export class SpeedTestService {
     @InjectRepository(SpeedTestResult) private readonly repository: Repository<SpeedTestResult>,
   ) {}
 
-  @Cron(CronExpression.EVERY_MINUTE)
+  @Cron(CronExpression.EVERY_5_MINUTES)
   performCyclicSpeedTest(): Promise<void> {
     return this.performSpeedTest().then((result: SpeedTestResult) => {
       this.repository.save(result);

@@ -42,7 +42,7 @@ npm run start:dev
 npm run start:prod
 ```
 
-Once started, the application will perform speed tests in 1-minute cycles.
+Once started, the application will perform speed tests in 5-minute cycles.
 
 Go to `127.0.0.1:3000` in your web browser to see the results of the speed test results in an elegant form.
 
