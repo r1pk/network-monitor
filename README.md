@@ -28,7 +28,7 @@ Adjust application settings by editing `.env` or `.env.local` file.
 
 |                                                                                                                                 ⚠️ IMPORTANT                                                                                                                                 |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Option `SPEEDTEST_CLI_ARGS` can be used to include additional arguments in the command that is executed during each Internet speed test. However, it is important to note that the `-f, -format` argument is overridden by default to maintain proper application operation. |
+| Option `SPEEDTEST_CLI_ARGS` can be used to include additional arguments in the command that is executed during each speed test. However, it is important to note that the `-f, -format` argument is overridden by default to maintain proper application operation. |
 
 Initialize the database structure by setting the `DATABASE_SYNC_ENABLED` option to `true` at the first start.
 
@@ -42,9 +42,9 @@ npm run start:dev
 npm run start:prod
 ```
 
-Once started, the application will perform Internet speed measurements in 1-minute cycles.
+Once started, the application will perform speed tests in 1-minute cycles.
 
-Go to `127.0.0.1:3000` in your web browser to see the results of the Internet speed measurements in an elegant form.
+Go to `127.0.0.1:3000` in your web browser to see the results of the speed test results in an elegant form.
 
 ## Docker
 
