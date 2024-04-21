@@ -60,17 +60,17 @@ const createLineChart = (config) => {
 /* dashboard */
 const initializeNetworkMonitorDashboard = async () => {
   try {
-    const response = await fetch('/api/speed-test/results?limit=' + NUMBER_OF_RECENT_SNAPSHOTS);
+    const response = await fetch('/api/speed-test-result?limit=' + NUMBER_OF_RECENT_SNAPSHOTS);
     const snapshots = await response.json().then((results) => results.reverse());
     const labels = snapshots.map((snapshot) => new Date(snapshot.timestamp).toLocaleTimeString());
 
-    populateCardContent('#overall-summary', '/api/speed-test/average-result', DATA_TRANSFORMERS);
+    populateCardContent('#overall-summary', '/api/speed-test-result/average', DATA_TRANSFORMERS);
     populateCardContent(
       '#recent-summary',
-      '/api/speed-test/average-result?since=' + RECENT_SUMMARY_SINCE_DATE.toISOString(),
+      '/api/speed-test-result/average?since=' + RECENT_SUMMARY_SINCE_DATE.toISOString(),
       DATA_TRANSFORMERS,
     );
-    populateCardContent('#last-snapshot', '/api/speed-test/latest-result', DATA_TRANSFORMERS);
+    populateCardContent('#last-snapshot', '/api/speed-test-result/latest', DATA_TRANSFORMERS);
 
     createLineChart({
       selector: '#download-chart',

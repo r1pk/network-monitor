@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScheduleModule } from '@nestjs/schedule';
-import { SpeedTestModule } from './speed-test/speed-test.module';
+import { SpeedTestModule } from './speed-test.module';
 import { join } from 'path';
 
 @Module({
@@ -13,7 +13,7 @@ import { join } from 'path';
       envFilePath: ['.env.local', '.env'],
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
+      rootPath: join(__dirname, '..', '..', 'public'),
       exclude: ['/api/(.*)'],
     }),
     TypeOrmModule.forRootAsync({
