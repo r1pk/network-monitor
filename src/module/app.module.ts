@@ -25,11 +25,12 @@ import { join } from 'path';
           decimalNumbers: true,
         },
 
-        host: config.get('DATABASE_HOST'),
-        port: config.get('DATABASE_PORT'),
-        username: config.get('DATABASE_USER'),
-        password: config.get('DATABASE_PASSWORD'),
-        database: config.get('DATABASE_NAME'),
+        host: config.get('MYSQL_HOST'),
+        port: config.get('MYSQL_PORT'),
+
+        database: config.get('MYSQL_DATABASE'),
+        username: config.get('MYSQL_USER'),
+        password: config.get('MYSQL_PASSWORD'),
 
         autoLoadEntities: true,
         synchronize: config.get('DATABASE_SYNC_ENABLED') === 'true',
