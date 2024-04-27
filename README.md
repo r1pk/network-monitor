@@ -4,9 +4,8 @@ Application created using [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CL
 
 ## Installation
 
-Before using the application, make sure that the [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) application is installed on your system. Installation procedure can be found on the [Ookla SpeedTest CLI page](https://www.speedtest.net/apps/cli).
-
-Next, use the [NPM](https://www.npmjs.com/) package manager to install required dependencies:
+1. Install [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) by following instructions on the [Ookla SpeedTest CLI page](https://www.speedtest.net/apps/cli).
+2. Install required dependencies using [NPM](https://www.npmjs.com/) package manager.
 
 ```bash
 npm install
@@ -35,7 +34,7 @@ Adjust application settings by editing `.env` or `.env.local` file (`.env.local`
 
 ## Usage
 
-Before running the application, make sure that the [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) package is installed on your system, the dependencies are downloaded, and the application is properly configured.
+Before running the application without Docker, make sure all required dependencies are installed and the application is properly configured.
 
 Start the application in appropriate mode:
 
@@ -53,7 +52,7 @@ Go to `127.0.0.1:3000` in your web browser to see the results of the speed test 
 
 ## Docker
 
-Included Docker configuration simplifies the entire process of launching the application in both `development` and `production` modes.
+Docker configuration, automatically installs all required dependencies, simplifying the process of launching the application in any environment.
 
 Start the container with the appropriate profile:
 
