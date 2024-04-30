@@ -68,6 +68,11 @@ Once started, the application will perform speed tests in 5-minute cycles.
 
 Go to `127.0.0.1:3000` in your web browser to see the results of the speed test results.
 
+|                                                                                                                                      ⚠️ IMPORTANT                                                                                                                                       |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|            Inside the Docker environment, the `APP_PORT`, `MYSQL_HOST` and `MYSQL_PORT` environment variables are overwritten with the appropriate values specified in the `docker-compose.yaml` file to ensure proper connection between the node and database containers.             |
+| Environment variables `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD` are used during the process of building the database container (among other things, to specify the database name, the user and his password), changing them after the container is built requires rebuilding it. |
+
 ## Authors
 
 [@r1pk](https://github.com/r1pk)

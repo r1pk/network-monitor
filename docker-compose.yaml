@@ -3,10 +3,8 @@ name: network-monitor
 services:
   database:
     image: mysql:8.3.0
-    ports:
-      - 3306:3306
     environment:
-      MYSQL_RANDOM_ROOT_PASSWORD: true
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
     env_file:
       - path: .env
         required: true
@@ -24,15 +22,17 @@ services:
   node:
     build:
       context: .
-      dockerfile: ./.docker/Dockerfile
+      dockerfile: ./docker/node/Dockerfile
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - '3000:3000'
     environment:
-      MYSQL_HOST: 'database'
-      MYSQL_PORT: 3306
+      - APP_PORT=3000
+      - MYSQL_HOST=database
+      - MYSQL_PORT=3306
     networks:
       - internal-network
-    profiles: ['base']
+    profiles:
+      - base
 
   node-production:
     extends: node
@@ -41,7 +41,8 @@ services:
     depends_on:
       database:
         condition: service_healthy
-    profiles: ['production']
+    profiles:
+      - production
 
   node-development:
     extends: node
@@ -53,18 +54,12 @@ services:
     depends_on:
       database:
         condition: service_healthy
-    profiles: ['development']
-
-  adminer:
-    image: adminer:latest
-    ports:
-      - 8080:8080
-    networks:
-      - internal-network
-    profiles: ['development']
+    profiles:
+      - development
 
 volumes:
   database-data:
+    external: false
 
 networks:
   internal-network:
