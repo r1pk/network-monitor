@@ -1,135 +1,109 @@
 <!doctype html>
-<html lang="en" class="has-background-black">
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dashboard | Network-Monitor</title>
+        <title>Dashboard :: Network-Monitor</title>
         <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
         <link rel="icon" type="image/png" href="./assets/favicon.png" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" />
         <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
-        <link rel="stylesheet" href="./main.css" />
+        <link rel="stylesheet" href="./styles/main.css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="./main.js"></script>
+        <script src="./scripts/main.js"></script>
     </head>
-    <body class="py-5 has-text-white">
-        <div class="container is-fullhd p-4">
+    <body>
+        <div class="container is-fullhd p-5">
             <div class="columns is-multiline">
-                <div class="column is-12-mobile is-6-tablet is-3-desktop">
-                    <div id="overall-summary" class="card">
+                <div class="column is-12-tablet is-4-desktop">
+                    <div id="average-snapshot-overall" class="card">
                         <header class="card-header">
-                            <p class="card-header-title">Overall Summary</p>
-                            <span class="card-header-icon" title="Summary of internet performance based on all available data">
+                            <p class="card-header-title">Average Snapshot</p>
+                            <span class="card-header-icon">
                                 <i class="bx bx-info-circle bx-sm"></i>
                             </span>
                         </header>
                         <div class="card-content is-family-monospace">
                             <ul>
-                                <li>Average Download: <span class="download tag is-black">0.00</span></li>
-                                <li>Average Upload: <span class="upload tag is-black">0.00</span></li>
-                                <li>Average Ping: <span class="ping tag is-black">0.00</span></li>
-                                <li>Average Packet Loss: <span class="loss tag is-black">0.00</span></li>
+                                <li>Average Download: <span class="download tag is-dark">0.00</span></li>
+                                <li>Average Upload: <span class="upload tag is-dark">0.00</span></li>
+                                <li>Average Ping: <span class="ping tag is-dark">0.00</span></li>
+                                <li>Average Packet Loss: <span class="loss tag is-dark">0.00</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="column is-12-mobile is-6-tablet is-3-desktop">
-                    <div id="recent-summary" class="card">
+                <div class="column is-12-tablet is-4-desktop">
+                    <div id="average-snapshot-recent" class="card">
                         <header class="card-header">
-                            <p class="card-header-title">Recent Summary</p>
-                            <span class="card-header-icon" title="Summary of internet performance based on recent data">
+                            <p class="card-header-title">Average Snapshot (24h)</p>
+                            <span class="card-header-icon">
                                 <i class="bx bx-info-circle bx-sm"></i>
                             </span>
                         </header>
                         <div class="card-content is-family-monospace">
                             <ul>
-                                <li>Average Download: <span class="download tag is-black">0.00</span></li>
-                                <li>Average Upload: <span class="upload tag is-black">0.00</span></li>
-                                <li>Average Ping: <span class="ping tag is-black">0.00</span></li>
-                                <li>Average Packet Loss: <span class="loss tag is-black">0.00</span></li>
+                                <li>Average Download: <span class="download tag is-dark">0.00</span></li>
+                                <li>Average Upload: <span class="upload tag is-dark">0.00</span></li>
+                                <li>Average Ping: <span class="ping tag is-dark">0.00</span></li>
+                                <li>Average Packet Loss: <span class="loss tag is-dark">0.00</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="column is-12-mobile is-6-tablet is-3-desktop">
-                    <div id="last-snapshot" class="card">
+                <div class="column is-12-tablet is-4-desktop">
+                    <div id="latest-snapshot" class="card">
                         <header class="card-header">
-                            <p class="card-header-title">Last Snapshot</p>
-                            <span class="card-header-icon" title="Details of the latest internet speed measurement">
+                            <p class="card-header-title">Latest Snapshot</p>
+                            <span class="card-header-icon">
                                 <i class="bx bx-info-circle bx-sm"></i>
                             </span>
                         </header>
                         <div class="card-content is-family-monospace">
                             <ul>
-                                <li>Download: <span class="download tag is-black">0.00</span></li>
-                                <li>Upload: <span class="upload tag is-black">0.00</span></li>
-                                <li>Ping: <span class="ping tag is-black">0.00</span></li>
-                                <li>Packet Loss: <span class="loss tag is-black">0.00</span></li>
+                                <li>Download: <span class="download tag is-dark">0.00</span></li>
+                                <li>Upload: <span class="upload tag is-dark">0.00</span></li>
+                                <li>Ping: <span class="ping tag is-dark">0.00</span></li>
+                                <li>Packet Loss: <span class="loss tag is-dark">0.00</span></li>
                             </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="column is-12-mobile is-6-tablet is-3-desktop">
-                    <div class="card">
-                        <header class="card-header">
-                            <p class="card-header-title">Actions</p>
-                            <span class="card-header-icon bx-sm" title="Available actions to perform">
-                                <i class="bx bx-terminal"></i>
-                            </span>
-                        </header>
-                        <div class="card-content">
-                            <div class="buttons are-small">
-                                <a class="button is-fullwidth is-black" href="/api/internet-speed-snapshot">
-                                    <span class="icon">
-                                        <i class="bx bx-export"></i>
-                                    </span>
-                                    <span>Export</span>
-                                </a>
-                                <a class="button is-fullwidth is-black" href="/api/internet-speed-snapshot?limit=288">
-                                    <span class="icon">
-                                        <i class="bx bx-export"></i>
-                                    </span>
-                                    <span>Export (24h)</span>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="columns">
-                <div class="column is-12-mobile is-6-desktop">
+            <div class="columns is-multiline">
+                <div class="column is-12-tablet is-6-desktop">
                     <div class="card">
                         <header class="card-header">
                             <p class="card-header-title">Download Speed Chart</p>
-                            <span class="card-header-icon" title="Chart of download speed values based on recent data">
+                            <span class="card-header-icon">
                                 <i class="bx bx-download bx-sm"></i>
                             </span>
                         </header>
                         <div class="card-content">
-                            <canvas id="download-chart"></canvas>
+                            <canvas id="download-speed-chart"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="column is-12-mobile is-6-desktop">
+                <div class="column is-12-tablet is-6-desktop">
                     <div class="card">
                         <header class="card-header">
                             <p class="card-header-title">Upload Speed Chart</p>
-                            <span class="card-header-icon" title="Chart of upload speed values based on recent data">
+                            <span class="card-header-icon">
                                 <i class="bx bx-upload bx-sm"></i>
                             </span>
                         </header>
                         <div class="card-content">
-                            <canvas id="upload-chart"></canvas>
+                            <canvas id="upload-speed-chart"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="columns">
-                <div class="column is-12-mobile is-6-desktop">
+            <div class="columns is-multiline">
+                <div class="column is-12-tablet is-6-desktop">
                     <div class="card">
                         <header class="card-header">
                             <p class="card-header-title">Ping Chart</p>
-                            <span class="card-header-icon" title="Chart of ping values based on recent data">
+                            <span class="card-header-icon">
                                 <i class="bx bx-time-five bx-sm"></i>
                             </span>
                         </header>
@@ -138,16 +112,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="column is-12-mobile is-6-desktop">
+                <div class="column is-12-tablet is-6-desktop">
                     <div class="card">
                         <header class="card-header">
                             <p class="card-header-title">Packet Loss Chart</p>
-                            <span class="card-header-icon" title="Chart of packet loss values based on recent data">
+                            <span class="card-header-icon">
                                 <i class="bx bx-transfer bx-sm"></i>
                             </span>
                         </header>
                         <div class="card-content">
-                            <canvas id="loss-chart"></canvas>
+                            <canvas id="packet-loss-chart"></canvas>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,4 @@
 /* constants and defaults */
-const BYTES_PER_MEGABIT = 125000;
-
 const DATA_TRANSFORMERS = {
   download: (value = 0) => convertBytesToMegabits(value),
   upload: (value = 0) => convertBytesToMegabits(value),
@@ -11,11 +9,11 @@ const DEFAULT_LINE_CHART_OPTIONS = {
   elements: {
     line: {
       borderWidth: 1,
-      borderColor: '#0a0a0a',
+      borderColor: '#f1f2f3',
     },
     point: {
       radius: 1,
-      borderColor: '#0a0a0a',
+      borderColor: '#f1f2f3',
     },
   },
 };
@@ -25,7 +23,7 @@ const NUMBER_OF_RECENT_SNAPSHOTS = 288;
 
 /* utilities */
 const convertBytesToMegabits = (bytes) => {
-  return (bytes / BYTES_PER_MEGABIT).toFixed(2);
+  return (bytes / 125000).toFixed(2);
 };
 
 const populateCardContent = async (selector, url, transformers) => {
@@ -64,16 +62,16 @@ const initializeNetworkMonitorDashboard = async () => {
     const snapshots = await response.json().then((results) => results.reverse());
     const labels = snapshots.map((snapshot) => new Date(snapshot.timestamp).toLocaleTimeString());
 
-    populateCardContent('#overall-summary', '/api/speed-test-result/average', DATA_TRANSFORMERS);
+    populateCardContent('#average-snapshot-overall', '/api/speed-test-result/average', DATA_TRANSFORMERS);
     populateCardContent(
-      '#recent-summary',
+      '#average-snapshot-recent',
       '/api/speed-test-result/average?since=' + RECENT_SUMMARY_SINCE_DATE.toISOString(),
       DATA_TRANSFORMERS,
     );
-    populateCardContent('#last-snapshot', '/api/speed-test-result/latest', DATA_TRANSFORMERS);
+    populateCardContent('#latest-snapshot', '/api/speed-test-result/latest', DATA_TRANSFORMERS);
 
     createLineChart({
-      selector: '#download-chart',
+      selector: '#download-speed-chart',
       labels: labels,
       dataset: {
         label: 'Download [Mbps]',
@@ -81,7 +79,7 @@ const initializeNetworkMonitorDashboard = async () => {
       },
     });
     createLineChart({
-      selector: '#upload-chart',
+      selector: '#upload-speed-chart',
       labels: labels,
       dataset: {
         label: 'Upload [Mbps]',
@@ -97,7 +95,7 @@ const initializeNetworkMonitorDashboard = async () => {
       },
     });
     createLineChart({
-      selector: '#loss-chart',
+      selector: '#packet-loss-chart',
       labels: labels,
       dataset: {
         label: 'Packet Loss [%]',
