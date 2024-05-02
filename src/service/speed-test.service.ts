@@ -4,38 +4,38 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { Repository } from 'typeorm';
 import { exec } from 'child_process';
-import { SpeedTestResult } from '../entity/speed-test-result.entity';
+import { SpeedTestSnapshot } from '../entity/speed-test-snapshot.entity';
 
 @Injectable()
 export class SpeedTestService {
   constructor(
     private readonly config: ConfigService,
-    @InjectRepository(SpeedTestResult) private readonly repository: Repository<SpeedTestResult>,
+    @InjectRepository(SpeedTestSnapshot) private readonly repository: Repository<SpeedTestSnapshot>,
   ) {}
 
   @Cron(CronExpression.EVERY_5_MINUTES)
   performCyclicSpeedTest(): Promise<void> {
-    return this.performSpeedTest().then((result: SpeedTestResult) => {
-      this.repository.save(result);
+    return this.performSpeedTest().then((snapshot: SpeedTestSnapshot) => {
+      this.repository.save(snapshot);
     });
   }
 
-  getSpeedTestResults(limit?: number): Promise<SpeedTestResult[]> {
+  getSpeedTestSnapshots(limit?: number): Promise<SpeedTestSnapshot[]> {
     return this.repository.find({ take: limit, order: { timestamp: 'DESC' } });
   }
 
-  getAverageSpeedTestResult(since?: string): Promise<object | undefined> {
-    const builder = this.repository.createQueryBuilder('speed_test_result');
+  getAverageSpeedTestSnapshot(since?: string): Promise<object | undefined> {
+    const builder = this.repository.createQueryBuilder('speed_test_snapshot');
 
     builder.select([
-      'avg(speed_test_result.download) as download',
-      'avg(speed_test_result.upload) as upload',
-      'avg(speed_test_result.ping) as ping',
-      'avg(speed_test_result.loss) as loss',
+      'avg(speed_test_snapshot.download) as download',
+      'avg(speed_test_snapshot.upload) as upload',
+      'avg(speed_test_snapshot.ping) as ping',
+      'avg(speed_test_snapshot.loss) as loss',
     ]);
 
     if (since !== undefined) {
-      builder.where('speed_test_result.timestamp >= :since', {
+      builder.where('speed_test_snapshot.timestamp >= :since', {
         since: since,
       });
     }
@@ -43,26 +43,26 @@ export class SpeedTestService {
     return builder.getRawOne();
   }
 
-  performSpeedTest(): Promise<SpeedTestResult> {
+  performSpeedTest(): Promise<SpeedTestSnapshot> {
     return new Promise((resolve) => {
-      const result = new SpeedTestResult();
+      const snapshot = new SpeedTestSnapshot();
       const args = this.config.get<string>('SPEEDTEST_CLI_ARGS');
 
       exec(`speedtest ${args} --format=json`, (error, stdout) => {
         if (error) {
-          return resolve(result);
+          return resolve(snapshot);
         }
 
         const output = JSON.parse(stdout);
 
-        result.download = output.download.bandwidth;
-        result.upload = output.upload.bandwidth;
-        result.ping = output.ping.latency;
-        result.loss = output.packetLoss;
-        result.host = output.server.host;
-        result.url = output.result.url;
+        snapshot.download = output.download.bandwidth;
+        snapshot.upload = output.upload.bandwidth;
+        snapshot.ping = output.ping.latency;
+        snapshot.loss = output.packetLoss;
+        snapshot.host = output.server.host;
+        snapshot.url = output.result.url;
 
-        return resolve(result);
+        return resolve(snapshot);
       });
     });
   }

@@ -18,7 +18,7 @@ const DEFAULT_LINE_CHART_OPTIONS = {
   },
 };
 
-const RECENT_SUMMARY_SINCE_DATE = new Date(new Date().getTime() - 86400000);
+const RECENT_SINCE_DATE = new Date(new Date().getTime() - 86400000);
 const NUMBER_OF_RECENT_SNAPSHOTS = 288;
 
 /* utilities */
@@ -58,17 +58,17 @@ const createLineChart = (config) => {
 /* dashboard */
 const initializeNetworkMonitorDashboard = async () => {
   try {
-    const response = await fetch('/api/speed-test-result?limit=' + NUMBER_OF_RECENT_SNAPSHOTS);
-    const snapshots = await response.json().then((results) => results.reverse());
+    const response = await fetch('/api/speed-test-snapshot?limit=' + NUMBER_OF_RECENT_SNAPSHOTS);
+    const snapshots = await response.json().then((items) => items.reverse());
     const labels = snapshots.map((snapshot) => new Date(snapshot.timestamp).toLocaleTimeString());
 
-    populateCardContent('#average-snapshot-overall', '/api/speed-test-result/average', DATA_TRANSFORMERS);
+    populateCardContent('#average-snapshot-overall', '/api/speed-test-snapshot/average', DATA_TRANSFORMERS);
     populateCardContent(
       '#average-snapshot-recent',
-      '/api/speed-test-result/average?since=' + RECENT_SUMMARY_SINCE_DATE.toISOString(),
+      '/api/speed-test-snapshot/average?since=' + RECENT_SINCE_DATE.toISOString(),
       DATA_TRANSFORMERS,
     );
-    populateCardContent('#latest-snapshot', '/api/speed-test-result/latest', DATA_TRANSFORMERS);
+    populateCardContent('#latest-snapshot', '/api/speed-test-snapshot/latest', DATA_TRANSFORMERS);
 
     createLineChart({
       selector: '#download-speed-chart',
