@@ -9,7 +9,9 @@
     "build": "nest build",
     "start": "nest start",
     "start:dev": "nest start --watch",
+    "start:docker:dev": "docker compose --profile development --env-file .env.docker up --build",
     "start:prod": "node dist/main",
+    "start:docker:prod": "docker compose --profile production --env-file .env.docker up -d --build",
     "format": "prettier --write \"{public,src}/**/*.{html,js,ts}\"",
     "lint": "eslint \"{public,src}/**/*.{js,ts}\" --fix"
   },

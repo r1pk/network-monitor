@@ -6,10 +6,8 @@ services:
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=true
     env_file:
-      - path: .env
+      - path: .env.docker
         required: true
-      - path: .env.local
-        required: false
     volumes:
       - database-data:/var/lib/mysql
     networks:
@@ -24,11 +22,10 @@ services:
       context: .
       dockerfile: ./docker/node/Dockerfile
     ports:
-      - '3000:3000'
-    environment:
-      - APP_PORT=3000
-      - MYSQL_HOST=database
-      - MYSQL_PORT=3306
+      - '${APP_PORT}:${APP_PORT}'
+    env_file:
+      - path: .env.docker
+        required: true
     networks:
       - internal-network
     profiles:
