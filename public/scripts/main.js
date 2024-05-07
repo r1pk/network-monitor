@@ -1,118 +1,142 @@
-/* constants and defaults */
-const DATA_TRANSFORMERS = {
-  download: (value = 0) => convertBytesToMegabits(value),
-  upload: (value = 0) => convertBytesToMegabits(value),
-  ping: (value = 0) => value.toFixed(2),
-  loss: (value = 0) => value.toFixed(2),
-};
-const DEFAULT_LINE_CHART_OPTIONS = {
-  elements: {
-    line: {
-      borderWidth: 1,
-      borderColor: '#f1f2f3',
-    },
-    point: {
-      radius: 1,
-      borderColor: '#f1f2f3',
-    },
-  },
-};
-
+/* constants */
 const RECENT_SINCE_DATE = new Date(new Date().getTime() - 86400000);
 const NUMBER_OF_RECENT_SNAPSHOTS = 288;
 
 /* utilities */
-const convertBytesToMegabits = (bytes) => {
-  return (bytes / 125000).toFixed(2);
+const request = (url, options = {}) => {
+  return fetch(url, options).then((response) => response.json());
 };
 
-const populateCardContent = async (selector, url, transformers) => {
-  const card = document.querySelector(selector);
+const adjustNumberRepresentation = (value = 0) => {
+  return value.toFixed(2);
+};
 
-  const response = await fetch(url);
-  const content = await response.json();
+const convertBytesToMegabits = (value = 0) => {
+  return adjustNumberRepresentation(value / 125000);
+};
 
+const normalizeSpeedTestSnapshotContent = (snapshot) => {
+  return Object.assign({}, snapshot, {
+    download: convertBytesToMegabits(snapshot.download) + ' Mbps',
+    upload: convertBytesToMegabits(snapshot.upload) + ' Mbps',
+    ping: adjustNumberRepresentation(snapshot.ping) + ' ms',
+    loss: adjustNumberRepresentation(snapshot.loss) + ' %',
+  });
+};
+
+const updateContainerContent = (container, content) => {
   for (const [key, value] of Object.entries(content)) {
-    const element = card.querySelector('.' + key);
+    const element = container.querySelector('[data-key="' + key + '"]');
 
-    if (element) {
-      element.textContent = transformers[key] ? transformers[key](value) : value;
+    if (element === null) {
+      continue;
     }
+
+    element.textContent = value;
   }
 };
 
-const createLineChart = (config) => {
-  const element = document.querySelector(config.selector);
-  const options = Object.assign({}, DEFAULT_LINE_CHART_OPTIONS, config.options);
+const createLineChart = (selector, labels, dataset) => {
+  const element = document.querySelector(selector);
+  const options = {
+    elements: {
+      line: {
+        borderWidth: 1,
+        borderColor: '#f1f2f3',
+      },
+      point: {
+        radius: 1,
+        borderColor: '#f1f2f3',
+      },
+    },
+    scales: {
+      y: {
+        min: 0,
+      },
+    },
+  };
 
   return new Chart(element, {
     type: 'line',
     data: {
-      labels: config.labels,
-      datasets: [config.dataset],
+      labels: labels,
+      datasets: [dataset],
     },
     options: options,
   });
 };
 
-/* dashboard */
-const initializeNetworkMonitorDashboard = async () => {
+/* loaders */
+const loadOverallAverageSpeedTestSnapshot = async () => {
   try {
-    const response = await fetch('/api/speed-test-snapshot?limit=' + NUMBER_OF_RECENT_SNAPSHOTS);
-    const snapshots = await response.json().then((items) => items.reverse());
-    const labels = snapshots.map((snapshot) => new Date(snapshot.timestamp).toLocaleTimeString());
+    const container = document.querySelector('#overall-average-snapshot');
 
-    populateCardContent('#average-snapshot-overall', '/api/speed-test-snapshot/average', DATA_TRANSFORMERS);
-    populateCardContent(
-      '#average-snapshot-recent',
-      '/api/speed-test-snapshot/average?since=' + RECENT_SINCE_DATE.toISOString(),
-      DATA_TRANSFORMERS,
-    );
-    populateCardContent('#latest-snapshot', '/api/speed-test-snapshot/latest', DATA_TRANSFORMERS);
+    const snapshot = await request('/api/speed-test-snapshot/average');
+    const content = normalizeSpeedTestSnapshotContent(snapshot);
 
-    createLineChart({
-      selector: '#download-speed-chart',
-      labels: labels,
-      dataset: {
-        label: 'Download [Mbps]',
-        data: snapshots.map((snapshot) => convertBytesToMegabits(snapshot.download ?? 0)),
-      },
-    });
-    createLineChart({
-      selector: '#upload-speed-chart',
-      labels: labels,
-      dataset: {
-        label: 'Upload [Mbps]',
-        data: snapshots.map((snapshot) => convertBytesToMegabits(snapshot.upload ?? 0)),
-      },
-    });
-    createLineChart({
-      selector: '#ping-chart',
-      labels: labels,
-      dataset: {
-        label: 'Ping [ms]',
-        data: snapshots.map((snapshot) => snapshot.ping ?? 0),
-      },
-    });
-    createLineChart({
-      selector: '#packet-loss-chart',
-      labels: labels,
-      dataset: {
-        label: 'Packet Loss [%]',
-        data: snapshots.map((snapshot) => snapshot.loss ?? 0),
-      },
-      options: {
-        scales: {
-          y: {
-            min: 0,
-            max: 100,
-          },
-        },
-      },
-    });
+    return updateContainerContent(container, content);
   } catch (error) {
-    console.error('Failed to initialize network monitor dashboard', error);
+    console.log('Error occurred while loading overall average speed test snapshot:', error);
   }
 };
 
-document.addEventListener('DOMContentLoaded', initializeNetworkMonitorDashboard);
+const loadRecentAverageSpeedTestSnapshot = async () => {
+  try {
+    const container = document.querySelector('#recent-average-snapshot');
+
+    const snapshot = await request('/api/speed-test-snapshot/average?since=' + RECENT_SINCE_DATE.toISOString());
+    const content = normalizeSpeedTestSnapshotContent(snapshot);
+
+    return updateContainerContent(container, content);
+  } catch (error) {
+    console.log('Error occurred while loading recent average speed test snapshot:', error);
+  }
+};
+
+const loadLatestSpeedTestSnapshot = async () => {
+  try {
+    const container = document.querySelector('#latest-snapshot');
+
+    const snapshot = await request('/api/speed-test-snapshot/latest');
+    const content = normalizeSpeedTestSnapshotContent(snapshot);
+
+    return updateContainerContent(container, content);
+  } catch (error) {
+    console.log('Error occurred while loading latest speed test snapshot:', error);
+  }
+};
+
+const loadSpeedTestSnapshotCharts = async () => {
+  try {
+    const snapshots = await request('/api/speed-test-snapshot?limit=' + NUMBER_OF_RECENT_SNAPSHOTS);
+
+    const dataset = snapshots.reverse();
+    const labels = dataset.map((snapshot) => new Date(snapshot.timestamp).toLocaleTimeString());
+
+    createLineChart('#download-speed-chart', labels, {
+      label: 'Download Speed [Mbps]',
+      data: snapshots.map((snapshot) => convertBytesToMegabits(snapshot.download)),
+    });
+    createLineChart('#upload-speed-chart', labels, {
+      label: 'Upload Speed [Mbps]',
+      data: snapshots.map((snapshot) => convertBytesToMegabits(snapshot.upload)),
+    });
+    createLineChart('#ping-chart', labels, {
+      label: 'Ping [ms]',
+      data: snapshots.map((snapshot) => adjustNumberRepresentation(snapshot.ping)),
+    });
+    createLineChart('#packet-loss-chart', labels, {
+      label: 'Packet Loss [%]',
+      data: snapshots.map((snapshot) => adjustNumberRepresentation(snapshot.loss)),
+    });
+  } catch (error) {
+    console.log('Error occurred while loading recent speed test snapshot charts:', error);
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadOverallAverageSpeedTestSnapshot();
+  loadRecentAverageSpeedTestSnapshot();
+  loadLatestSpeedTestSnapshot();
+  loadSpeedTestSnapshotCharts();
+});

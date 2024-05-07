@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" class="has-background-grey-darker">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +16,7 @@
         <div class="container is-fullhd p-5">
             <div class="columns is-multiline">
                 <div class="column is-12-tablet is-4-desktop">
-                    <div id="average-snapshot-overall" class="card">
+                    <div id="overall-average-snapshot" class="card">
                         <header class="card-header">
                             <p class="card-header-title">Average Snapshot</p>
                             <span class="card-header-icon">
@@ -25,16 +25,16 @@
                         </header>
                         <div class="card-content is-family-monospace">
                             <ul>
-                                <li>Average Download: <span class="download tag is-dark">0.00</span></li>
-                                <li>Average Upload: <span class="upload tag is-dark">0.00</span></li>
-                                <li>Average Ping: <span class="ping tag is-dark">0.00</span></li>
-                                <li>Average Packet Loss: <span class="loss tag is-dark">0.00</span></li>
+                                <li>Average Download: <span data-key="download" class="tag is-dark">0.00 Mbps</span></li>
+                                <li>Average Upload: <span data-key="upload" class="tag is-dark">0.00 Mbps</span></li>
+                                <li>Average Ping: <span data-key="ping" class="tag is-dark">0.00 ms</span></li>
+                                <li>Average Packet Loss: <span data-key="loss" class="tag is-dark">0.00 %</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="column is-12-tablet is-4-desktop">
-                    <div id="average-snapshot-recent" class="card">
+                    <div id="recent-average-snapshot" class="card">
                         <header class="card-header">
                             <p class="card-header-title">Average Snapshot (24h)</p>
                             <span class="card-header-icon">
@@ -43,10 +43,10 @@
                         </header>
                         <div class="card-content is-family-monospace">
                             <ul>
-                                <li>Average Download: <span class="download tag is-dark">0.00</span></li>
-                                <li>Average Upload: <span class="upload tag is-dark">0.00</span></li>
-                                <li>Average Ping: <span class="ping tag is-dark">0.00</span></li>
-                                <li>Average Packet Loss: <span class="loss tag is-dark">0.00</span></li>
+                                <li>Average Download: <span data-key="download" class="tag is-dark">0.00 Mbps</span></li>
+                                <li>Average Upload: <span data-key="upload" class="tag is-dark">0.00 Mbps</span></li>
+                                <li>Average Ping: <span data-key="ping" class="tag is-dark">0.00 ms</span></li>
+                                <li>Average Packet Loss: <span data-key="loss" class="tag is-dark">0.00 %</span></li>
                             </ul>
                         </div>
                     </div>
@@ -61,10 +61,10 @@
                         </header>
                         <div class="card-content is-family-monospace">
                             <ul>
-                                <li>Download: <span class="download tag is-dark">0.00</span></li>
-                                <li>Upload: <span class="upload tag is-dark">0.00</span></li>
-                                <li>Ping: <span class="ping tag is-dark">0.00</span></li>
-                                <li>Packet Loss: <span class="loss tag is-dark">0.00</span></li>
+                                <li>Download: <span data-key="download" class="tag is-dark">0.00 Mbps</span></li>
+                                <li>Upload: <span data-key="upload" class="tag is-dark">0.00 Mbps</span></li>
+                                <li>Ping: <span data-key="ping" class="tag is-dark">0.00 ms</span></li>
+                                <li>Packet Loss: <span data-key="loss" class="tag is-dark">0.00 %</span></li>
                             </ul>
                         </div>
                     </div>
