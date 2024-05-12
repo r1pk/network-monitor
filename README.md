@@ -34,7 +34,7 @@ Adjust application settings by editing `.env` or `.env.local` file (`.env.local`
 
 ## Usage
 
-Before launching the application without docker, ensure all necessary dependencies are installed and the application is correctly configured.
+Ensure that all necessary dependencies are installed and the application is configured correctly before launching the application.
 
 Start the application in appropriate mode:
 
@@ -54,7 +54,7 @@ Go to `127.0.0.1:3000` in your web browser to see summary generated from collect
 
 Docker configuration, automatically installs all necessary dependencies, simplifying process of application deployment in any environment.
 
-File `.env.docker` contains environment variable definitions that are only used and have the highest priority when using the application in a docker environment.
+File `.env.docker` contains environment variable definitions that are only used when the application is launched in a docker environment and are given the highest priority.
 
 Start the container with the appropriate profile:
 
@@ -84,6 +84,4 @@ Go to `127.0.0.1:3000` in your web browser to see summary generated from collect
 
 [@r1pk](https://github.com/r1pk)
 
-## License
-
-[MIT](LICENSE.md)
+License [MIT](LICENSE.md)
