@@ -84,4 +84,6 @@ Go to `127.0.0.1:3000` in your web browser to see summary generated from collect
 
 [@r1pk](https://github.com/r1pk)
 
-License [MIT](LICENSE.md)
+## License
+
+[MIT](LICENSE.md)
