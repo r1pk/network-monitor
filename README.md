@@ -19,8 +19,8 @@ Adjust application settings by editing `.env` or `.env.local` file (`.env.local`
 | ----------------------- | ----------------- | ------------------------------------------------------------------------- |
 | `NODE_ENV`              | `production`      | Application environment: `development` or `production`.                   |
 | `APP_PORT`              | `3000`            | Application port.                                                         |
-| `MYSQL_HOST`            | `127.0.0.1`       | MySQL database host.                                                      |
-| `MYSQL_PORT`            | `3306`            | MySQL database port.                                                      |
+| `MYSQL_HOST`            |                   | MySQL database host.                                                      |
+| `MYSQL_PORT`            |                   | MySQL database port.                                                      |
 | `MYSQL_DATABASE`        | `network-monitor` | MySQL database name.                                                      |
 | `MYSQL_USER`            | `network-monitor` | MySQL database user.                                                      |
 | `MYSQL_PASSWORD`        | `network-monitor` | Password for MySQL database user.                                         |
@@ -54,8 +54,6 @@ Go to `127.0.0.1:3000` in your web browser to see summary generated from collect
 
 Docker configuration, automatically installs all necessary dependencies, simplifying process of application deployment in any environment.
 
-File `.env.docker` contains environment variable definitions that are only used when the application is launched in a docker environment and are given the highest priority.
-
 Start the container with the appropriate profile:
 
 ```bash
@@ -68,17 +66,21 @@ npm run start:docker:dev
 
 Commands above are abbreviations for the docker compose cli commands
 
-```
+```bash
 # Production mode
-docker compose --profile production --env-file .env.docker up -d --build
+docker compose --profile production up -d --build
 
 # Development mode
-docker compose --profile development --env-file .env.docker up --build
+docker compose --profile development up --build
 ```
 
 Once started, the application will perform speed tests in 5-minute cycles.
 
 Go to `127.0.0.1:3000` in your web browser to see summary generated from collected data.
+
+|                                                                               ⚠️ IMPORTANT                                                                               |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Environment variables `MYSQL_HOST` and `MYSQL_PORT` are overridden by the `docker-compose.yaml` file inside app container to ensure a proper connection to the database. |
 
 ## Authors
 

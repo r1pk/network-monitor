@@ -4,10 +4,10 @@ services:
   database:
     image: mysql:8.3.0
     environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_RANDOM_ROOT_PASSWORD=true
-    env_file:
-      - path: .env.docker
-        required: true
     volumes:
       - database-data:/var/lib/mysql
     networks:
@@ -23,9 +23,9 @@ services:
       dockerfile: ./docker/node/Dockerfile
     ports:
       - '${APP_PORT}:${APP_PORT}'
-    env_file:
-      - path: .env.docker
-        required: true
+    environment:
+      - MYSQL_HOST=database
+      - MYSQL_PORT=3306
     networks:
       - internal-network
     profiles:
