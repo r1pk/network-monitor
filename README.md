@@ -1,6 +1,6 @@
 # Network-Monitor
 
-Application created using [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli), designed to perform routine Internet stability tests for monitoring purposes.
+Network-Monitor is an application developed using [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) designed to perform routine Internet stability tests for monitoring purposes.
 
 ## Installation
 
