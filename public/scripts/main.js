@@ -8,10 +8,18 @@ const request = (url, options = {}) => {
 };
 
 const adjustNumberRepresentation = (value = 0) => {
+  if (value === null || isNaN(value)) {
+    value = 0;
+  }
+
   return value.toFixed(2);
 };
 
 const convertBytesToMegabits = (value = 0) => {
+  if (value === null || isNaN(value)) {
+    value = 0;
+  }
+
   return adjustNumberRepresentation(value / 125000);
 };
 
