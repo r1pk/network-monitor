@@ -58,16 +58,6 @@ Start the container with the appropriate profile:
 
 ```bash
 # Production mode
-npm run start:docker:prod
-
-# Development mode
-npm run start:docker:dev
-```
-
-Commands above are abbreviations for the docker compose cli commands
-
-```bash
-# Production mode
 docker compose --profile production up -d --build
 
 # Development mode
