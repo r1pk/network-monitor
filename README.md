@@ -13,14 +13,14 @@ npm install
 
 ## Configuration
 
-Adjust application settings by editing `.env` or `.env.local` file (`.env.local` overrides `.env`).
+Adjust application settings by editing `.env` file.
 
 | Name                    | Default           | Description                                                               |
 | ----------------------- | ----------------- | ------------------------------------------------------------------------- |
 | `NODE_ENV`              | `production`      | Application environment: `development` or `production`.                   |
 | `APP_PORT`              | `3000`            | Application port.                                                         |
-| `MYSQL_HOST`            |                   | MySQL database host.                                                      |
-| `MYSQL_PORT`            |                   | MySQL database port.                                                      |
+| `MYSQL_HOST`            | `127.0.0.1`       | MySQL database host.                                                      |
+| `MYSQL_PORT`            | `3306`            | MySQL database port.                                                      |
 | `MYSQL_DATABASE`        | `network-monitor` | MySQL database name.                                                      |
 | `MYSQL_USER`            | `network-monitor` | MySQL database user.                                                      |
 | `MYSQL_PASSWORD`        | `network-monitor` | Password for MySQL database user.                                         |
@@ -52,7 +52,7 @@ Go to `127.0.0.1:3000` in your web browser to see summary generated from collect
 
 ## Docker
 
-Docker configuration, automatically installs all necessary dependencies, simplifying process of application deployment in any environment.
+Docker configuration automatically installs all necessary dependencies, simplifying process of application deployment in any environment.
 
 Start the container with the appropriate profile:
 
@@ -68,9 +68,10 @@ Once started, the application will perform speed tests in 5-minute cycles.
 
 Go to `127.0.0.1:3000` in your web browser to see summary generated from collected data.
 
-|                                                                               ⚠️ IMPORTANT                                                                               |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Environment variables `MYSQL_HOST` and `MYSQL_PORT` are overridden by the `docker-compose.yaml` file inside app container to ensure a proper connection to the database. |
+|                                                                                          ⚠️ IMPORTANT                                                                                          |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Upon the first launch of the application in a docker environment, a MySQL container is created using data from the `MYSQL_DATABASE`, `MYSQL_USER`, and `MYSQL_PASSWORD` environment variables. |
+|            Environment variables `MYSQL_HOST` and `MYSQL_PORT` are overridden by the `docker-compose.yaml` file inside app container to ensure a proper connection to the database.            |
 
 ## Authors
 
