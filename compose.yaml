@@ -2,16 +2,16 @@ name: network-monitor
 
 services:
   database:
-    image: mysql:8.3.0
+    image: 'mysql:9.0.0'
+    secrets:
+      - database-password
     environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=network-monitor
+      - MYSQL_USER=network-monitor
+      - MYSQL_PASSWORD=/run/secrets/database-password
       - MYSQL_RANDOM_ROOT_PASSWORD=true
     volumes:
-      - database-data:/var/lib/mysql
-    networks:
-      - internal-network
+      - 'database-data:/var/lib/mysql'
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 10s
@@ -20,14 +20,17 @@ services:
   node:
     build:
       context: .
-      dockerfile: ./docker/node/Dockerfile
+      dockerfile: ./docker/image/node/Dockerfile
     ports:
       - '${APP_PORT}:${APP_PORT}'
+    secrets:
+      - database-password
     environment:
       - MYSQL_HOST=database
       - MYSQL_PORT=3306
-    networks:
-      - internal-network
+      - MYSQL_DATABASE=network-monitor
+      - MYSQL_USER=network-monitor
+      - MYSQL_PASSWORD=/run/secrets/database-password
     profiles:
       - base
 
@@ -46,18 +49,18 @@ services:
     build:
       target: development
     volumes:
-      - ./public:/usr/src/app/public
-      - ./src:/usr/src/app/src
+      - './public:/usr/src/app/public'
+      - './src:/usr/src/app/src'
     depends_on:
       database:
         condition: service_healthy
     profiles:
       - development
 
+secrets:
+  database-password:
+    file: ./docker/secret/database-password.txt
+
 volumes:
   database-data:
     external: false
-
-networks:
-  internal-network:
-    driver: bridge

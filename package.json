@@ -1,7 +1,7 @@
 {
   "name": "network-monitor",
   "version": "0.0.1",
-  "description": "Application designed to perform routine Internet stability tests for monitoring purposes",
+  "description": "Application designed to analyze internet connection stability based on periodic speed tests",
   "author": "Patryk Krawczyk",
   "private": true,
   "license": "MIT",

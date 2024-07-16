@@ -1,11 +1,11 @@
 # Network-Monitor
 
-Network-Monitor is an application developed using [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) designed to perform routine Internet stability tests for monitoring purposes.
+Network-Monitor is an application built with [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) to analyze internet connection stability via periodic speed tests.
 
 ## Installation
 
-1. Install [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) by following instructions on [Ookla SpeedTest CLI page](https://www.speedtest.net/apps/cli).
-2. Install required dependencies using [NPM](https://www.npmjs.com/) package manager.
+1. Install the [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) by following the instructions on the [Ookla SpeedTest CLI page](https://www.speedtest.net/apps/cli).
+2. Install the required dependencies using the [NPM](https://www.npmjs.com/) package manager.
 
 ```bash
 npm install
@@ -13,30 +13,30 @@ npm install
 
 ## Configuration
 
-Adjust application settings by editing `.env` file.
+Available environment variables that affect the functionality of the application can be found in the `.env` file.
 
-| Name                    | Default           | Description                                                               |
-| ----------------------- | ----------------- | ------------------------------------------------------------------------- |
-| `NODE_ENV`              | `production`      | Application environment: `development` or `production`.                   |
-| `APP_PORT`              | `3000`            | Application port.                                                         |
-| `MYSQL_HOST`            | `127.0.0.1`       | MySQL database host.                                                      |
-| `MYSQL_PORT`            | `3306`            | MySQL database port.                                                      |
-| `MYSQL_DATABASE`        | `network-monitor` | MySQL database name.                                                      |
-| `MYSQL_USER`            | `network-monitor` | MySQL database user.                                                      |
-| `MYSQL_PASSWORD`        | `network-monitor` | Password for MySQL database user.                                         |
-| `DATABASE_SYNC_ENABLED` | `true`            | Determines whether to perform database updates based on defined entities. |
-| `SPEEDTEST_CLI_ARGS`    |                   | Additional arguments to Ookla SpeedTest CLI.                              |
+| Name                    | Default      | Description                                                                        |
+| ----------------------- | ------------ | ---------------------------------------------------------------------------------- |
+| `NODE_ENV`              | `production` | Application environment (`development` or `production`)                            |
+| `APP_PORT`              | `3000`       | Application port                                                                   |
+| `MYSQL_HOST`            |              | MySQL database host                                                                |
+| `MYSQL_PORT`            |              | MySQL database port                                                                |
+| `MYSQL_DATABASE`        |              | MySQL database name                                                                |
+| `MYSQL_USER`            |              | MySQL database user                                                                |
+| `MYSQL_PASSWORD`        |              | Password for MySQL database user                                                   |
+| `DATABASE_SYNC_ENABLED` | `true`       | Determines whether to perform database structure updates based on defined entities |
+| `SPEEDTEST_CLI_ARGS`    |              | Additional arguments for Ookla SpeedTest CLI                                       |
 
-|                                                                                                                      ⚠️ IMPORTANT                                                                                                                      |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Option `DATABASE_SYNC_ENABLED` is set to `true` by default, which allows the application to generate an initial database structure based on defined entities. Option should be set to `false` after the first launch to avoid any potential data loss. |
-|          Option `SPEEDTEST_CLI_ARGS` can be used to include additional arguments in command that is executed during each speed test. Note that the `-f, -format` argument is overridden by default to maintain proper application operation.           |
+|                                                                                                                      ⚠️ IMPORTANT                                                                                                                       |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Option `DATABASE_SYNC_ENABLED` is set to `true` by default, which allows the application to create an initial database structure based on defined entities. This option should be set to `false` after the first start to avoid any possible data loss. |
+|       Option `SPEEDTEST_CLI_ARGS` can be used to include additional arguments in the command that is executed during each speed test. In order to maintain proper application functionality, the `-f, -format` argument is overridden by default.       |
 
 ## Usage
 
-Ensure that all necessary dependencies are installed and the application is configured correctly before launching the application.
+Make sure that all required dependencies are installed and that the application is configured correctly according to the previous instructions.
 
-Start the application in appropriate mode:
+Start the application in the appropriate mode:
 
 ```bash
 # Production mode
@@ -46,15 +46,15 @@ npm run start:prod
 npm run start:dev
 ```
 
-Once started, the application will perform speed tests in 5-minute cycles.
+Once started, the application will perform periodic speed tests in 5-minute cycles.
 
-Go to `127.0.0.1:3000` in your web browser to see summary generated from collected data.
+Go to `127.0.0.1:3000` in your web browser to see the aggregated results of the performed speed tests.
 
 ## Docker
 
-Docker configuration automatically installs all necessary dependencies, simplifying process of application deployment in any environment.
+Application comes with a docker configuration that automatically installs all the necessary dependencies, simplifying the process of deploying the application in any environment.
 
-Start the container with the appropriate profile:
+Start the application in the appropriate mode:
 
 ```bash
 # Production mode
@@ -64,14 +64,13 @@ docker compose --profile production up -d --build
 docker compose --profile development up --build
 ```
 
-Once started, the application will perform speed tests in 5-minute cycles.
+Once started, the application will perform periodic speed tests in 5-minute cycles.
 
-Go to `127.0.0.1:3000` in your web browser to see summary generated from collected data.
+Go to `127.0.0.1:3000` in your web browser to see the aggregated results of the performed speed tests.
 
-|                                                                                          ⚠️ IMPORTANT                                                                                          |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Upon the first launch of the application in a docker environment, a MySQL container is created using data from the `MYSQL_DATABASE`, `MYSQL_USER`, and `MYSQL_PASSWORD` environment variables. |
-|            Environment variables `MYSQL_HOST` and `MYSQL_PORT` are overridden by the `docker-compose.yaml` file inside app container to ensure a proper connection to the database.            |
+|                                                                              ⚠️ IMPORTANT                                                                               |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Environment variables related to the database connection are overridden by the `compose.yaml` file inside each container to ensure a proper connection to the database. |
 
 ## Authors
 
