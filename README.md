@@ -1,81 +1,133 @@
-# Network-Monitor
+# Network Monitor
 
-Network-Monitor is an application built with [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) to analyze internet connection stability via periodic speed tests.
+Application built with technologies such as [React.js](https://react.dev/), [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) to monitor network connection stability.
 
 ## Installation
 
-1. Install the [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) by following the instructions on the [Ookla SpeedTest CLI page](https://www.speedtest.net/apps/cli).
-2. Install the required dependencies using the [NPM](https://www.npmjs.com/) package manager.
+1. Clone the repository.
 
 ```bash
+git clone https://github.com/r1pk/network-monitor.git .
+```
+
+2. Install client dependencies.
+
+```bash
+cd client
 npm install
 ```
 
+3. Install server dependencies.
+
+```bash
+cd server
+npm install
+```
+
+4. Install Ookla SpeedTest CLI following the [official instructions](https://www.speedtest.net/apps/cli).
+
 ## Configuration
 
-Available environment variables that affect the functionality of the application can be found in the `.env` file.
+Configuration is done by modifying the `.env` files located in the `client` and `server` folders.
+
+### Client Configuration (`client/.env`)
+
+Available environment variables that affect the application functionality.
+
+| Name                   | Default     | Description                                             |
+| ---------------------- | ----------- | ------------------------------------------------------- |
+| `VITE_SERVER_IP`       | `127.0.0.1` | IP address of the device hosting the server application |
+| `VITE_SERVER_APP_PORT` | `8080`      | Port on which the server application is running.        |
+
+### Server Configuration (`server/.env`)
+
+Available environment variables that affect the application functionality.
 
 | Name                    | Default      | Description                                                                        |
 | ----------------------- | ------------ | ---------------------------------------------------------------------------------- |
-| `NODE_ENV`              | `production` | Application environment (`development` or `production`)                            |
-| `APP_PORT`              | `3000`       | Application port                                                                   |
-| `MYSQL_HOST`            |              | MySQL database host                                                                |
-| `MYSQL_PORT`            |              | MySQL database port                                                                |
-| `MYSQL_DATABASE`        |              | MySQL database name                                                                |
-| `MYSQL_USER`            |              | MySQL database user                                                                |
-| `MYSQL_PASSWORD`        |              | Password for MySQL database user                                                   |
+| `NODE_ENV`              | `production` | Application environment                                                            |
+| `APP_PORT`              | `8080`       | Application port                                                                   |
+| `MYSQL_HOST`            |              | Database host                                                                      |
+| `MYSQL_PORT`            |              | Database port                                                                      |
+| `MYSQL_DATABASE`        |              | Database name                                                                      |
+| `MYSQL_USER`            |              | Database user                                                                      |
+| `MYSQL_PASSWORD`        |              | Database password                                                                  |
 | `DATABASE_SYNC_ENABLED` | `true`       | Determines whether to perform database structure updates based on defined entities |
 | `SPEEDTEST_CLI_ARGS`    |              | Additional arguments for Ookla SpeedTest CLI                                       |
 
-|                                                                                                                      ⚠️ IMPORTANT                                                                                                                       |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Option `DATABASE_SYNC_ENABLED` is set to `true` by default, which allows the application to create an initial database structure based on defined entities. This option should be set to `false` after the first start to avoid any possible data loss. |
-|       Option `SPEEDTEST_CLI_ARGS` can be used to include additional arguments in the command that is executed during each speed test. In order to maintain proper application functionality, the `-f, -format` argument is overridden by default.       |
-
 ## Usage
 
-Make sure that all required dependencies are installed and that the application is configured correctly according to the previous instructions.
+Make sure all required dependencies are installed and the application is configured correctly according to the previous sections.
 
-Start the application in the appropriate mode:
+1. Start the client application.
 
 ```bash
-# Production mode
-npm run start:prod
+cd client
 
-# Development mode
+# Development
 npm run start:dev
+
+# Production
+npm run build
+npm run start:prod
 ```
 
-Once started, the application will perform periodic speed tests in 5-minute cycles.
+Once the client application is launched, it will be available at `http://127.0.0.1:3000`.
 
-Go to `127.0.0.1:3000` in your web browser to see the aggregated results of the performed speed tests.
+2. Start the server application.
+
+```bash
+cd server
+
+# Development
+npm run start:dev
+
+# Production
+npm run build
+npm run start:prod
+```
+
+Once the server application is launched, its API will be available at `http://127.0.0.1:8080`.
 
 ## Docker
 
-Application comes with a docker configuration that automatically installs all the necessary dependencies, simplifying the process of deploying the application in any environment.
+Application includes a fully functional docker environment, which greatly simplifies and speeds up the process of launching the application or its selected segments.
 
-Start the application in the appropriate mode:
+## Docker configuration (`docker/.env`)
+
+Configuration is done by modifying the `.env` file located in the `docker` folder, which is then used by docker to set/override environment variables in the containers.
+
+Available docker environment settings.
+
+| Name                  | Default           | Description              |
+| --------------------- | ----------------- | ------------------------ |
+| `CLIENT_APP_PORT`     | `3000`            | Client application port  |
+| `SERVER_IP`           | `127.0.0.1`       | IP address of the device |
+| `SERVER_APP_PORT`     | `8080`            | Server application port  |
+| `MYSQL_DATABASE`      | `network-monitor` | Database name            |
+| `MYSQL_USER`          | `network-monitor` | Database user            |
+| `MYSQL_PASSWORD`      | `network-monitor` | Database password        |
+| `MYSQL_ROOT_PASSWORD` | `network-monitor` | Database root password   |
+
+Environment variables such as `MYSQL_HOST` and `MYSQL_PORT` are set in the `docker-compose.yaml` file to ensure proper connectivity between the `database` and `server` container.
+
+## Docker usage
+
+Make sure docker configuration is set correctly according to the previous section.
+
+Build and start the application.
 
 ```bash
-# Production mode
-docker compose --profile production up -d --build
-
-# Development mode
-docker compose --profile development up --build
+cd docker
+docker compose up --build
 ```
 
-Once started, the application will perform periodic speed tests in 5-minute cycles.
-
-Go to `127.0.0.1:3000` in your web browser to see the aggregated results of the performed speed tests.
-
-|                                                                              ⚠️ IMPORTANT                                                                               |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Environment variables related to the database connection are overridden by the `compose.yaml` file inside each container to ensure a proper connection to the database. |
+Once the application is launched, the client application will be available at `http://127.0.0.1:3000` and the server application API at `http://127.0.0.1:8080`.
 
 ## Authors
 
-[@r1pk](https://github.com/r1pk)
+- Patryk [@r1pk](https://github.com/r1pk) Krawczyk
 
 ## License
 
-[MIT](LICENSE.md)
+- Project is licensed under the [MIT](LICENSE.md) license.

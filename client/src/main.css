@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Responsive width for the plotly graph wrapper */
+.js-plotly-plot {
+  width: 100%;
+}
+
+/* Simple dark mode for the plotly graphs */
+html.dark .plot-container {
+  overflow: hidden;
+  border-radius: var(--nextui-radius-large);
+  filter: invert(80%) hue-rotate(180deg);
+}
