@@ -1,10 +1,9 @@
 import useSWR from 'swr';
 
 import { fetcher } from '../utils/fetcher';
-import { getServerPath } from '../utils/get-server-path';
 
 export const useAverageSnapshot = (since) => {
-  const url = getServerPath() + '/api/speed-test/average';
+  const url = import.meta.env.VITE_API_URL + '/api/speed-test/average';
   const params = new URLSearchParams();
 
   if (since !== undefined) {

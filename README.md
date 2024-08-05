@@ -34,10 +34,9 @@ Configuration is done by modifying the `.env` files located in the `client` and 
 
 Available environment variables that affect the application functionality.
 
-| Name                   | Default     | Description                                             |
-| ---------------------- | ----------- | ------------------------------------------------------- |
-| `VITE_SERVER_IP`       | `127.0.0.1` | IP address of the device hosting the server application |
-| `VITE_SERVER_APP_PORT` | `8080`      | Port on which the server application is running.        |
+| Name           | Default                 | Description                                      |
+| -------------- | ----------------------- | ------------------------------------------------ |
+| `VITE_API_URL` | `http://127.0.0.1:8080` | URL to the api exposed by the server application |
 
 ### Server Configuration (`server/.env`)
 
@@ -99,15 +98,15 @@ Configuration is done by modifying the `.env` file located in the `docker` folde
 
 Available docker environment settings.
 
-| Name                  | Default           | Description              |
-| --------------------- | ----------------- | ------------------------ |
-| `CLIENT_APP_PORT`     | `3000`            | Client application port  |
-| `SERVER_IP`           | `127.0.0.1`       | IP address of the device |
-| `SERVER_APP_PORT`     | `8080`            | Server application port  |
-| `MYSQL_DATABASE`      | `network-monitor` | Database name            |
-| `MYSQL_USER`          | `network-monitor` | Database user            |
-| `MYSQL_PASSWORD`      | `network-monitor` | Database password        |
-| `MYSQL_ROOT_PASSWORD` | `network-monitor` | Database root password   |
+| Name                  | Default                 | Description                                      |
+| --------------------- | ----------------------- | ------------------------------------------------ |
+| `API_URL`             | `http://127.0.0.1:8080` | URL to the api exposed by the server application |
+| `CLIENT_APP_PORT`     | `3000`                  | Client application port                          |
+| `SERVER_APP_PORT`     | `8080`                  | Server application port                          |
+| `MYSQL_DATABASE`      | `network-monitor`       | Database name                                    |
+| `MYSQL_USER`          | `network-monitor`       | Database user                                    |
+| `MYSQL_PASSWORD`      | `network-monitor`       | Database password                                |
+| `MYSQL_ROOT_PASSWORD` | `network-monitor`       | Database root password                           |
 
 Environment variables such as `MYSQL_HOST` and `MYSQL_PORT` are set in the `docker-compose.yaml` file to ensure proper connectivity between the `database` and `server` container.
 

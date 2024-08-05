@@ -1,10 +1,9 @@
 import useSWR from 'swr';
 
 import { fetcher } from '../utils/fetcher';
-import { getServerPath } from '../utils/get-server-path';
 
 export const useSnapshots = (since) => {
-  const url = getServerPath() + '/api/speed-test';
+  const url = import.meta.env.VITE_API_URL + '/api/speed-test';
   const params = new URLSearchParams();
 
   if (since !== undefined) {
