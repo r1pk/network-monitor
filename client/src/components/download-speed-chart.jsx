@@ -1,6 +1,6 @@
 import Plot from 'react-plotly.js';
 
-import { convertBytesToMegabits } from '../utils/convert-bytes-to-megabits';
+import { convertBytesToMegabits } from '@/utils/convert-bytes-to-megabits';
 
 export const DownloadSpeedChart = ({ snapshots }) => {
   const config = {

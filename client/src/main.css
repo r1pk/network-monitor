@@ -8,8 +8,8 @@
 }
 
 /* Simple dark mode for the plotly graphs */
-html.dark .plot-container {
+.plot-container:where([data-mode='dark'], [data-mode='dark'] *) {
   overflow: hidden;
-  border-radius: var(--nextui-radius-large);
+  border-radius: 0.5rem;
   filter: invert(80%) hue-rotate(180deg);
 }
