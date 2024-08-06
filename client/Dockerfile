@@ -1,6 +1,8 @@
 ##> BASE <##
 FROM node:22.5-bookworm AS base
 
+ARG VITE_API_URL
+
 RUN apt-get install bash
 
 RUN npm i -g npm@10.8.2 serve@14.2.3
@@ -15,7 +17,6 @@ COPY ./package*.json .
 RUN npm ci
 
 COPY . .
-
 RUN npm run build
 ##< BUILDER >##
 
