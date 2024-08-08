@@ -1,6 +1,6 @@
 # Network Monitor
 
-Application built with technologies such as [React.js](https://react.dev/), [Nest.js](https://nestjs.com/) and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) to monitor network connection stability.
+Application built with [React.js](https://react.dev/), [Tailwind](https://tailwindcss.com/), [Nest.js](https://nestjs.com/), and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) to monitor network connection stability through periodic speed tests.
 
 ## Installation
 
@@ -14,6 +14,7 @@ git clone https://github.com/r1pk/network-monitor.git .
 
 ```bash
 cd client
+
 npm install
 ```
 
@@ -21,42 +22,43 @@ npm install
 
 ```bash
 cd server
+
 npm install
 ```
 
-4. Install Ookla SpeedTest CLI following the [official instructions](https://www.speedtest.net/apps/cli).
+4. Install Ookla SpeedTest CLI by following the [official instructions](https://www.speedtest.net/apps/cli).
 
 ## Configuration
 
-Configuration is done by modifying the `.env` files located in the `client` and `server` folders.
+Configuration is managed by editing the `.env` files located in both the `client` and `server` directories.
 
-### Client Configuration (`client/.env`)
+### Client configuration (`client/.env`)
 
-Available environment variables that affect the application functionality.
+Available environment variables that affect the functionality of the application:
 
 | Name           | Default                 | Description                                      |
 | -------------- | ----------------------- | ------------------------------------------------ |
 | `VITE_API_URL` | `http://127.0.0.1:8080` | URL to the api exposed by the server application |
 
-### Server Configuration (`server/.env`)
+### Server configuration (`server/.env`)
 
-Available environment variables that affect the application functionality.
+Available environment variables that affect the functionality of the application:
 
-| Name                    | Default      | Description                                                                        |
-| ----------------------- | ------------ | ---------------------------------------------------------------------------------- |
-| `NODE_ENV`              | `production` | Application environment                                                            |
-| `APP_PORT`              | `8080`       | Application port                                                                   |
-| `MYSQL_HOST`            |              | Database host                                                                      |
-| `MYSQL_PORT`            |              | Database port                                                                      |
-| `MYSQL_DATABASE`        |              | Database name                                                                      |
-| `MYSQL_USER`            |              | Database user                                                                      |
-| `MYSQL_PASSWORD`        |              | Database password                                                                  |
-| `DATABASE_SYNC_ENABLED` | `true`       | Determines whether to perform database structure updates based on defined entities |
-| `SPEEDTEST_CLI_ARGS`    |              | Additional arguments for Ookla SpeedTest CLI                                       |
+| Name                    | Default      | Description                                                                                |
+| ----------------------- | ------------ | ------------------------------------------------------------------------------------------ |
+| `NODE_ENV`              | `production` | Application environment                                                                    |
+| `APP_PORT`              | `8080`       | Application port                                                                           |
+| `MYSQL_HOST`            |              | Database host                                                                              |
+| `MYSQL_PORT`            |              | Database port                                                                              |
+| `MYSQL_DATABASE`        |              | Database name                                                                              |
+| `MYSQL_USER`            |              | Database user                                                                              |
+| `MYSQL_PASSWORD`        |              | Database password                                                                          |
+| `DATABASE_SYNC_ENABLED` | `true`       | Determines whether the database structure should be updated based on the defined entities. |
+| `SPEEDTEST_CLI_ARGS`    |              | Additional arguments for Ookla SpeedTest CLI                                               |
 
 ## Usage
 
-Make sure all required dependencies are installed and the application is configured correctly according to the previous sections.
+Ensure that all necessary dependencies are installed and the application is properly configured as described in the previous sections.
 
 1. Start the client application.
 
@@ -71,7 +73,7 @@ npm run build
 npm run start:prod
 ```
 
-Once the client application is launched, it will be available at `http://127.0.0.1:3000`.
+Once started, the client application will be accessible at `http://127.0.0.1:3000`.
 
 2. Start the server application.
 
@@ -86,17 +88,17 @@ npm run build
 npm run start:prod
 ```
 
-Once the server application is launched, its API will be available at `http://127.0.0.1:8080`.
+Once started, the server application api will be accessible at `http://127.0.0.1:8080`.
 
 ## Docker
 
-Application includes a fully functional docker environment, which greatly simplifies and speeds up the process of launching the application or its selected segments.
+Application includes a pre-configured docker environment, which significantly simplifies the process of launching the application.
 
 ## Docker configuration (`docker/.env`)
 
-Configuration is done by modifying the `.env` file located in the `docker` folder, which is then used by docker to set/override environment variables in the containers.
+Configuration is managed by editing the `.env` file located in the `docker` directory, which docker uses to set and override environment variables in containers.
 
-Available docker environment settings.
+Available docker settings that affect the functionality of the application:
 
 | Name                  | Default                 | Description                                      |
 | --------------------- | ----------------------- | ------------------------------------------------ |
@@ -108,20 +110,19 @@ Available docker environment settings.
 | `MYSQL_PASSWORD`      | `network-monitor`       | Database password                                |
 | `MYSQL_ROOT_PASSWORD` | `network-monitor`       | Database root password                           |
 
-Environment variables such as `MYSQL_HOST` and `MYSQL_PORT` are set in the `docker-compose.yaml` file to ensure proper connectivity between the `database` and `server` container.
-
 ## Docker usage
 
-Make sure docker configuration is set correctly according to the previous section.
+Ensure that the docker environment is properly configured as described in the previous section.
 
-Build and start the application.
+1. Build and start the application.
 
 ```bash
 cd docker
+
 docker compose up --build
 ```
 
-Once the application is launched, the client application will be available at `http://127.0.0.1:3000` and the server application API at `http://127.0.0.1:8080`.
+Once started, the client application will be accessible at `http://127.0.0.1:3000`, while the server application api will be accessible at `http://127.0.0.1:8080`.
 
 ## Authors
 
