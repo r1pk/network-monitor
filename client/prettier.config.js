@@ -1,5 +1,5 @@
 export default {
   singleQuote: true,
-  trailingComma: 'all',
+  quoteProps: 'consistent',
   plugins: ['prettier-plugin-tailwindcss'],
 };
