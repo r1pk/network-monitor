@@ -34,7 +34,7 @@ Configuration is managed by editing the `.env` files located in both the `client
 
 ### Client configuration (`client/.env`)
 
-Available environment variables that affect the functionality of the application:
+Client-side behavior is controlled by the following environment variables:
 
 | Name           | Default                 | Description                                      |
 | -------------- | ----------------------- | ------------------------------------------------ |
@@ -42,7 +42,7 @@ Available environment variables that affect the functionality of the application
 
 ### Server configuration (`server/.env`)
 
-Available environment variables that affect the functionality of the application:
+Server-side behavior is controlled by the following environment variables:
 
 | Name                    | Default      | Description                                                                                |
 | ----------------------- | ------------ | ------------------------------------------------------------------------------------------ |
@@ -98,7 +98,7 @@ Application includes a pre-configured docker environment, which significantly si
 
 Configuration is managed by editing the `.env` file located in the `.docker` directory, which docker uses to set and override some environment variables in containers.
 
-Available docker settings that affect the functionality of the application:
+Docker environment is controlled by the following environment variables:
 
 | Name                  | Default                 | Description                                      |
 | --------------------- | ----------------------- | ------------------------------------------------ |
@@ -113,9 +113,9 @@ Available docker settings that affect the functionality of the application:
 | `CLIENT_APP_PORT`     | `3000`                  | Client application port                          |
 | `API_URL`             | `http://127.0.0.1:8080` | URL to the api exposed by the server application |
 
-Relationship between docker settings and environment variables in server and client applications:
+Relationship between the environment variables described above and environment variables in server and client applications:
 
-| Name                  | Service            | Override              |
+| Name                  | Application        | Override              |
 | --------------------- | ------------------ | --------------------- |
 | `SERVER_APP_PORT`     | `server`           | `APP_PORT`            |
 | `MYSQL_HOST`          | `server, database` | `MYSQL_HOST`          |
