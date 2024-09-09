@@ -1,6 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { SpeedTestService } from '../service/speed-test.service';
+
 import { Snapshot } from '../entity/snapshot.entity';
+import { SpeedTestService } from '../service/speed-test.service';
 
 @Controller('speed-test')
 export class SpeedTestController {

@@ -1,5 +1,4 @@
 import cx from 'classnames';
-
 import { generate } from '@bramus/pagination-sequence';
 
 import { PaginationButton } from '@/components/pagination-button';

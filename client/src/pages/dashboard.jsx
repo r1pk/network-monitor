@@ -1,13 +1,12 @@
-import { useSnapshots } from '@/hooks/use-snapshots';
-
-import { Divider } from '@/components/divider';
-import { Skeleton } from '@/components/skeleton';
 import { AverageSnapshot } from '@/components/average-snapshot';
+import { Divider } from '@/components/divider';
 import { DownloadSpeedChart } from '@/components/download-speed-chart';
-import { UploadSpeedChart } from '@/components/upload-speed-chart';
 import { LatencyChart } from '@/components/latency-chart';
 import { PacketLossChart } from '@/components/packet-loss-chart';
+import { Skeleton } from '@/components/skeleton';
 import { SnapshotHistory } from '@/components/snapshot-history';
+import { UploadSpeedChart } from '@/components/upload-speed-chart';
+import { useSnapshots } from '@/hooks/use-snapshots';
 
 export const Dashboard = () => {
   const { data: snapshots = [], isLoading } = useSnapshots();

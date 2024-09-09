@@ -1,9 +1,7 @@
 import cx from 'classnames';
 
-import { useAverageSnapshot } from '@/hooks/use-average-snapshot';
-
 import { Skeleton } from '@/components/skeleton';
-
+import { useAverageSnapshot } from '@/hooks/use-average-snapshot';
 import { convertBytesToMegabits } from '@/utils/convert-bytes-to-megabits';
 
 export const AverageSnapshot = (props) => {
