@@ -20,12 +20,12 @@ import { SpeedTestModule } from './speed-test.module';
           decimalNumbers: true,
         },
 
-        host: config.get('MYSQL_HOST'),
-        port: config.get('MYSQL_PORT'),
+        host: config.get('DATABASE_HOST'),
+        port: config.get('DATABASE_PORT'),
 
-        database: config.get('MYSQL_DATABASE'),
-        username: config.get('MYSQL_USER'),
-        password: config.get('MYSQL_PASSWORD'),
+        database: config.get('DATABASE_NAME'),
+        username: config.get('DATABASE_USER'),
+        password: config.get('DATABASE_PASSWORD'),
 
         autoLoadEntities: true,
         synchronize: config.get('DATABASE_SYNC_ENABLED') === 'true',

@@ -1,16 +1,19 @@
-# Network Monitor
-
-Application built with [React.js](https://react.dev/), [Tailwind](https://tailwindcss.com/), [Nest.js](https://nestjs.com/), and [Ookla SpeedTest CLI](https://www.speedtest.net/apps/cli) to monitor network connection stability through periodic speed tests.
+<div align="center">
+  <h3 align="center">Network Monitor</h3>
+  <p align="center">
+    Network Monitor is an application developed using technologies such as Nest.js, Ookla SpeedTest CLI, React.js, and Tailwind. It monitors internet connection stability by performing periodic speed tests via Ookla SpeedTest CLI and presents the results in the form of visual graphs.
+  </p>
+</div>
 
 ## Installation
 
-1. Clone the repository.
+1. Clone the latest version of the project from the repository.
 
 ```bash
 git clone https://github.com/r1pk/network-monitor.git .
 ```
 
-2. Install client dependencies.
+2. Install the client module dependencies.
 
 ```bash
 cd client
@@ -18,7 +21,7 @@ cd client
 npm install
 ```
 
-3. Install server dependencies.
+3. Install the server module dependencies.
 
 ```bash
 cd server
@@ -26,41 +29,41 @@ cd server
 npm install
 ```
 
-4. Install Ookla SpeedTest CLI by following the [official instructions](https://www.speedtest.net/apps/cli).
+4. Install the Ookla SpeedTest CLI by following the [official instructions](https://www.speedtest.net/apps/cli).
 
 ## Configuration
 
-Configuration is managed by editing the `.env` files located in both the `client` and `server` directories.
+The application and its individual features are configured by modifying environment variables defined in `.env` files located in the `client` and `server` folders.
 
-### Client configuration (`client/.env`)
+### Client Module Configuration (`client/.env`)
 
-Client-side behavior is controlled by the following environment variables:
+The behavior of the client module is controlled by the following environment variables:
 
-| Name           | Default                 | Description                                      |
-| -------------- | ----------------------- | ------------------------------------------------ |
-| `VITE_API_URL` | `http://127.0.0.1:8080` | URL to the api exposed by the server application |
+| Name           | Default                 | Description                                                                      |
+| -------------- | ----------------------- | -------------------------------------------------------------------------------- |
+| `VITE_API_URL` | `http://127.0.0.1:8080` | The URL of the API provided by the server module from which the data is fetched. |
 
-### Server configuration (`server/.env`)
+### Server Module Configuration (`server/.env`)
 
-Server-side behavior is controlled by the following environment variables:
+The behavior of the server module is controlled by the following environment variables:
 
-| Name                    | Default      | Description                                                                                |
-| ----------------------- | ------------ | ------------------------------------------------------------------------------------------ |
-| `NODE_ENV`              | `production` | Application environment                                                                    |
-| `APP_PORT`              | `8080`       | Application port                                                                           |
-| `MYSQL_HOST`            |              | Database host                                                                              |
-| `MYSQL_PORT`            |              | Database port                                                                              |
-| `MYSQL_DATABASE`        |              | Database name                                                                              |
-| `MYSQL_USER`            |              | Database user                                                                              |
-| `MYSQL_PASSWORD`        |              | Database password                                                                          |
-| `DATABASE_SYNC_ENABLED` | `true`       | Determines whether the database structure should be updated based on the defined entities. |
-| `SPEEDTEST_CLI_ARGS`    |              | Additional arguments for Ookla SpeedTest CLI                                               |
+| Name                    | Default      | Description                                                                                   |
+| ----------------------- | ------------ | --------------------------------------------------------------------------------------------- |
+| `NODE_ENV`              | `production` | Defines the environment in which the module is running (e.g., `development`, `production`).   |
+| `SERVER_PORT`           | `8080`       | Specifies the port on which the module will listen for incoming connections.                  |
+| `DATABASE_HOST`         |              | The hostname or IP address of the MySQL database server.                                      |
+| `DATABASE_PORT`         |              | The port number on which the MySQL database server is listening.                              |
+| `DATABASE_NAME`         |              | The name of the MySQL database to be used by the application.                                 |
+| `DATABASE_USER`         |              | The username used to connect to the MySQL database.                                           |
+| `DATABASE_PASSWORD`     |              | The password associated with the MySQL user account.                                          |
+| `DATABASE_SYNC_ENABLED` | `true`       | Determines whether to automatically update the database schema based on the defined entities. |
+| `SPEEDTEST_CLI_ARGS`    |              | Additional command-line arguments for the Ookla SpeedTest CLI.                                |
 
 ## Usage
 
-Ensure that all necessary dependencies are installed and the application is properly configured as described in the previous sections.
+Ensure that all dependencies are installed and both modules are configured properly.
 
-1. Start the client application.
+1. Start the client module.
 
 ```bash
 cd client
@@ -73,9 +76,9 @@ npm run build
 npm run start:prod
 ```
 
-Once started, the client application will be accessible at `http://127.0.0.1:3000`.
+Once started, the client module will be accessible at `http://127.0.0.1:3000`.
 
-2. Start the server application.
+2. Start the server module.
 
 ```bash
 cd server
@@ -88,59 +91,21 @@ npm run build
 npm run start:prod
 ```
 
-Once started, the server application api will be accessible at `http://127.0.0.1:8080`.
+Once started, the server module api will be accessible at `http://127.0.0.1:8080`.
 
 ## Docker
 
-Application includes a pre-configured docker environment, which significantly simplifies the process of launching the application.
+The application includes a docker configuration that automates the installation of all dependencies, greatly simplifying the process of launching the application.
 
-## Docker configuration (`.docker/.env`)
+### Usage
 
-Configuration is managed by editing the `.env` file located in the `.docker` directory, which docker uses to set and override some environment variables in containers.
-
-Docker environment is controlled by the following environment variables:
-
-| Name                  | Default                 | Description                                      |
-| --------------------- | ----------------------- | ------------------------------------------------ |
-| `SERVER_APP_PORT`     | `8080`                  | Server application port                          |
-| `MYSQL_HOST`          | `database`              | Database host                                    |
-| `MYSQL_PORT`          | `3306`                  | Database port                                    |
-| `MYSQL_DATABASE`      | `network-monitor`       | Database name                                    |
-| `MYSQL_USER`          | `network-monitor`       | Database user                                    |
-| `MYSQL_PASSWORD`      | `network-monitor`       | Database password                                |
-| `MYSQL_ROOT_PASSWORD` | `network-monitor`       | Database root password                           |
-|                       |                         |                                                  |
-| `CLIENT_APP_PORT`     | `3000`                  | Client application port                          |
-| `API_URL`             | `http://127.0.0.1:8080` | URL to the api exposed by the server application |
-
-Relationship between the environment variables described above and environment variables in server and client applications:
-
-| Name                  | Application        | Override              |
-| --------------------- | ------------------ | --------------------- |
-| `SERVER_APP_PORT`     | `server`           | `APP_PORT`            |
-| `MYSQL_HOST`          | `server, database` | `MYSQL_HOST`          |
-| `MYSQL_PORT`          | `server, database` | `MYSQL_PORT`          |
-| `MYSQL_DATABASE`      | `server, database` | `MYSQL_DATABASE`      |
-| `MYSQL_USER`          | `server, database` | `MYSQL_USER`          |
-| `MYSQL_PASSWORD`      | `server, database` | `MYSQL_PASSWORD`      |
-| `MYSQL_ROOT_PASSWORD` | `database`         | `MYSQL_ROOT_PASSWORD` |
-|                       |                    |                       |
-| `CLIENT_APP_PORT`     | `client`           |                       |
-| `API_URL`             | `client`           | `VITE_API_URL`        |
-
-## Docker usage
-
-Ensure that the docker environment is properly configured as described in the previous section.
-
-1. Build and start the application.
+1. Build and launch the application.
 
 ```bash
-cd .docker
-
-docker compose up --build
+docker compose --env-file=./server/.env up -d --build
 ```
 
-Once started, the client application will be accessible at `http://127.0.0.1:3000`, while the server application api will be accessible at `http://127.0.0.1:8080`.
+Once started, the client module will be accessible at `http://127.0.0.1:3000`, while the server module api will be accessible at `http://127.0.0.1:8080`.
 
 ## Authors
 
