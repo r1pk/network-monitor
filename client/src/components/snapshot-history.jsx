@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import cx from 'classnames';
+import cn from 'classnames';
 
 import { CodeSnippet } from '@/components/code-snippet';
 import { Pagination } from '@/components/pagination';
@@ -17,10 +17,8 @@ export const SnapshotHistory = ({ snapshots, ...rest }) => {
   const reversedSnapshotList = snapshots.slice().reverse();
   const currentPageSnapshots = reversedSnapshotList.slice(start, end);
 
-  const classes = cx('flex flex-col rounded-lg bg-neutral-800 p-4', rest.className);
-
   return (
-    <div className={classes}>
+    <div className={cn('flex flex-col rounded-lg bg-neutral-800 p-4', rest.className)}>
       <p className="mx-auto mb-4 text-lg">Snapshot History</p>
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-2">

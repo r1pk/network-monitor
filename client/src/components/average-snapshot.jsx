@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import cn from 'classnames';
 
 import { Skeleton } from '@/components/skeleton';
 import { useAverageSnapshot } from '@/hooks/use-average-snapshot';
@@ -7,11 +7,9 @@ import { convertBytesToMegabits } from '@/utils/convert-bytes-to-megabits';
 export const AverageSnapshot = (props) => {
   const { data: snapshot = {}, isLoading } = useAverageSnapshot();
 
-  const classes = cx('flex flex-col rounded-lg bg-neutral-800 p-4', props.className);
-
   return (
     <Skeleton isLoading={isLoading}>
-      <div className={classes}>
+      <div className={cn('flex flex-col rounded-lg bg-neutral-800 p-4', props.className)}>
         <p className="mx-auto mb-4 text-lg">Average Snapshot</p>
         <ul className="flex flex-col items-center justify-center gap-y-10 sm:flex-row sm:flex-wrap lg:divide-x lg:divide-neutral-600">
           <li className="px-12 text-center md:px-16">

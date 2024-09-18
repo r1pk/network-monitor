@@ -1,7 +1,5 @@
-import cx from 'classnames';
+import cn from 'classnames';
 
 export const Divider = (props) => {
-  const classes = cx('my-4 h-px w-full border-none bg-neutral-600', props.className);
-
-  return <hr className={classes} />;
+  return <hr className={cn('my-4 h-px w-full border-none bg-neutral-600', props.className)} />;
 };

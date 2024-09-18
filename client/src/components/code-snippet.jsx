@@ -1,10 +1,8 @@
-import cx from 'classnames';
+import cn from 'classnames';
 
 export const CodeSnippet = ({ children, ...rest }) => {
-  const classes = cx('overflow-hidden rounded-lg bg-stone-900 p-4', rest.className);
-
   return (
-    <pre className={classes}>
+    <pre className={cn('overflow-hidden rounded-lg bg-stone-900 p-4', rest.className)}>
       <code className="font-mono text-xs">{children}</code>
     </pre>
   );
