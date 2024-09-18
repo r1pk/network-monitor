@@ -6,10 +6,12 @@ import { PacketLossChart } from '@/components/packet-loss-chart';
 import { Skeleton } from '@/components/skeleton';
 import { SnapshotHistory } from '@/components/snapshot-history';
 import { UploadSpeedChart } from '@/components/upload-speed-chart';
-import { useSnapshots } from '@/hooks/use-snapshots';
+import { useAverageSnapshot } from '@/hooks/use-average-snapshot';
+import { useSnapshotList } from '@/hooks/use-snapshot-list';
 
 export const Dashboard = () => {
-  const { data: snapshots = [], isLoading } = useSnapshots();
+  const { data: snapshot = {}, isLoading: isAverageSnapshotLoading } = useAverageSnapshot();
+  const { data: snapshots = [], isLoading: isSnapshotListLoading } = useSnapshotList();
 
   return (
     <div className="container mx-auto p-4">
@@ -18,26 +20,28 @@ export const Dashboard = () => {
         <span className="mx-auto font-bold uppercase text-neutral-400">Dashboard</span>
       </div>
       <Divider />
-      <AverageSnapshot />
+      <Skeleton isLoading={isAverageSnapshotLoading}>
+        <AverageSnapshot snapshot={snapshot} />
+      </Skeleton>
       <Divider />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div>
-          <Skeleton isLoading={isLoading}>
+          <Skeleton isLoading={isSnapshotListLoading}>
             <DownloadSpeedChart snapshots={snapshots} />
           </Skeleton>
         </div>
         <div>
-          <Skeleton isLoading={isLoading}>
+          <Skeleton isLoading={isSnapshotListLoading}>
             <UploadSpeedChart snapshots={snapshots} />
           </Skeleton>
         </div>
         <div>
-          <Skeleton isLoading={isLoading}>
+          <Skeleton isLoading={isSnapshotListLoading}>
             <LatencyChart snapshots={snapshots} />
           </Skeleton>
         </div>
         <div>
-          <Skeleton isLoading={isLoading}>
+          <Skeleton isLoading={isSnapshotListLoading}>
             <PacketLossChart snapshots={snapshots} />
           </Skeleton>
         </div>
@@ -45,7 +49,7 @@ export const Dashboard = () => {
       <Divider />
       <div className="flex flex-col">
         <div>
-          <Skeleton isLoading={isLoading}>
+          <Skeleton isLoading={isSnapshotListLoading}>
             <SnapshotHistory snapshots={snapshots} />
           </Skeleton>
         </div>
