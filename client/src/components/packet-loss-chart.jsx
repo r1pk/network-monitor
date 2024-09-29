@@ -24,7 +24,7 @@ export const PacketLossChart = ({ snapshots }) => {
       type: 'scatter',
       mode: 'lines',
       x: snapshots.map((snapshot) => new Date(snapshot.timestamp)),
-      y: snapshots.map((snapshot) => snapshot.loss),
+      y: snapshots.map((snapshot) => snapshot.loss ?? 0),
       line: {
         width: 1,
         color: '#111111',

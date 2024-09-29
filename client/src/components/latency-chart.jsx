@@ -24,7 +24,7 @@ export const LatencyChart = ({ snapshots }) => {
       type: 'scatter',
       mode: 'lines',
       x: snapshots.map((snapshot) => new Date(snapshot.timestamp)),
-      y: snapshots.map((snapshot) => snapshot.ping),
+      y: snapshots.map((snapshot) => snapshot.ping ?? 0),
       line: {
         width: 1,
         color: '#111111',
