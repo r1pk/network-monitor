@@ -1,4 +1,4 @@
-import cn from 'classnames';
+import classes from 'classnames';
 
 export const PaginationButton = ({ content, isCurrentPage, onClick, ...rest }) => {
   const isPageNumber = Number.isInteger(content);
@@ -14,7 +14,7 @@ export const PaginationButton = ({ content, isCurrentPage, onClick, ...rest }) =
       type="button"
       disabled={!isPageNumber}
       onClick={handleButtonClick}
-      className={cn(
+      className={classes(
         'rounded-lg px-3 py-2 duration-150',
         {
           'hover:bg-indigo-50 hover:text-neutral-800': isPageNumber,

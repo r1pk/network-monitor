@@ -1,18 +1,22 @@
-import cn from 'classnames';
+import classes from 'classnames';
 
 import { convertBytesToMegabits } from '@/utils/convert-bytes-to-megabits';
 
 export const AverageSnapshot = ({ snapshot, ...rest }) => {
   return (
-    <div className={cn('flex flex-col rounded-lg bg-neutral-800 p-4', rest.className)}>
+    <div className={classes('flex flex-col rounded-lg bg-neutral-800 p-4', rest.className)}>
       <p className="mx-auto mb-4 text-lg">Average Snapshot</p>
       <ul className="flex flex-col items-center justify-center gap-y-10 sm:flex-row sm:flex-wrap lg:divide-x lg:divide-neutral-600">
         <li className="px-12 text-center md:px-16">
-          <h4 className="text-4xl font-semibold">{convertBytesToMegabits(snapshot.download || 0)} Mbps</h4>
+          <h4 className="text-4xl font-semibold">
+            {convertBytesToMegabits(snapshot.download || 0)} Mbps
+          </h4>
           <p className="mt-3 font-medium text-neutral-400">Download Speed</p>
         </li>
         <li className="px-12 text-center md:px-16">
-          <h4 className="text-4xl font-semibold">{convertBytesToMegabits(snapshot.upload || 0)} Mbps</h4>
+          <h4 className="text-4xl font-semibold">
+            {convertBytesToMegabits(snapshot.upload || 0)} Mbps
+          </h4>
           <p className="mt-3 font-medium text-neutral-400">Upload Speed</p>
         </li>
         <li className="px-12 text-center md:px-16">

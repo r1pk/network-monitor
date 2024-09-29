@@ -1,9 +1,10 @@
+import { exec } from 'node:child_process';
+
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { exec } from 'child_process';
 import { Repository } from 'typeorm';
 
 import { Snapshot } from '../entity/snapshot.entity';
@@ -11,18 +12,12 @@ import { Snapshot } from '../entity/snapshot.entity';
 @Injectable()
 export class SpeedTestService {
   constructor(
+    @InjectRepository(Snapshot)
+    private readonly repository: Repository<Snapshot>,
     private readonly config: ConfigService,
-    @InjectRepository(Snapshot) private readonly repository: Repository<Snapshot>,
   ) {}
 
-  @Cron(CronExpression.EVERY_5_MINUTES)
-  performCyclicSpeedTest(): Promise<void> {
-    return this.performSpeedTest().then((snapshot: Snapshot) => {
-      this.repository.save(snapshot);
-    });
-  }
-
-  getSnapshots(since?: string): Promise<Snapshot[]> {
+  public getSnapshots(since?: string): Promise<Snapshot[]> {
     const builder = this.repository.createQueryBuilder('snapshot');
 
     if (since !== undefined) {
@@ -34,7 +29,7 @@ export class SpeedTestService {
     return builder.getMany();
   }
 
-  getAverageSnapshot(since?: string): Promise<object> {
+  public getAverageSnapshot(since?: string): Promise<object> {
     const builder = this.repository.createQueryBuilder('snapshot');
 
     builder.select([
@@ -53,7 +48,7 @@ export class SpeedTestService {
     return builder.getRawOne() as Promise<object>;
   }
 
-  performSpeedTest(): Promise<Snapshot> {
+  public performSpeedTest(): Promise<Snapshot> {
     return new Promise((resolve) => {
       const snapshot = new Snapshot();
       const args = this.config.get<string>('SPEEDTEST_CLI_ARGS');
@@ -74,6 +69,13 @@ export class SpeedTestService {
 
         return resolve(snapshot);
       });
+    });
+  }
+
+  @Cron(CronExpression.EVERY_5_MINUTES)
+  private performCyclicSpeedTest(): Promise<void> {
+    return this.performSpeedTest().then((snapshot: Snapshot) => {
+      this.repository.save(snapshot);
     });
   }
 }

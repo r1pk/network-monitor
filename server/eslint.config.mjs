@@ -1,26 +1,40 @@
-import eslint from '@eslint/js';
+import ts from 'typescript-eslint';
+
+import js from '@eslint/js';
 import globals from 'globals';
 
-import typescript from 'typescript-eslint';
+import eslint_simple_sort_plugin from 'eslint-plugin-simple-import-sort';
 
-export default typescript.config(
+export default ts.config(
   {
-    ignores: ['dist', 'node_modules'],
+    ignores: ['dist', 'node_modules', 'eslint.config.js'],
   },
   {
-    files: ['src/**/*.{js,ts}'],
+    files: ['**/*.{js,ts}'],
     languageOptions: {
       globals: globals.node,
     },
     plugins: {
-      '@typescript-eslint': typescript.plugin,
+      '@typescript-eslint': ts.plugin,
+      'simple-import-sort': eslint_simple_sort_plugin,
     },
-    extends: [eslint.configs.recommended, ...typescript.configs.recommended],
+    extends: [js.configs.recommended, ...ts.configs.recommended],
     rules: {
       '@typescript-eslint/interface-name-prefix': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/explicit-member-accessibility': [
+        'error',
+        { overrides: { constructors: 'no-public', properties: 'off' } },
+      ],
+      'sort-imports': ['error', { ignoreDeclarationSort: true }],
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [['^node:'], ['^@nestjs/'], ['^@?\\w'], ['^'], ['^\\.'], ['^\\u0000']],
+        },
+      ],
     },
   },
 );

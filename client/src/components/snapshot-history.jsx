@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import cn from 'classnames';
+import classes from 'classnames';
 
 import { CodeSnippet } from '@/components/code-snippet';
 import { Pagination } from '@/components/pagination';
@@ -18,7 +18,7 @@ export const SnapshotHistory = ({ snapshots, ...rest }) => {
   const currentPageSnapshots = reversedSnapshotList.slice(start, end);
 
   return (
-    <div className={cn('flex flex-col rounded-lg bg-neutral-800 p-4', rest.className)}>
+    <div className={classes('flex flex-col rounded-lg bg-neutral-800 p-4', rest.className)}>
       <p className="mx-auto mb-4 text-lg">Snapshot History</p>
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-2">
@@ -28,7 +28,9 @@ export const SnapshotHistory = ({ snapshots, ...rest }) => {
             </CodeSnippet>
           ))}
           {snapshots.length === 0 && (
-            <span className="mx-auto text-sm font-bold uppercase text-neutral-400">No Snapshots Available</span>
+            <span className="mx-auto text-sm font-bold uppercase text-neutral-400">
+              No Snapshots Available
+            </span>
           )}
         </div>
         {snapshots.length > SNAPSHOTS_PER_PAGE && (

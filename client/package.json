@@ -7,8 +7,9 @@
     "build": "vite build",
     "start:dev": "vite",
     "start:prod": "vite preview",
-    "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
-    "lint": "eslint . --report-unused-disable-directives --max-warnings 0"
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css}\"",
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@bramus/pagination-sequence": "^1.2.1",
@@ -29,6 +30,7 @@
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.11",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^15.9.0",
     "postcss": "^8.4.44",
     "prettier": "^3.3.3",

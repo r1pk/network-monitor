@@ -1,5 +1,5 @@
-import cn from 'classnames';
+import classes from 'classnames';
 
 export const Divider = (props) => {
-  return <hr className={cn('my-4 h-px w-full border-none bg-neutral-600', props.className)} />;
+  return <hr className={classes('my-4 h-px w-full border-none bg-neutral-600', props.className)} />;
 };
