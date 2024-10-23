@@ -22,7 +22,6 @@ import { SpeedTestModule } from './speed-test.module';
 
         host: config.get('DATABASE_HOST'),
         port: config.get('DATABASE_PORT'),
-
         database: config.get('DATABASE_NAME'),
         username: config.get('DATABASE_USER'),
         password: config.get('DATABASE_PASSWORD'),

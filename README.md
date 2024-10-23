@@ -39,9 +39,9 @@ The application and its individual features are configured by modifying environm
 
 The behavior of the client module is controlled by the following environment variables:
 
-| Name           | Default                 | Description                                                                      |
-| -------------- | ----------------------- | -------------------------------------------------------------------------------- |
-| `VITE_API_URL` | `http://127.0.0.1:8080` | The URL of the API provided by the server module from which the data is fetched. |
+| Name           | Default                 | Description                             |
+| -------------- | ----------------------- | --------------------------------------- |
+| `VITE_API_URL` | `http://127.0.0.1:8080` | Specifies the URL to the server module. |
 
 ### Server Module Configuration (`server/.env`)
 
@@ -49,15 +49,15 @@ The behavior of the server module is controlled by the following environment var
 
 | Name                    | Default      | Description                                                                                   |
 | ----------------------- | ------------ | --------------------------------------------------------------------------------------------- |
-| `NODE_ENV`              | `production` | Defines the environment in which the module is running (e.g., `development`, `production`).   |
-| `SERVER_PORT`           | `8080`       | Specifies the port on which the module will listen for incoming connections.                  |
-| `DATABASE_HOST`         |              | The hostname or IP address of the MySQL database server.                                      |
-| `DATABASE_PORT`         |              | The port number on which the MySQL database server is listening.                              |
-| `DATABASE_NAME`         |              | The name of the MySQL database to be used by the application.                                 |
-| `DATABASE_USER`         |              | The username used to connect to the MySQL database.                                           |
-| `DATABASE_PASSWORD`     |              | The password associated with the MySQL user account.                                          |
+| `NODE_ENV`              | `production` | Defines the environment (e.g., `development`, `production`).                                  |
+| `SERVER_PORT`           | `8080`       | Specifies the application port.                                                               |
+| `DATABASE_HOST`         |              | Specifies the host name or IP address of the MySQL server.                                    |
+| `DATABASE_PORT`         |              | Specifies the port number of the MySQL server.                                                |
+| `DATABASE_NAME`         |              | Specifies the MySQL database name.                                                            |
+| `DATABASE_USER`         |              | Specifies the MySQL database user.                                                            |
+| `DATABASE_PASSWORD`     |              | Specifies the password associated with the MySQL database user.                               |
 | `DATABASE_SYNC_ENABLED` | `true`       | Determines whether to automatically update the database schema based on the defined entities. |
-| `SPEEDTEST_CLI_ARGS`    |              | Additional command-line arguments for the Ookla SpeedTest CLI.                                |
+| `SPEEDTEST_CLI_ARGS`    |              | Specifies additional command-line arguments for the Ookla SpeedTest CLI.                      |
 
 ## Usage
 
@@ -102,7 +102,9 @@ The application includes a docker configuration that automates the installation 
 1. Build and launch the application.
 
 ```bash
-docker compose --env-file=./server/.env up -d --build
+cd docker
+
+docker compose up -d --build
 ```
 
 Once started, the client module will be accessible at `http://127.0.0.1:3000`, while the server module api will be accessible at `http://127.0.0.1:8080`.
