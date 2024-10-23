@@ -5,6 +5,10 @@
   </p>
 </div>
 
+## Preview
+
+![DASHBOARD](https://i.imgur.com/pjsvjF4.png)
+
 ## Installation
 
 1. Clone the latest version of the project from the repository.
