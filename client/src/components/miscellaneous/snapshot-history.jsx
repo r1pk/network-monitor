@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import classes from 'classnames';
 
-import { CodeSnippet } from '@/components/common/code-snippet';
 import { Pagination } from '@/components/common/pagination';
+import { SnapshotHistoryEntry } from '@/components/miscellaneous/snapshot-history-entry';
 
 export const SnapshotHistory = ({ snapshots, ...rest }) => {
   const [page, setPage] = useState(1);
@@ -23,9 +23,7 @@ export const SnapshotHistory = ({ snapshots, ...rest }) => {
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-2">
           {currentPageSnapshots.map((snapshot) => (
-            <CodeSnippet key={snapshot.id} symbol={false}>
-              <pre>{JSON.stringify(snapshot, null, 2)}</pre>
-            </CodeSnippet>
+            <SnapshotHistoryEntry key={snapshot.id} snapshot={snapshot} />
           ))}
           {snapshots.length === 0 && (
             <span className="mx-auto text-sm font-bold uppercase text-neutral-400">
