@@ -9,16 +9,16 @@ export const SnapshotHistoryEntry = ({ snapshot, ...rest }) => {
     <div className={classes('flex flex-col gap-2 rounded-lg bg-stone-900 p-4', rest.className)}>
       <span className="font-bold">Snapshot #{snapshot.id}</span>
       <div className="flex flex-wrap gap-2">
-        <span className="rounded bg-blue-900 px-2.5 py-0.5 text-sm font-medium text-blue-300">
+        <span className="rounded bg-gray-700 px-2.5 py-0.5 text-sm font-medium text-gray-300">
           Download Speed: {readableSnapshot.download}
         </span>
-        <span className="rounded bg-blue-900 px-2.5 py-0.5 text-sm font-medium text-blue-300">
+        <span className="rounded bg-gray-700 px-2.5 py-0.5 text-sm font-medium text-gray-300">
           Upload Speed: {readableSnapshot.upload}
         </span>
-        <span className="rounded bg-blue-900 px-2.5 py-0.5 text-sm font-medium text-blue-300">
+        <span className="rounded bg-gray-700 px-2.5 py-0.5 text-sm font-medium text-gray-300">
           Latency: {readableSnapshot.ping}
         </span>
-        <span className="rounded bg-blue-900 px-2.5 py-0.5 text-sm font-medium text-blue-300">
+        <span className="rounded bg-gray-700 px-2.5 py-0.5 text-sm font-medium text-gray-300">
           Packet Loss: {readableSnapshot.loss}
         </span>
       </div>
