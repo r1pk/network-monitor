@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import classes from 'classnames';
 
-import { CodeSnippet } from '@/components/code-snippet';
-import { Pagination } from '@/components/pagination';
+import { CodeSnippet } from '@/components/common/code-snippet';
+import { Pagination } from '@/components/common/pagination';
 
 export const SnapshotHistory = ({ snapshots, ...rest }) => {
   const [page, setPage] = useState(1);

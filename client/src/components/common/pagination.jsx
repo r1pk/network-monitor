@@ -1,7 +1,7 @@
 import { generate } from '@bramus/pagination-sequence';
 import classes from 'classnames';
 
-import { PaginationButton } from '@/components/pagination-button';
+import { PaginationButton } from '@/components/common/pagination-button';
 
 export const Pagination = ({ page, pages, onChange, ...rest }) => {
   const sequence = generate(page, pages > 0 ? pages : 1, 1, 1);

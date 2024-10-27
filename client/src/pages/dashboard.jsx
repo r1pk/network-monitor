@@ -1,11 +1,11 @@
-import { AverageSnapshot } from '@/components/average-snapshot';
-import { Divider } from '@/components/divider';
-import { DownloadSpeedChart } from '@/components/download-speed-chart';
-import { LatencyChart } from '@/components/latency-chart';
-import { PacketLossChart } from '@/components/packet-loss-chart';
-import { Skeleton } from '@/components/skeleton';
-import { SnapshotHistory } from '@/components/snapshot-history';
-import { UploadSpeedChart } from '@/components/upload-speed-chart';
+import { DownloadSpeedChart } from '@/components/charts/download-speed-chart';
+import { LatencyChart } from '@/components/charts/latency-chart';
+import { PacketLossChart } from '@/components/charts/packet-loss-chart';
+import { UploadSpeedChart } from '@/components/charts/upload-speed-chart';
+import { Divider } from '@/components/common/divider';
+import { Skeleton } from '@/components/common/skeleton';
+import { AverageSnapshotPanel } from '@/components/miscellaneous/average-snapshot-panel';
+import { SnapshotHistory } from '@/components/miscellaneous/snapshot-history';
 import { useAverageSnapshot } from '@/hooks/use-average-snapshot';
 import { useSnapshotList } from '@/hooks/use-snapshot-list';
 
@@ -21,7 +21,7 @@ export const Dashboard = () => {
       </div>
       <Divider />
       <Skeleton isLoading={isAverageSnapshotLoading}>
-        <AverageSnapshot snapshot={snapshot} />
+        <AverageSnapshotPanel snapshot={snapshot} />
       </Skeleton>
       <Divider />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">

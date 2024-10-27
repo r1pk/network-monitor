@@ -2,7 +2,7 @@ import classes from 'classnames';
 
 import { convertBytesToMegabits } from '@/utils/convert-bytes-to-megabits';
 
-export const AverageSnapshot = ({ snapshot, ...rest }) => {
+export const AverageSnapshotPanel = ({ snapshot, ...rest }) => {
   return (
     <div className={classes('flex flex-col rounded-lg bg-neutral-800 p-4', rest.className)}>
       <p className="mx-auto mb-4 text-lg">Average Snapshot</p>
