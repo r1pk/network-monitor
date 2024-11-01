@@ -7,7 +7,7 @@
 
 ## Preview
 
-![DASHBOARD](https://i.imgur.com/yW9tWLW.png)
+![DASHBOARD](https://i.imgur.com/PtQxuSj.png)
 
 ## Installation
 
