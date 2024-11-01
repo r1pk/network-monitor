@@ -1,6 +1,7 @@
 import Plot from 'react-plotly.js';
 
 import { convertBytesToMegabits } from '@/utils/convert-bytes-to-megabits';
+import { getInitialDateRange } from '@/utils/get-initial-date-range';
 
 export const DownloadSpeedChart = ({ snapshots }) => {
   const config = {
@@ -14,6 +15,9 @@ export const DownloadSpeedChart = ({ snapshots }) => {
       tickformat: '%m-%d %H:%M',
       tickmode: 'auto',
       type: 'date',
+
+      range: getInitialDateRange(24),
+      rangeslider: { visible: true },
     },
     yaxis: {
       title: 'Download Speed (Mbps)',

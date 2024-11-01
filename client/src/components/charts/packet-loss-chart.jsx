@@ -1,5 +1,7 @@
 import Plot from 'react-plotly.js';
 
+import { getInitialDateRange } from '@/utils/get-initial-date-range';
+
 export const PacketLossChart = ({ snapshots }) => {
   const config = {
     responsive: true,
@@ -12,6 +14,9 @@ export const PacketLossChart = ({ snapshots }) => {
       tickformat: '%m-%d %H:%M',
       tickmode: 'auto',
       type: 'date',
+
+      range: getInitialDateRange(24),
+      rangeslider: { visible: true },
     },
     yaxis: {
       title: 'Packet Loss (%)',
