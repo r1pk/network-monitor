@@ -21,6 +21,9 @@ export const SnapshotHistoryEntry = ({ snapshot, ...rest }) => {
         <span className="rounded bg-gray-700 px-2.5 py-0.5 text-sm font-medium text-gray-300">
           Packet Loss: {readableSnapshot.loss}
         </span>
+        <span className="rounded bg-gray-700 px-2.5 py-0.5 text-sm font-medium text-gray-300">
+          Host: {readableSnapshot.host}
+        </span>
       </div>
       <div className="flex gap-2 text-xs text-neutral-400">
         <span>{readableSnapshot.timestamp}</span>
