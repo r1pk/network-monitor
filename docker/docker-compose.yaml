@@ -2,14 +2,14 @@ name: network-monitor
 
 services:
   database:
-    image: "mysql:9.0.0"
+    image: 'mysql:9.0.0'
     environment:
       - MYSQL_DATABASE=network-monitor
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
     volumes:
-      - "database:/var/lib/mysql"
+      - 'database:/var/lib/mysql'
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 10s
       retries: 10
 
@@ -19,7 +19,7 @@ services:
       dockerfile: ../docker/client/Dockerfile
       target: production
     ports:
-      - "3000:3000"
+      - '3000:3000'
 
   server:
     build:
@@ -27,7 +27,7 @@ services:
       dockerfile: ../docker/server/Dockerfile
       target: production
     ports:
-      - "8080:8080"
+      - '8080:8080'
     environment:
       - SERVER_PORT=8080
       - DATABASE_HOST=database

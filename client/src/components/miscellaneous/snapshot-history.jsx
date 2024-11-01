@@ -26,9 +26,7 @@ export const SnapshotHistory = ({ snapshots, ...rest }) => {
             <SnapshotHistoryEntry key={snapshot.id} snapshot={snapshot} />
           ))}
           {snapshots.length === 0 && (
-            <span className="mx-auto text-sm font-bold uppercase text-neutral-400">
-              No Snapshots Available
-            </span>
+            <span className="mx-auto text-sm font-bold uppercase text-neutral-400">No Snapshots Available</span>
           )}
         </div>
         {snapshots.length > SNAPSHOTS_PER_PAGE && (

@@ -48,14 +48,7 @@ export default [
       'simple-import-sort/imports': [
         'error',
         {
-          groups: [
-            ['^node:'],
-            ['^react$', '^react-dom/client$'],
-            ['^@?\\w'],
-            ['^'],
-            ['^\\.'],
-            ['^\\u0000'],
-          ],
+          groups: [['^node:'], ['^react$', '^react-dom/client$'], ['^@?\\w'], ['^'], ['^\\.'], ['^\\u0000']],
         },
       ],
     },
