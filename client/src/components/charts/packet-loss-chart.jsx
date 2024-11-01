@@ -9,7 +9,7 @@ export const PacketLossChart = ({ snapshots }) => {
     title: 'Packet Loss',
     xaxis: {
       title: 'Time',
-      tickformat: '%H:%M:%S',
+      tickformat: '%m-%d %H:%M',
       tickmode: 'auto',
       type: 'date',
     },

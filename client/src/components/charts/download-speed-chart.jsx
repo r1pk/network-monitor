@@ -11,7 +11,7 @@ export const DownloadSpeedChart = ({ snapshots }) => {
     title: 'Download Speed',
     xaxis: {
       title: 'Time',
-      tickformat: '%H:%M:%S',
+      tickformat: '%m-%d %H:%M',
       tickmode: 'auto',
       type: 'date',
     },

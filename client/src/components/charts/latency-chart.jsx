@@ -9,7 +9,7 @@ export const LatencyChart = ({ snapshots }) => {
     title: 'Latency',
     xaxis: {
       title: 'Time',
-      tickformat: '%H:%M:%S',
+      tickformat: '%m-%d %H:%M',
       tickmode: 'auto',
       type: 'date',
     },
