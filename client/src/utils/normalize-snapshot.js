@@ -1,6 +1,6 @@
 import { convertBytesToMegabits } from '@/utils/convert-bytes-to-megabits';
 
-export const prepareUserReadableSnapshot = (snapshot) => {
+export const normalizeSnapshot = (snapshot) => {
   return {
     download: convertBytesToMegabits(snapshot.download || 0) + ' Mbps',
     upload: convertBytesToMegabits(snapshot.upload || 0) + ' Mbps',

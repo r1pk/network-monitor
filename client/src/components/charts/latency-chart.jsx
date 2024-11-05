@@ -1,6 +1,6 @@
 import Plot from 'react-plotly.js';
 
-import { getInitialDateRange } from '@/utils/get-initial-date-range';
+import { createDateRange } from '@/utils/create-date-range';
 
 export const LatencyChart = ({ snapshots }) => {
   const config = {
@@ -15,7 +15,7 @@ export const LatencyChart = ({ snapshots }) => {
       tickmode: 'auto',
       type: 'date',
 
-      range: getInitialDateRange(24),
+      range: createDateRange({ startOffsetHours: -24 }),
       rangeslider: { visible: true },
     },
     yaxis: {

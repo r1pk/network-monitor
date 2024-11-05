@@ -1,7 +1,7 @@
 import Plot from 'react-plotly.js';
 
 import { convertBytesToMegabits } from '@/utils/convert-bytes-to-megabits';
-import { getInitialDateRange } from '@/utils/get-initial-date-range';
+import { createDateRange } from '@/utils/create-date-range';
 
 export const DownloadSpeedChart = ({ snapshots }) => {
   const config = {
@@ -16,7 +16,7 @@ export const DownloadSpeedChart = ({ snapshots }) => {
       tickmode: 'auto',
       type: 'date',
 
-      range: getInitialDateRange(24),
+      range: createDateRange({ startOffsetHours: -24 }),
       rangeslider: { visible: true },
     },
     yaxis: {
