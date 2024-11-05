@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  background-size: 0.25rem 0.25rem;
+  background-image: radial-gradient(rgba(18, 18, 18, 0.85) 1px, transparent 1px);
+}
+
 /* Responsive width for the plotly graph wrapper */
 .js-plotly-plot {
   width: 100%;
