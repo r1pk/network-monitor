@@ -6,7 +6,7 @@ export const useSnapshotList = (since) => {
   const url = import.meta.env.VITE_API_URL + '/api/speed-test';
   const params = new URLSearchParams();
 
-  if (since !== undefined) {
+  if (since) {
     params.append('since', since.toISOString());
   }
 
