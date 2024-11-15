@@ -1,3 +1,4 @@
+import { ChartSection } from '@/components/chart-section';
 import { FilterSection } from '@/components/filter-section';
 import { HeaderTitle } from '@/components/header-title';
 
@@ -8,6 +9,7 @@ export const Dashboard = () => {
         <HeaderTitle title="Dashboard" />
       </header>
       <FilterSection />
+      <ChartSection />
     </main>
   );
 };
