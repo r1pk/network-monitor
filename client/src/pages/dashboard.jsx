@@ -1,3 +1,4 @@
+import { FilterSection } from '@/components/filter-section';
 import { HeaderTitle } from '@/components/header-title';
 
 export const Dashboard = () => {
@@ -6,6 +7,7 @@ export const Dashboard = () => {
       <header>
         <HeaderTitle title="Dashboard" />
       </header>
+      <FilterSection />
     </main>
   );
 };
