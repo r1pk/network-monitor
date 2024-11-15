@@ -14,7 +14,7 @@ export const ChartSection = ({ since }) => {
   };
 
   return (
-    <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+    <section className="mb-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
       <div className="overflow-hidden rounded-md">
         <Skeleton isLoading={isLoading}>
           <DownloadSpeedChart config={config} snapshots={data} />
