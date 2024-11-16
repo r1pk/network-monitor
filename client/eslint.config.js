@@ -44,7 +44,7 @@ export default [
       // rules
       'react/prop-types': 'off',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-      'sort-imports': ['error', { ignoreDeclarationSort: true }],
+      'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
       'simple-import-sort/imports': [
         'error',
         {
