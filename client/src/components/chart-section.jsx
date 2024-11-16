@@ -3,10 +3,12 @@ import { LatencyChart } from '@/components/latency-chart';
 import { PacketLossChart } from '@/components/packet-loss-chart';
 import { Skeleton } from '@/components/skeleton';
 import { UploadSpeedChart } from '@/components/upload-speed-chart';
+import { useFilterContext } from '@/contexts/filter-context';
 import { useSnapshotList } from '@/hooks/use-snapshot-list';
 
-export const ChartSection = ({ since }) => {
-  const { data = [], isLoading } = useSnapshotList(since);
+export const ChartSection = () => {
+  const { filters } = useFilterContext();
+  const { data = [], isLoading } = useSnapshotList(filters.since);
 
   const config = {
     responsive: true,

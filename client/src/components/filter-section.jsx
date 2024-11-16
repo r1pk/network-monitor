@@ -1,9 +1,20 @@
-import { DateRangePicker } from './date-range-picker';
+import { DateRangePicker } from '@/components/date-range-picker';
+import { useFilterContext } from '@/contexts/filter-context';
 
 export const FilterSection = () => {
+  const { setFilters } = useFilterContext();
+
+  const handleStartDateChange = (payload) => {
+    setFilters((filters) => {
+      return Object.assign({}, filters, {
+        since: payload,
+      });
+    });
+  };
+
   return (
     <section className="mb-4 flex justify-end">
-      <DateRangePicker onDateChange={() => {}} />
+      <DateRangePicker onStartDateChange={handleStartDateChange} />
     </section>
   );
 };
