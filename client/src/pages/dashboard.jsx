@@ -13,7 +13,7 @@ export const Dashboard = () => {
       <header className="mb-4">
         <HeaderTitle title="Dashboard" />
       </header>
-      <FilterContext.Provider value={{ filters, setFilters }}>
+      <FilterContext.Provider value={{ filters: filters, setFilters: setFilters }}>
         <FilterSection />
         <ChartSection />
       </FilterContext.Provider>

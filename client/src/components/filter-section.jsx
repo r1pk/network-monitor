@@ -4,11 +4,9 @@ import { useFilterContext } from '@/contexts/filter-context';
 export const FilterSection = () => {
   const { setFilters } = useFilterContext();
 
-  const handleStartDateChange = (payload) => {
+  const handleStartDateChange = (since) => {
     setFilters((filters) => {
-      return Object.assign({}, filters, {
-        since: payload,
-      });
+      return Object.assign({}, filters, { since: since });
     });
   };
 
