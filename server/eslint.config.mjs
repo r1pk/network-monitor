@@ -7,11 +7,15 @@ import eslint_simple_sort_plugin from 'eslint-plugin-simple-import-sort';
 
 export default ts.config(
   {
-    ignores: ['dist', 'node_modules', 'eslint.config.js'],
+    ignores: ['dist', 'node_modules'],
   },
   {
     files: ['**/*.{js,ts}'],
     languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
       globals: globals.node,
     },
     plugins: {
@@ -28,7 +32,8 @@ export default ts.config(
         'error',
         { overrides: { constructors: 'no-public', properties: 'off' } },
       ],
-      'sort-imports': ['error', { ignoreDeclarationSort: true }],
+      'object-shorthand': ['error', 'never'],
+      'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
       'simple-import-sort/imports': [
         'error',
         {
