@@ -1,3 +1,3 @@
-export const fetcher = (...args) => {
+export const makeFetchRequest = (...args) => {
   return fetch(...args).then((response) => response.json());
 };

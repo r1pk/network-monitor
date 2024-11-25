@@ -1,25 +1,16 @@
 import Plot from 'react-plotly.js';
 
-import { createDateRange } from '@/utils/create-date-range';
-
-export const PacketLossChart = ({ snapshots }) => {
-  const config = {
-    responsive: true,
-    displayModeBar: false,
-  };
+export const LatencyChart = ({ config, snapshots }) => {
   const layout = {
-    title: 'Packet Loss',
+    title: 'Latency',
     xaxis: {
       title: 'Time',
       tickformat: '%m-%d %H:%M',
       tickmode: 'auto',
       type: 'date',
-
-      range: createDateRange({ startOffsetHours: -24 }),
-      rangeslider: { visible: true },
     },
     yaxis: {
-      title: 'Packet Loss (%)',
+      title: 'ms',
       range: [0, null],
     },
     height: 360,
@@ -29,12 +20,12 @@ export const PacketLossChart = ({ snapshots }) => {
       type: 'scatter',
       mode: 'lines',
       x: snapshots.map((snapshot) => new Date(snapshot.timestamp)),
-      y: snapshots.map((snapshot) => snapshot.loss ?? 0),
+      y: snapshots.map((snapshot) => snapshot.ping ?? 0),
       line: {
         width: 1,
         color: '#111111',
       },
-      hovertemplate: '%{x|%Y-%m-%d %H:%M:%S}, %{y}%' + '<extra></extra>',
+      hovertemplate: '%{x|%Y-%m-%d %H:%M:%S}, %{y} ms' + '<extra></extra>',
     },
   ];
 

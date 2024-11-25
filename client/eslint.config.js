@@ -1,3 +1,5 @@
+/* eslint-disable simple-import-sort/imports */
+
 import js from '@eslint/js';
 import globals from 'globals';
 
@@ -8,19 +10,21 @@ import eslint_simple_sort_plugin from 'eslint-plugin-simple-import-sort';
 
 export default [
   {
-    ignores: ['dist', 'node_modules', 'eslint.config.js'],
+    ignores: ['dist', 'node_modules'],
   },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
       parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
         ecmaFeatures: {
           jsx: true,
         },
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
       },
     },
     settings: {
@@ -44,7 +48,8 @@ export default [
       // rules
       'react/prop-types': 'off',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-      'sort-imports': ['error', { ignoreDeclarationSort: true }],
+      'object-shorthand': ['error', 'never'],
+      'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
       'simple-import-sort/imports': [
         'error',
         {

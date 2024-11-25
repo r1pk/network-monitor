@@ -1,26 +1,18 @@
 import Plot from 'react-plotly.js';
 
 import { convertBytesToMegabits } from '@/utils/convert-bytes-to-megabits';
-import { createDateRange } from '@/utils/create-date-range';
 
-export const DownloadSpeedChart = ({ snapshots }) => {
-  const config = {
-    responsive: true,
-    displayModeBar: false,
-  };
+export const UploadSpeedChart = ({ config, snapshots }) => {
   const layout = {
-    title: 'Download Speed',
+    title: 'Upload Speed',
     xaxis: {
       title: 'Time',
       tickformat: '%m-%d %H:%M',
       tickmode: 'auto',
       type: 'date',
-
-      range: createDateRange({ startOffsetHours: -24 }),
-      rangeslider: { visible: true },
     },
     yaxis: {
-      title: 'Download Speed (Mbps)',
+      title: 'Mbps',
       range: [0, null],
     },
     height: 360,
@@ -30,7 +22,7 @@ export const DownloadSpeedChart = ({ snapshots }) => {
       type: 'scatter',
       mode: 'lines',
       x: snapshots.map((snapshot) => new Date(snapshot.timestamp)),
-      y: snapshots.map((snapshot) => convertBytesToMegabits(snapshot.download)),
+      y: snapshots.map((snapshot) => convertBytesToMegabits(snapshot.upload)),
       line: {
         width: 1,
         color: '#111111',

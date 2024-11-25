@@ -3,18 +3,13 @@
 @tailwind utilities;
 
 html {
-  background-size: 0.25rem 0.25rem;
+  color: theme(colors.neutral.300);
+  background-color: theme(colors.neutral.950);
   background-image: radial-gradient(rgba(18, 18, 18, 0.85) 1px, transparent 1px);
-}
-
-/* Responsive width for the plotly graph wrapper */
-.js-plotly-plot {
-  width: 100%;
+  background-size: 0.25rem 0.25rem;
 }
 
 /* Simple dark mode for the plotly graphs */
 .plot-container:where([data-mode='dark'], [data-mode='dark'] *) {
-  overflow: hidden;
-  border-radius: 0.5rem;
-  filter: invert(80%) hue-rotate(180deg);
+  filter: invert(85%) hue-rotate(180deg);
 }
