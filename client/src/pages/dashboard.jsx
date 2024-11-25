@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { AnalyticsSection } from '@/components/analytics-section';
 import { ChartSection } from '@/components/chart-section';
 import { FilterSection } from '@/components/filter-section';
 import { HeaderTitle } from '@/components/header-title';
@@ -15,6 +16,7 @@ export const Dashboard = () => {
       </header>
       <FilterContext.Provider value={{ filters: filters, setFilters: setFilters }}>
         <FilterSection />
+        <AnalyticsSection />
         <ChartSection />
       </FilterContext.Provider>
     </main>
