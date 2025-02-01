@@ -1,8 +1,10 @@
 import { createContext, useContext } from 'react';
 
+import { DateTime } from 'luxon';
+
 export const defaultContextValue = {
   filters: {
-    since: null,
+    since: DateTime.now().minus({ days: 1 }).toFormat('yyyy-MM-dd'),
   },
   setFilters: () => {},
 };
