@@ -99,19 +99,29 @@ Once started, the server module api will be accessible at `http://127.0.0.1:8080
 
 ## Docker
 
-The application includes a docker configuration that automates the installation of all dependencies, greatly simplifying the process of launching the application.
+The application includes a docker configuration for each module that automates the installation of all dependencies, greatly simplifying the process of launching the application.
 
 ### Usage
 
-1. Build and launch the application.
+1. Build and start the client module.
 
 ```bash
-cd docker
+cd client
 
 docker compose up -d --build
 ```
 
-Once started, the client module will be accessible at `http://127.0.0.1:3000`, while the server module api will be accessible at `http://127.0.0.1:8080`.
+Once started, the client module will be accessible at `http://127.0.0.1:3000`.
+
+2. Build and start the server module.
+
+```bash
+cd server
+
+docker compose up -d --build
+```
+
+Once started, the server module api will be accessible at `http://127.0.0.1:8080`.
 
 ## Authors
 
