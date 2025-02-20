@@ -17,7 +17,7 @@
 git clone https://github.com/r1pk/network-monitor.git .
 ```
 
-2. Install the client module dependencies.
+2. Install client module dependencies.
 
 ```bash
 cd client
@@ -25,7 +25,7 @@ cd client
 npm install
 ```
 
-3. Install the server module dependencies.
+3. Install server module dependencies.
 
 ```bash
 cd server
@@ -33,41 +33,41 @@ cd server
 npm install
 ```
 
-4. Install the Ookla SpeedTest CLI by following the [official instructions](https://www.speedtest.net/apps/cli).
+4. Install Ookla SpeedTest CLI by following [official instructions](https://www.speedtest.net/apps/cli).
 
 ## Configuration
 
-The application and its individual features are configured by modifying environment variables defined in `.env` files located in the `client` and `server` folders.
+Application and its individual features are configured by modifying environment variables defined in `.env` files located in `client` and `server` folders.
 
 ### Client Module Configuration (`client/.env`)
 
-The behavior of the client module is controlled by the following environment variables:
+Behavior of the client module is controlled by the following environment variables:
 
-| Name           | Default                 | Description                             |
-| -------------- | ----------------------- | --------------------------------------- |
-| `VITE_API_URL` | `http://127.0.0.1:8080` | Specifies the URL to the server module. |
+| Name           | Default                 | Description                         |
+| -------------- | ----------------------- | ----------------------------------- |
+| `VITE_API_URL` | `http://127.0.0.1:8080` | Specifies URL to the server module. |
 
 ### Server Module Configuration (`server/.env`)
 
-The behavior of the server module is controlled by the following environment variables:
+Behavior of the server module is controlled by the following environment variables:
 
-| Name                    | Default      | Description                                                                                   |
-| ----------------------- | ------------ | --------------------------------------------------------------------------------------------- |
-| `NODE_ENV`              | `production` | Defines the environment (e.g., `development`, `production`).                                  |
-| `SERVER_PORT`           | `8080`       | Specifies the application port.                                                               |
-| `DATABASE_HOST`         |              | Specifies the host name or IP address of the MySQL server.                                    |
-| `DATABASE_PORT`         |              | Specifies the port number of the MySQL server.                                                |
-| `DATABASE_NAME`         |              | Specifies the MySQL database name.                                                            |
-| `DATABASE_USER`         |              | Specifies the MySQL database user.                                                            |
-| `DATABASE_PASSWORD`     |              | Specifies the password associated with the MySQL database user.                               |
-| `DATABASE_SYNC_ENABLED` | `true`       | Determines whether to automatically update the database schema based on the defined entities. |
-| `SPEEDTEST_CLI_ARGS`    |              | Specifies additional command-line arguments for the Ookla SpeedTest CLI.                      |
+| Name                    | Default      | Description                                                                           |
+| ----------------------- | ------------ | ------------------------------------------------------------------------------------- |
+| `NODE_ENV`              | `production` | Defines environment (e.g., `development`, `production`).                              |
+| `SERVER_PORT`           | `8080`       | Specifies application port.                                                           |
+| `DATABASE_HOST`         |              | Specifies host name or IP address of MySQL server.                                    |
+| `DATABASE_PORT`         |              | Specifies port number of MySQL server.                                                |
+| `DATABASE_NAME`         |              | Specifies MySQL database name.                                                        |
+| `DATABASE_USER`         |              | Specifies MySQL database user.                                                        |
+| `DATABASE_PASSWORD`     |              | Specifies password associated with MySQL database user.                               |
+| `DATABASE_SYNC_ENABLED` | `true`       | Determines whether to automatically update database schema based on defined entities. |
+| `SPEEDTEST_CLI_ARGS`    |              | Specifies additional command-line arguments for Ookla SpeedTest CLI.                  |
 
 ## Usage
 
 Ensure that all dependencies are installed and both modules are configured properly.
 
-1. Start the client module.
+1. Start client module.
 
 ```bash
 cd client
@@ -80,9 +80,9 @@ npm run build
 npm run start:prod
 ```
 
-Once started, the client module will be accessible at `http://127.0.0.1:3000`.
+Once started, client module will be accessible at `http://127.0.0.1:3000`.
 
-2. Start the server module.
+2. Start server module.
 
 ```bash
 cd server
@@ -95,15 +95,15 @@ npm run build
 npm run start:prod
 ```
 
-Once started, the server module api will be accessible at `http://127.0.0.1:8080`.
+Once started, server module api will be accessible at `http://127.0.0.1:8080`.
 
 ## Docker
 
-The application includes a docker configuration for each module that automates the installation of all dependencies, greatly simplifying the process of launching the application.
+Application includes a docker configuration for each module that automates installation of all dependencies, greatly simplifying process of launching application.
 
 ### Usage
 
-1. Build and start the client module.
+1. Build and start client module.
 
 ```bash
 cd client
@@ -111,9 +111,9 @@ cd client
 docker compose up -d --build
 ```
 
-Once started, the client module will be accessible at `http://127.0.0.1:3000`.
+Once started, client module will be accessible at `http://127.0.0.1:3000`.
 
-2. Build and start the server module.
+2. Build and start server module.
 
 ```bash
 cd server
@@ -121,7 +121,7 @@ cd server
 docker compose up -d --build
 ```
 
-Once started, the server module api will be accessible at `http://127.0.0.1:8080`.
+Once started, server module api will be accessible at `http://127.0.0.1:8080`.
 
 ## Authors
 
@@ -129,4 +129,4 @@ Once started, the server module api will be accessible at `http://127.0.0.1:8080
 
 ## License
 
-- Project is licensed under the [MIT](LICENSE.md) license.
+- Project is licensed under [MIT](LICENSE.md) license.
