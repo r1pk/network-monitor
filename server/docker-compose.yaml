@@ -1,4 +1,4 @@
-name: network-monitor
+name: network-monitor__server
 
 services:
   database:
