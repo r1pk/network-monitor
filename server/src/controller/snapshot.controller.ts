@@ -1,11 +1,11 @@
 import { Controller, Get, Query } from '@nestjs/common';
 
 import { Snapshot } from '../entity/snapshot.entity';
-import { SpeedTestService } from '../service/speed-test.service';
+import { SnapshotService } from '../service/snapshot.service';
 
-@Controller('speed-test')
-export class SpeedTestController {
-  constructor(private readonly service: SpeedTestService) {}
+@Controller('snapshot')
+export class SnapshotController {
+  constructor(private readonly service: SnapshotService) {}
 
   @Get()
   public getSnapshots(@Query('since') since?: string): Promise<Snapshot[]> {

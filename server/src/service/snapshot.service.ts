@@ -10,7 +10,7 @@ import { Repository } from 'typeorm';
 import { Snapshot } from '../entity/snapshot.entity';
 
 @Injectable()
-export class SpeedTestService {
+export class SnapshotService {
   constructor(
     @InjectRepository(Snapshot)
     private readonly repository: Repository<Snapshot>,
