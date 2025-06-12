@@ -1,76 +1,89 @@
 <div align="center">
-  <h3 align="center">Network Monitor</h3>
-  <p align="center">
-    Network Monitor is an application developed using technologies such as Nest.js, Ookla SpeedTest CLI, React.js, and Tailwind. It monitors internet connection stability by performing periodic speed tests via Ookla SpeedTest CLI and presents the results in the form of visual graphs.
+  <h2>📡 Network Monitor</h2>
+  <p>
+    A modern application for monitoring internet connection stability using <strong>Nest.js</strong>, <strong>React.js</strong>, <strong>Tailwind CSS</strong>, and the <strong>Ookla SpeedTest CLI</strong>.
+    <br />
+    Automatically performs periodic speed tests and visualizes results with interactive charts.
+  </p>
+  
+  <p>
+    <img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg" />
+    <img alt="Node.js" src="https://img.shields.io/badge/Node.js-22.5-brightgreen" />
+    <img alt="Nest.js" src="https://img.shields.io/badge/NestJS-%E2%9D%A4-red" />
+    <img alt="React" src="https://img.shields.io/badge/React-18-blue" />
+    <img alt="Tailwind CSS" src="https://img.shields.io/badge/TailwindCSS-3.4-38bdf8" />
+    <img alt="Docker" src="https://img.shields.io/badge/Docker-Supported-blue" />
   </p>
 </div>
 
-## Preview
+## 🖼️ Preview
 
-![DASHBOARD](https://i.imgur.com/yHszWZA.png)
+![Dashboard](https://i.imgur.com/yHszWZA.png)
 
-## Installation
+## 🚀 Features
 
-1. Clone the latest version of the project from the repository.
+- 🔁 Periodic internet speed tests using the Ookla Speedtest CLI.
+- 📊 Interactive charts displaying statistics history.
+- ⚙️ Configurable via `.env` files.
+- 🐳 Docker support for simplified deployment.
+- 🧩 Modular architecture (Client & Server).
+
+## 📦 Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/r1pk/network-monitor.git .
+   ```
+
+2. Install client dependencies:
+
+   ```bash
+   cd ./client
+   npm install
+   ```
+
+3. Install server dependencies:
+
+   ```bash
+   cd ./server
+   npm install
+   ```
+
+4. Install the [Ookla Speedtest CLI](https://www.speedtest.net/apps/cli) by following the official instructions.
+
+## ⚙️ Configuration
+
+The application is configured using `.env` files located in the `client` and `server` directories.
+
+### 📁 Client Configuration (`client/.env`)
+
+| Variable       | Default                 | Description                      |
+| -------------- | ----------------------- | -------------------------------- |
+| `VITE_API_URL` | `http://127.0.0.1:8080` | Backend API URL (server module). |
+
+### 📁 Server Configuration (`server/.env`)
+
+| Variable                | Default      | Description                                              |
+| ----------------------- | ------------ | -------------------------------------------------------- |
+| `NODE_ENV`              | `production` | Application environment (`development` or `production`). |
+| `SERVER_PORT`           | `8080`       | Application port.                                        |
+| `DATABASE_HOST`         | _(required)_ | MySQL database hostname or IP address.                   |
+| `DATABASE_PORT`         | _(required)_ | MySQL database port number.                              |
+| `DATABASE_NAME`         | _(required)_ | MySQL database name.                                     |
+| `DATABASE_USER`         | _(required)_ | MySQL database username.                                 |
+| `DATABASE_PASSWORD`     | _(required)_ | MySQL database password.                                 |
+| `DATABASE_SYNC_ENABLED` | `true`       | Synchronize database schema with entities.               |
+| `SPEEDTEST_CLI_ARGS`    | _(optional)_ | Additional CLI arguments for SpeedTest CLI.              |
+
+## 🧪 Usage
+
+Ensure that all dependencies are installed and the configuration files are setup correctly.
+
+### Start the Client Module
 
 ```bash
-git clone https://github.com/r1pk/network-monitor.git .
-```
-
-2. Install client module dependencies.
-
-```bash
-cd client
-
-npm install
-```
-
-3. Install server module dependencies.
-
-```bash
-cd server
-
-npm install
-```
-
-4. Install Ookla SpeedTest CLI by following [official instructions](https://www.speedtest.net/apps/cli).
-
-## Configuration
-
-Application and its individual features are configured by modifying environment variables defined in `.env` files located in `client` and `server` folders.
-
-### Client Module Configuration (`client/.env`)
-
-Behavior of the client module is controlled by the following environment variables:
-
-| Name           | Default                 | Description                         |
-| -------------- | ----------------------- | ----------------------------------- |
-| `VITE_API_URL` | `http://127.0.0.1:8080` | Specifies URL to the server module. |
-
-### Server Module Configuration (`server/.env`)
-
-Behavior of the server module is controlled by the following environment variables:
-
-| Name                    | Default      | Description                                                                           |
-| ----------------------- | ------------ | ------------------------------------------------------------------------------------- |
-| `NODE_ENV`              | `production` | Defines environment (e.g., `development`, `production`).                              |
-| `SERVER_PORT`           | `8080`       | Specifies application port.                                                           |
-| `DATABASE_HOST`         |              | Specifies host name or IP address of MySQL server.                                    |
-| `DATABASE_PORT`         |              | Specifies port number of MySQL server.                                                |
-| `DATABASE_NAME`         |              | Specifies MySQL database name.                                                        |
-| `DATABASE_USER`         |              | Specifies MySQL database user.                                                        |
-| `DATABASE_PASSWORD`     |              | Specifies password associated with MySQL database user.                               |
-| `DATABASE_SYNC_ENABLED` | `true`       | Determines whether to automatically update database schema based on defined entities. |
-| `SPEEDTEST_CLI_ARGS`    |              | Specifies additional command-line arguments for Ookla SpeedTest CLI.                  |
-
-## Usage
-
-Ensure that all dependencies are installed and both modules are configured properly.
-
-1. Start client module.
-
-```bash
-cd client
+cd ./client
 
 # Development
 npm run start:dev
@@ -80,12 +93,12 @@ npm run build
 npm run start:prod
 ```
 
-Once started, client module will be accessible at `http://127.0.0.1:3000`.
+Client will be available at: [http://127.0.0.1:3000](http://127.0.0.1:3000)
 
-2. Start server module.
+### Start the Server Module
 
 ```bash
-cd server
+cd ./server
 
 # Development
 npm run start:dev
@@ -95,38 +108,36 @@ npm run build
 npm run start:prod
 ```
 
-Once started, server module api will be accessible at `http://127.0.0.1:8080`.
+Server will be available at: [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
-## Docker
+## 🐳 Docker
 
-Application includes a docker configuration for each module that automates installation of all dependencies, greatly simplifying process of launching application.
+This project includes docker configuration for both client and server module, simplifying setup and deployment.
 
-### Usage
+### 📦 Running with Docker
 
-1. Build and start client module.
+1. Build and run the client module:
 
-```bash
-cd client
+   ```bash
+   cd ./client
+   docker compose up -d --build
+   ```
 
-docker compose up -d --build
-```
+   Client will be available at: [http://127.0.0.1:3000](http://127.0.0.1:3000)
 
-Once started, client module will be accessible at `http://127.0.0.1:3000`.
+2. Build and run the server module:
 
-2. Build and start server module.
+   ```bash
+   cd ./server
+   docker compose up -d --build
+   ```
 
-```bash
-cd server
+   Server will be available at: [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
-docker compose up -d --build
-```
+## 👤 Author
 
-Once started, server module api will be accessible at `http://127.0.0.1:8080`.
+- **Patryk Krawczyk** – [@r1pk](https://github.com/r1pk)
 
-## Authors
+## 📄 License
 
-- Patryk [@r1pk](https://github.com/r1pk) Krawczyk
-
-## License
-
-- Project is licensed under [MIT](LICENSE.md) license.
+This project is licensed under the [MIT License](LICENSE.md).
