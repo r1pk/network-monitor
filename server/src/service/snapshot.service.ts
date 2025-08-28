@@ -1,6 +1,6 @@
 import { exec } from 'node:child_process';
 
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,6 +12,8 @@ import { SpeedTestResult } from '../interface/speed-test-result.interface';
 
 @Injectable()
 export class SnapshotService {
+  private readonly logger = new Logger(SnapshotService.name);
+
   constructor(
     @InjectRepository(Snapshot)
     private readonly repository: Repository<Snapshot>,
@@ -77,7 +79,7 @@ export class SnapshotService {
   private performCyclicSpeedTest(): Promise<void> {
     return this.performSpeedTest().then((snapshot: Snapshot) => {
       this.repository.save(snapshot).catch((error: Error) => {
-        console.error('Failed to save speedtest snapshot:', error.message);
+        this.logger.error('Failed to save speedtest snapshot: ' + error.message);
       });
     });
   }
