@@ -8,6 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Snapshot } from '../entity/snapshot.entity';
+import { SpeedTestResult } from '../interface/speed-test-result.interface';
 
 @Injectable()
 export class SnapshotService {
@@ -58,7 +59,7 @@ export class SnapshotService {
           return resolve(snapshot);
         }
 
-        const output = JSON.parse(stdout);
+        const output = JSON.parse(stdout) as SpeedTestResult;
 
         snapshot.download = output.download.bandwidth;
         snapshot.upload = output.upload.bandwidth;
@@ -75,7 +76,9 @@ export class SnapshotService {
   @Cron(CronExpression.EVERY_5_MINUTES)
   private performCyclicSpeedTest(): Promise<void> {
     return this.performSpeedTest().then((snapshot: Snapshot) => {
-      this.repository.save(snapshot);
+      this.repository.save(snapshot).catch((error: Error) => {
+        console.error('Failed to save speedtest snapshot:', error.message);
+      });
     });
   }
 }

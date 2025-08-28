@@ -7,7 +7,7 @@ import eslint_plugin_simple_import_sort from 'eslint-plugin-simple-import-sort';
 
 export default ts.config(
   {
-    ignores: ['dist', 'node_modules', 'eslint.config.mjs'],
+    ignores: ['dist', 'node_modules', 'eslint.config.mjs', 'prettier.config.js'],
   },
   js.configs.recommended,
   ...ts.configs.recommendedTypeChecked,

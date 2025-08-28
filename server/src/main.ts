@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './module/app.module';
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   const port = app.get(ConfigService).get<number>('SERVER_PORT', 8080);
 
@@ -12,4 +12,7 @@ async function bootstrap() {
 
   await app.listen(port);
 }
-bootstrap();
+
+bootstrap().catch((error: Error) => {
+  console.error('Failed to start server:', error.message);
+});
