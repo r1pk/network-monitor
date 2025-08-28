@@ -1,5 +1,5 @@
 ##> BASE <##
-FROM node:22.5-bookworm AS base
+FROM node:24.7-bookworm AS base
 
 RUN apt-get install bash curl
 
@@ -7,7 +7,7 @@ RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/scr
 RUN apt-get install speedtest
 RUN speedtest --accept-license --accept-gdpr
 
-RUN npm i -g npm@10.8.2
+RUN npm i -g npm@11.1.0
 ##< BASE >##
 
 ##> BUILDER <##

@@ -1,9 +1,9 @@
 ##> BASE <##
-FROM node:22.5-bookworm AS base
+FROM node:24.7-bookworm AS base
 
 RUN apt-get install bash
 
-RUN npm i -g npm@10.8.2 serve@14.2.3
+RUN npm i -g npm@11.1.0 serve@14.2.4
 ##< BASE >##
 
 ##> BUILDER <##
