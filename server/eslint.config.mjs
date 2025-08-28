@@ -3,35 +3,27 @@ import ts from 'typescript-eslint';
 import js from '@eslint/js';
 import globals from 'globals';
 
-import eslint_simple_sort_plugin from 'eslint-plugin-simple-import-sort';
+import eslint_plugin_simple_import_sort from 'eslint-plugin-simple-import-sort';
 
 export default ts.config(
   {
-    ignores: ['dist', 'node_modules'],
+    ignores: ['dist', 'node_modules', 'eslint.config.mjs'],
   },
+  js.configs.recommended,
+  ...ts.configs.recommendedTypeChecked,
   {
-    files: ['**/*.{js,ts}'],
     languageOptions: {
+      sourceType: 'module',
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
       globals: globals.node,
     },
     plugins: {
-      '@typescript-eslint': ts.plugin,
-      'simple-import-sort': eslint_simple_sort_plugin,
+      'simple-import-sort': eslint_plugin_simple_import_sort,
     },
-    extends: [js.configs.recommended, ...ts.configs.recommended],
     rules: {
-      '@typescript-eslint/interface-name-prefix': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/explicit-member-accessibility': [
-        'error',
-        { overrides: { constructors: 'no-public', properties: 'off' } },
-      ],
       'object-shorthand': ['error', 'never'],
       'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
       'simple-import-sort/imports': [
@@ -39,6 +31,17 @@ export default ts.config(
         {
           groups: [['^node:'], ['^@nestjs/'], ['^@?\\w'], ['^'], ['^\\.'], ['^\\u0000']],
         },
+      ],
+    },
+  },
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-floating-promises': 'warn',
+      '@typescript-eslint/no-unsafe-argument': 'warn',
+      '@typescript-eslint/explicit-member-accessibility': [
+        'error',
+        { overrides: { constructors: 'no-public', properties: 'off' } },
       ],
     },
   },
