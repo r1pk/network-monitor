@@ -3,6 +3,6 @@ name: network-monitor__client
 services:
   client:
     build:
-      target: production
+      target: runner
     ports:
       - '3000:3000'

@@ -22,8 +22,8 @@ COPY . .
 RUN npm run build
 ##< BUILDER >##
 
-##> PRODUCTION <##
-FROM base AS production
+##> RUNNER <##
+FROM base AS runner
 
 WORKDIR /usr/src/app
 
@@ -34,4 +34,4 @@ COPY --from=builder /usr/src/app/dist ./dist
 RUN npm ci --omit=dev && npm cache clean --force
 
 CMD ["npm", "run", "start:prod"]
-##< PRODUCTION >##
+##< RUNNER >##

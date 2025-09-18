@@ -18,12 +18,12 @@ COPY . .
 RUN npm run build
 ##< BUILDER >##
 
-##> PRODUCTION <##
-FROM base AS production
+##> RUNNER <##
+FROM base AS runner
 
 WORKDIR /usr/src/app
 
 COPY --from=builder /usr/src/app/dist ./dist
 
 CMD ["serve", "-s", "dist", "-l", "3000"]
-##< PRODUCTION >##
+##< RUNNER >##
