@@ -1,4 +1,4 @@
-import { exec } from 'node:child_process';
+import { exec, ExecException } from 'node:child_process';
 
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -57,7 +57,7 @@ export class SnapshotService {
       const snapshot = new Snapshot();
       const args = this.config.get<string>('SPEEDTEST_CLI_ARGS');
 
-      exec(`speedtest ${args} --format=json`, (error, stdout) => {
+      exec(`speedtest ${args} --format=json`, (error: ExecException | null, stdout: string) => {
         if (error) {
           return resolve(snapshot);
         }
