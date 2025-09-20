@@ -2,6 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 
 import { Snapshot } from '../entity/snapshot.entity';
 import { SnapshotService } from '../service/snapshot.service';
+import { AverageSnapshot } from '../type/average-snapshot.type';
 
 @Controller('snapshot')
 export class SnapshotController {
@@ -13,7 +14,7 @@ export class SnapshotController {
   }
 
   @Get('average')
-  public getAverageSnapshot(@Query('since') since?: string): Promise<object> {
+  public getAverageSnapshot(@Query('since') since?: string): Promise<AverageSnapshot> {
     return this.service.getAverageSnapshot(since);
   }
 }

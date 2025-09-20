@@ -8,6 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Snapshot } from '../entity/snapshot.entity';
+import { AverageSnapshot } from '../type/average-snapshot.type';
 import { SpeedTestResult } from '../type/speed-test-result.type';
 
 @Injectable()
@@ -32,7 +33,7 @@ export class SnapshotService {
     return builder.getMany();
   }
 
-  public getAverageSnapshot(since?: string): Promise<object> {
+  public getAverageSnapshot(since?: string): Promise<AverageSnapshot> {
     const builder = this.repository.createQueryBuilder('snapshot');
 
     builder.select([
@@ -48,7 +49,7 @@ export class SnapshotService {
       });
     }
 
-    return builder.getRawOne() as Promise<object>;
+    return builder.getRawOne() as Promise<AverageSnapshot>;
   }
 
   public performSpeedTest(): Promise<Snapshot> {
