@@ -77,11 +77,15 @@ export class SnapshotService {
   }
 
   @Cron(CronExpression.EVERY_5_MINUTES)
-  private performCyclicSpeedTest(): Promise<void> {
-    return this.performSpeedTest().then((snapshot: Snapshot) => {
-      this.repository.save(snapshot).catch((error: Error) => {
-        this.logger.error('Failed to save speedtest snapshot: ' + error.message);
-      });
-    });
+  private async performCyclicSpeedTest(): Promise<void> {
+    try {
+      const snapshot = await this.performSpeedTest();
+
+      await this.repository.save(snapshot);
+    } catch (error: any) {
+      if (error instanceof Error) {
+        this.logger.error('Failed to perform cyclic speedtest: ' + error.message);
+      }
+    }
   }
 }
