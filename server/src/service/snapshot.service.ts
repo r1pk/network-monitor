@@ -24,7 +24,7 @@ export class SnapshotService {
   public getSnapshots(since?: string): Promise<Snapshot[]> {
     const builder = this.repository.createQueryBuilder('snapshot');
 
-    if (since !== undefined) {
+    if (since) {
       builder.where('snapshot.timestamp >= :since', {
         since: since,
       });
@@ -43,7 +43,7 @@ export class SnapshotService {
       'avg(snapshot.loss) as loss',
     ]);
 
-    if (since !== undefined) {
+    if (since) {
       builder.where('snapshot.timestamp >= :since', {
         since: since,
       });
