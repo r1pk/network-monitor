@@ -8,7 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Snapshot } from '../entity/snapshot.entity';
-import { SpeedTestResult } from '../interface/speed-test-result.interface';
+import { SpeedTestResult } from '../type/speed-test-result.type';
 
 @Injectable()
 export class SnapshotService {

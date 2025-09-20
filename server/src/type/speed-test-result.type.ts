@@ -1,4 +1,4 @@
-export interface SpeedTestResult {
+export type SpeedTestResult = {
   download: {
     bandwidth: number;
   };
@@ -15,4 +15,4 @@ export interface SpeedTestResult {
   result: {
     url: string;
   };
-}
+};
