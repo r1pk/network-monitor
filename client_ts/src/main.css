@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+html {
+  color: var(--color-neutral-300);
+  background-color: var(--color-neutral-950);
+  background-image: radial-gradient(var(--color-neutral-900) 1px, transparent 1px);
+  background-size: 0.25rem 0.25rem;
+}
+
+/* Simple dark mode for the plotly graphs */
+.plot-container:where([data-mode='dark'], [data-mode='dark'] *) {
+  filter: invert(85%) hue-rotate(180deg);
+}
