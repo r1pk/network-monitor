@@ -32,7 +32,14 @@ export default defineConfig([
       'simple-import-sort/imports': [
         'error',
         {
-          groups: [['^node:'], ['^react$', '^react-dom/client$'], ['^@?\\w'], ['^'], ['^\\.'], ['^\\u0000']],
+          groups: [
+            ['^node:'],
+            ['^react\\u0000$', '^react$', '^react-dom/client$', '^react-dom/client\\u0000$'],
+            ['^@?\\w'],
+            ['^'],
+            ['^\\.'],
+            ['^\\u0000'],
+          ],
         },
       ],
       'object-shorthand': ['error', 'never'],
