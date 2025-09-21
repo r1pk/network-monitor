@@ -11,7 +11,7 @@
     <img alt="Node.js" src="https://img.shields.io/badge/Node.js-24.7-brightgreen" />
     <img alt="Nest.js" src="https://img.shields.io/badge/NestJS-%E2%9D%A4-red" />
     <img alt="React" src="https://img.shields.io/badge/React-19-blue" />
-    <img alt="Tailwind CSS" src="https://img.shields.io/badge/TailwindCSS-3.4-38bdf8" />
+    <img alt="Tailwind CSS" src="https://img.shields.io/badge/TailwindCSS-4.1-38bdf8" />
     <img alt="Docker" src="https://img.shields.io/badge/Docker-Supported-blue" />
   </p>
 </div>
