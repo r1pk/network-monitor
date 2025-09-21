@@ -82,7 +82,7 @@ export class SnapshotService {
       const snapshot = await this.performSpeedTest();
 
       await this.repository.save(snapshot);
-    } catch (error: any) {
+    } catch (error) {
       if (error instanceof Error) {
         this.logger.error('Failed to perform cyclic speedtest: ' + error.message);
       }

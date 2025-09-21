@@ -10,15 +10,7 @@ import eslint_simple_sort_plugin from 'eslint-plugin-simple-import-sort';
 
 export default [
   {
-    ignores: [
-      'dist',
-      'node_modules',
-      'eslint.config.js',
-      'postcss.config.js',
-      'prettier.config.js',
-      'tailwind.config.js',
-      'vite.config.js',
-    ],
+    ignores: ['dist', '*.config.{js,mjs}'],
   },
   js.configs.recommended,
   eslint_react_plugin.configs.flat.recommended,
@@ -49,7 +41,8 @@ export default [
       'simple-import-sort': eslint_simple_sort_plugin,
     },
     rules: {
-      'object-shorthand': ['error', 'never'],
+      'react/prop-types': 'off',
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
       'simple-import-sort/imports': [
         'error',
@@ -57,12 +50,7 @@ export default [
           groups: [['^node:'], ['^react$', '^react-dom/client$'], ['^@?\\w'], ['^'], ['^\\.'], ['^\\u0000']],
         },
       ],
-    },
-  },
-  {
-    rules: {
-      'react/prop-types': 'off',
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'object-shorthand': ['error', 'never'],
     },
   },
 ];
