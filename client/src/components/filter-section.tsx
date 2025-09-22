@@ -4,14 +4,14 @@ import { defaultContextValue, useFilterContext } from '@/contexts/filter-context
 export const FilterSection = () => {
   const { setFilters } = useFilterContext();
 
-  const handleStartDateChange = (since) => {
+  const handleStartDateChange = (since: string) => {
     setFilters((previous) => {
       return Object.assign({}, previous, { since: since });
     });
   };
 
   return (
-    <section className="mb-4 flex justify-end">
+    <section className="flex justify-end">
       <DateRangePicker defaultStartDate={defaultContextValue.filters.since} onStartDateChange={handleStartDateChange} />
     </section>
   );

@@ -1,41 +1,26 @@
-/* eslint-disable simple-import-sort/imports */
+import ts from 'typescript-eslint';
 
 import js from '@eslint/js';
 import globals from 'globals';
 
-import eslint_react_plugin from 'eslint-plugin-react';
 import eslint_react_hooks_plugin from 'eslint-plugin-react-hooks';
 import eslint_react_refresh_plugin from 'eslint-plugin-react-refresh';
 import eslint_simple_sort_plugin from 'eslint-plugin-simple-import-sort';
 
-export default [
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig([
   {
     ignores: ['dist', '*.config.{js,mjs}'],
   },
   js.configs.recommended,
-  eslint_react_plugin.configs.flat.recommended,
-  eslint_react_plugin.configs.flat['jsx-runtime'],
+  ts.configs.recommended,
   eslint_react_hooks_plugin.configs['recommended-latest'],
   eslint_react_refresh_plugin.configs.vite,
   {
-    files: ['**/*.{js,jsx}'],
     languageOptions: {
-      sourceType: 'module',
       ecmaVersion: 'latest',
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-    settings: {
-      react: {
-        version: 'detect',
-      },
+      globals: globals.browser,
     },
     plugins: {
       'simple-import-sort': eslint_simple_sort_plugin,
@@ -47,10 +32,17 @@ export default [
       'simple-import-sort/imports': [
         'error',
         {
-          groups: [['^node:'], ['^react$', '^react-dom/client$'], ['^@?\\w'], ['^'], ['^\\.'], ['^\\u0000']],
+          groups: [
+            ['^node:'],
+            ['^react\\u0000$', '^react$', '^react-dom/client$', '^react-dom/client\\u0000$'],
+            ['^@?\\w'],
+            ['^'],
+            ['^\\.'],
+            ['^\\u0000'],
+          ],
         },
       ],
       'object-shorthand': ['error', 'never'],
     },
   },
-];
+]);

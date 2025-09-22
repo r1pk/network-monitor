@@ -1,24 +1,25 @@
 <div align="center">
   <h2>📡 Network Monitor</h2>
   <p>
-    A modern application for monitoring internet connection stability using <strong>Nest.js</strong>, <strong>React.js</strong>, <strong>Tailwind CSS</strong>, and the <strong>Ookla SpeedTest CLI</strong>.
+    A modern application for monitoring internet connection stability using <strong>Nest.js</strong>, <strong>React.js</strong>, <strong>TypeScript</strong>, <strong>Tailwind CSS</strong>, and the <strong>Ookla SpeedTest CLI</strong>.
     <br />
     Automatically performs periodic speed tests and visualizes results with interactive charts.
   </p>
   
   <p>
     <img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg" />
-    <img alt="Node.js" src="https://img.shields.io/badge/Node.js-24.7-brightgreen" />
-    <img alt="Nest.js" src="https://img.shields.io/badge/NestJS-%E2%9D%A4-red" />
-    <img alt="React" src="https://img.shields.io/badge/React-19-blue" />
-    <img alt="Tailwind CSS" src="https://img.shields.io/badge/TailwindCSS-3.4-38bdf8" />
-    <img alt="Docker" src="https://img.shields.io/badge/Docker-Supported-blue" />
+    <img alt="Node.js" src="https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white" />
+    <img alt="Nest.js" src="https://img.shields.io/badge/Nest.js-%23E0234E.svg?logo=nestjs&logoColor=white" />
+    <img alt="React" src="https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB" />
+    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" />
+    <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white" />
+    <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff" />
   </p>
 </div>
 
 ## 🖼️ Preview
 
-![Dashboard](https://i.imgur.com/yHszWZA.png)
+![Dashboard](https://i.imgur.com/88VahqX.png)
 
 ## 🚀 Features
 
