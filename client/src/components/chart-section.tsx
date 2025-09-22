@@ -17,22 +17,22 @@ export const ChartSection = () => {
 
   return (
     <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      <div className="overflow-hidden rounded-md">
+      <div className="overflow-hidden rounded-lg">
         <Skeleton isLoading={isLoading}>
           <DownloadSpeedChart config={config} snapshots={data} />
         </Skeleton>
       </div>
-      <div className="overflow-hidden rounded-md">
+      <div className="overflow-hidden rounded-lg">
         <Skeleton isLoading={isLoading}>
           <UploadSpeedChart config={config} snapshots={data} />
         </Skeleton>
       </div>
-      <div className="overflow-hidden rounded-md">
+      <div className="overflow-hidden rounded-lg">
         <Skeleton isLoading={isLoading}>
           <LatencyChart config={config} snapshots={data} />
         </Skeleton>
       </div>
-      <div className="overflow-hidden rounded-md">
+      <div className="overflow-hidden rounded-lg">
         <Skeleton isLoading={isLoading}>
           <PacketLossChart config={config} snapshots={data} />
         </Skeleton>
