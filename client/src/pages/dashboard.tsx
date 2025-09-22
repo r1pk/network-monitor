@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { ChartSection } from '@/components/chart-section';
 import { FilterSection } from '@/components/filter-section';
+import { ParameterSection } from '@/components/parameter-section';
 import type { Filters } from '@/contexts/filter-context';
 import { defaultContextValue, FilterContext } from '@/contexts/filter-context';
 
@@ -19,6 +20,7 @@ export const Dashboard = () => {
       </header>
       <div className="flex flex-col gap-4">
         <FilterContext.Provider value={{ filters: filters, setFilters: setFilters }}>
+          <ParameterSection />
           <FilterSection />
           <ChartSection />
         </FilterContext.Provider>
