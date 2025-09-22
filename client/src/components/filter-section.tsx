@@ -11,7 +11,7 @@ export const FilterSection = () => {
   };
 
   return (
-    <section className="mb-4 flex justify-end">
+    <section className="flex justify-end">
       <DateRangePicker defaultStartDate={defaultContextValue.filters.since} onStartDateChange={handleStartDateChange} />
     </section>
   );
