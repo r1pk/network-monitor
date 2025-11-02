@@ -5,7 +5,7 @@ import type { Snapshot } from '@/types/snapshot';
 import { fetcher } from '@/utilities/fetcher';
 
 export const useSnapshotList = (since?: string): SWRResponse<Snapshot[], Error> => {
-  const url = import.meta.env.VITE_API_URL + '/api/snapshot';
+  const url = import.meta.env.VITE_API_URL + '/api/speedtest';
   const params = new URLSearchParams();
 
   if (since) {
