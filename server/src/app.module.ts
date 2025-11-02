@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { SnapshotModule } from './snapshot.module';
+import { SnapshotModule } from './snapshot/snapshot.module';
 
 @Module({
   imports: [
@@ -20,11 +20,11 @@ import { SnapshotModule } from './snapshot.module';
           decimalNumbers: true,
         },
 
-        host: config.get('DATABASE_HOST'),
-        port: config.get('DATABASE_PORT'),
-        database: config.get('DATABASE_NAME'),
-        username: config.get('DATABASE_USER'),
-        password: config.get('DATABASE_PASSWORD'),
+        host: config.get('DATABASE_HOST') as string,
+        port: config.get('DATABASE_PORT') as number,
+        database: config.get('DATABASE_NAME') as string,
+        username: config.get('DATABASE_USER') as string,
+        password: config.get('DATABASE_PASSWORD') as string,
 
         autoLoadEntities: true,
         synchronize: config.get('DATABASE_SYNC_ENABLED') === 'true',
