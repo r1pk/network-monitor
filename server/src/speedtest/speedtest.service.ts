@@ -12,8 +12,8 @@ import { AverageSnapshot } from './type/average-snapshot.type';
 import { SpeedTestResult } from './type/speed-test-result.type';
 
 @Injectable()
-export class SnapshotService {
-  private readonly logger = new Logger(SnapshotService.name);
+export class SpeedTestService {
+  private readonly logger = new Logger(SpeedTestService.name);
 
   constructor(
     @InjectRepository(Snapshot)
