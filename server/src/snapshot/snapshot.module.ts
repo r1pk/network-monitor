@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { SnapshotController } from '../controller/snapshot.controller';
-import { Snapshot } from '../entity/snapshot.entity';
-import { SnapshotService } from '../service/snapshot.service';
+import { Snapshot } from './entity/snapshot.entity';
+import { SnapshotController } from './snapshot.controller';
+import { SnapshotService } from './snapshot.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Snapshot])],
