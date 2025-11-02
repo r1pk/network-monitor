@@ -1,139 +1,145 @@
 <div align="center">
-  <h2>📡 Network Monitor</h2>
+  <h2>Network Monitor</h2>
   <p>
-    A modern application for monitoring internet connection stability using <strong>Nest.js</strong>, <strong>React.js</strong>, <strong>TypeScript</strong>, <strong>Tailwind CSS</strong>, and the <strong>Ookla SpeedTest CLI</strong>.
+    A modern application for monitoring internet connection stability, built with <strong>Nest.js</strong>, <strong>React.js</strong>, <strong>TypeScript</strong>, <strong>Tailwind CSS</strong>, and the <strong>Ookla Speedtest CLI</strong>.
     <br />
-    Automatically performs periodic speed tests and visualizes results with interactive charts.
+    Automatically performs periodic speed tests, stores results in a database, and provides interactive charts for visualizing network performance over time.
   </p>
   
   <p>
-    <img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg" />
     <img alt="Node.js" src="https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white" />
     <img alt="Nest.js" src="https://img.shields.io/badge/Nest.js-%23E0234E.svg?logo=nestjs&logoColor=white" />
     <img alt="React" src="https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB" />
     <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" />
     <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white" />
     <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff" />
+    <img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg" />
   </p>
 </div>
+
+## 🚀 Features
+
+- 🔁 **Periodic internet speed tests** – Automatically performs speed tests using the Ookla Speedtest CLI.
+- 📊 **Interactive charts** – Visualizes historical network performance with dynamic charts and statistics.
+- 💾 **Persistent storage** – Stores speed test results in a database for long-term tracking and analysis.
+- 🐳 **Docker support** – Provides simplified deployment using preconfigured Docker containers for client and server modules.
+- ⚙️ **Flexible configuration** – Allows configuration of both client and server modules via `.env` files.
 
 ## 🖼️ Preview
 
 ![Dashboard](https://i.imgur.com/88VahqX.png)
 
-## 🚀 Features
+## 📥 Download
 
-- 🔁 Periodic internet speed tests using the Ookla Speedtest CLI.
-- 📊 Interactive charts displaying statistics history.
-- ⚙️ Configurable via `.env` files.
-- 🐳 Docker support for simplified deployment.
-- 🧩 Modular architecture (Client & Server).
+Clone the repository to your local machine:
 
-## 📦 Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/r1pk/network-monitor.git .
-   ```
-
-2. Install client dependencies:
-
-   ```bash
-   cd ./client
-   npm install
-   ```
-
-3. Install server dependencies:
-
-   ```bash
-   cd ./server
-   npm install
-   ```
-
-4. Install the [Ookla Speedtest CLI](https://www.speedtest.net/apps/cli) by following the official instructions.
+```
+git clone https://github.com/r1pk/network-monitor.git
+cd network-monitor
+```
 
 ## ⚙️ Configuration
 
-The application is configured using `.env` files located in the `client` and `server` directories.
+Network Monitor uses environment variables defined in local `.env` files to configure both modules.  
+These files control application behavior, connection parameters, and integration with external tools.
 
-### 📁 Client Configuration (`client/.env`)
+### Client configuration (`client/.env`)
 
-| Variable       | Default                 | Description                      |
-| -------------- | ----------------------- | -------------------------------- |
-| `VITE_API_URL` | `http://127.0.0.1:8080` | Backend API URL (server module). |
+| Variable         | Default                 | Description        |
+| ---------------- | ----------------------- | ------------------ |
+| **VITE_API_URL** | `http://127.0.0.1:8080` | Server module URL. |
 
-### 📁 Server Configuration (`server/.env`)
+### Server configuration (`server/.env`)
 
-| Variable                | Default      | Description                                              |
-| ----------------------- | ------------ | -------------------------------------------------------- |
-| `NODE_ENV`              | `production` | Application environment (`development` or `production`). |
-| `SERVER_PORT`           | `8080`       | Application port.                                        |
-| `DATABASE_HOST`         | _(required)_ | MySQL database hostname or IP address.                   |
-| `DATABASE_PORT`         | _(required)_ | MySQL database port number.                              |
-| `DATABASE_NAME`         | _(required)_ | MySQL database name.                                     |
-| `DATABASE_USER`         | _(required)_ | MySQL database username.                                 |
-| `DATABASE_PASSWORD`     | _(required)_ | MySQL database password.                                 |
-| `DATABASE_SYNC_ENABLED` | `true`       | Synchronize database schema with entities.               |
-| `SPEEDTEST_CLI_ARGS`    | _(optional)_ | Additional CLI arguments for SpeedTest CLI.              |
+| Variable                  | Default      | Description                                                                      |
+| ------------------------- | ------------ | -------------------------------------------------------------------------------- |
+| **NODE_ENV**              | `production` | Application mode (`development` or `production`).                                |
+| **SERVER_PORT**           | `8080`       | Server port number.                                                              |
+| **DATABASE_HOST**         | _(required)_ | MySQL database hostname or IP address.                                           |
+| **DATABASE_PORT**         | _(required)_ | MySQL database port number.                                                      |
+| **DATABASE_NAME**         | _(required)_ | MySQL database name.                                                             |
+| **DATABASE_USER**         | _(required)_ | MySQL database username.                                                         |
+| **DATABASE_PASSWORD**     | _(required)_ | MySQL database password for the specified user.                                  |
+| **DATABASE_SYNC_ENABLED** | `true`       | Enables synchronization of the database structure with local entity definitions. |
+| **SPEEDTEST_CLI_ARGS**    | _(optional)_ | Specifies additional arguments passed to Ookla Speedtest CLI.                    |
 
 ## 🧪 Usage
 
-Ensure that all dependencies are installed and the configuration files are setup correctly.
+Before starting the application, make sure the configuration files are set up correctly.
 
-### Start the Client Module
+### Client module
 
-```bash
-cd ./client
+The client module provides a dashboard for viewing speed test results and network statistics.
 
-# Development
+#### Install required dependencies
+
+```
+cd client
+npm install
+```
+
+#### Start the module
+
+```
+# development mode
 npm run start:dev
 
-# Production
+# production build
 npm run build
 npm run start:prod
 ```
 
-Client will be available at: [http://127.0.0.1:3000](http://127.0.0.1:3000)
+Once started, the client will be available at **http://127.0.0.1:3000**
 
-### Start the Server Module
+### Server module
 
-```bash
-cd ./server
+The server module processes data, interacts with the Speedtest CLI, and stores test results in the database.
 
-# Development
+#### Install required dependencies
+
+```
+cd server
+npm install
+```
+
+#### Install Ookla Speedtest CLI
+
+The server module relies on the [Ookla Speedtest CLI](https://www.speedtest.net/apps/cli). Follow the official instructions for your operating system to install it.
+
+#### Start the module
+
+```
+# development mode
 npm run start:dev
 
-# Production
+# production build
 npm run build
 npm run start:prod
 ```
 
-Server will be available at: [http://127.0.0.1:8080](http://127.0.0.1:8080)
+Once started, the server will be available at **http://127.0.0.1:8080**
 
 ## 🐳 Docker
 
-This project includes docker configuration for both client and server module, simplifying setup and deployment.
+This project includes Docker configuration for both the client and server modules, making setup and deployment simple and consistent across environments.
 
-### 📦 Running with Docker
+### Starting the client module
 
-1. Build and run the client module:
+```
+cd client
+docker compose up -d --build
+```
 
-   ```bash
-   cd ./client
-   docker compose up -d --build
-   ```
+Once started, the client will be available at **http://127.0.0.1:3000**
 
-   Client will be available at: [http://127.0.0.1:3000](http://127.0.0.1:3000)
+### Starting the server module
 
-2. Build and run the server module:
+```
+cd server
+docker compose up -d --build
+```
 
-   ```bash
-   cd ./server
-   docker compose up -d --build
-   ```
-
-   Server will be available at: [http://127.0.0.1:8080](http://127.0.0.1:8080)
+Once started, the server will be available at **http://127.0.0.1:8080**
 
 ## 👤 Author
 
