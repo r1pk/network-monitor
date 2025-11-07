@@ -7,13 +7,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 
-import { Snapshot } from './entity/snapshot.entity';
-import { AverageSnapshot } from './type/average-snapshot.type';
-import { SpeedTestResult } from './type/speed-test-result.type';
+import { Snapshot } from '../entity/snapshot.entity';
+import { AverageSnapshot } from '../type/average-snapshot.type';
+import { SpeedTestResult } from '../type/speed-test-result.type';
 
 @Injectable()
-export class SpeedTestService {
-  private readonly logger = new Logger(SpeedTestService.name);
+export class SnapshotService {
+  private readonly logger = new Logger(SnapshotService.name);
 
   constructor(
     @InjectRepository(Snapshot)
@@ -77,7 +77,7 @@ export class SpeedTestService {
   }
 
   @Cron(CronExpression.EVERY_5_MINUTES)
-  private async performCyclicSpeedTest(): Promise<void> {
+  private async runScheduledSpeedTest(): Promise<void> {
     try {
       const snapshot = await this.performSpeedTest();
 

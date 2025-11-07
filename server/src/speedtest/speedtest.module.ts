@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { SnapshotController } from './controller/snapshot.controller';
 import { Snapshot } from './entity/snapshot.entity';
-import { SpeedTestController } from './speedtest.controller';
-import { SpeedTestService } from './speedtest.service';
+import { SnapshotService } from './service/snapshot.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Snapshot])],
-  controllers: [SpeedTestController],
-  providers: [SpeedTestService],
+  controllers: [SnapshotController],
+  providers: [SnapshotService],
 })
 export class SpeedTestModule {}
