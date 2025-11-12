@@ -1,4 +1,4 @@
-import { exec, ExecException } from 'node:child_process';
+import { ExecException, execFile } from 'node:child_process';
 
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -55,9 +55,9 @@ export class SnapshotService {
   public performSpeedTest(): Promise<Snapshot> {
     return new Promise((resolve) => {
       const snapshot = new Snapshot();
-      const args = this.config.get<string>('SPEEDTEST_CLI_ARGS');
+      const args = this.getSpeedtestArguments();
 
-      exec(`speedtest ${args} --format=json`, (error: ExecException | null, stdout: string) => {
+      execFile('speedtest', args, (error: ExecException | null, stdout: string) => {
         if (error) {
           return resolve(snapshot);
         }
@@ -74,6 +74,17 @@ export class SnapshotService {
         return resolve(snapshot);
       });
     });
+  }
+
+  private getSpeedtestArguments(): string[] {
+    const customSpeedtestArgs = this.config.get<string>('SPEEDTEST_CLI_ARGS');
+    const defaultpeedtestArgs: string[] = ['--format=json'];
+
+    if (!customSpeedtestArgs) {
+      return defaultpeedtestArgs;
+    }
+
+    return customSpeedtestArgs.split(/\s+/).concat(defaultpeedtestArgs);
   }
 
   @Cron(CronExpression.EVERY_5_MINUTES)
