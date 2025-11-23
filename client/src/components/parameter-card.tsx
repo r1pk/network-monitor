@@ -12,10 +12,10 @@ export const ParameterCard = ({ icon, title, value, unit }: ParameterCardProps) 
         <img src={icon} alt={title} className="m-auto h-10 w-10" />
       </div>
       <div className="text-right">
-        <h4 className="text-2xl font-semibold tracking-tighter xl:text-2xl">
+        <h4 className="font-semibold text-2xl tracking-tighter xl:text-2xl">
           {value} {unit}
         </h4>
-        <p className="text-sm font-light capitalize">{title}</p>
+        <p className="font-light text-sm capitalize">{title}</p>
       </div>
     </div>
   );

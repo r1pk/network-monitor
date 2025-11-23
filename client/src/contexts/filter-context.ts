@@ -1,7 +1,6 @@
+import { DateTime } from 'luxon';
 import type { Dispatch, SetStateAction } from 'react';
 import { createContext, useContext } from 'react';
-
-import { DateTime } from 'luxon';
 
 export type Filters = {
   since: string;

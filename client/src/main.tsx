@@ -5,10 +5,13 @@ import { Dashboard } from '@/pages/dashboard';
 
 import '@/main.css';
 
-const node = document.querySelector('#root')!;
-const root = createRoot(node);
+const node = document.querySelector('#root');
 
-root.render(
+if (node === null) {
+  throw new Error('Root node not found');
+}
+
+createRoot(node).render(
   <StrictMode>
     <Dashboard />
   </StrictMode>,

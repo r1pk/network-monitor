@@ -3,7 +3,10 @@
 html {
   color: var(--color-neutral-300);
   background-color: var(--color-neutral-950);
-  background-image: radial-gradient(var(--color-neutral-900) 1px, transparent 4px);
+  background-image: radial-gradient(
+    var(--color-neutral-900) 1px,
+    transparent 4px
+  );
   background-size: 0.25rem 0.25rem;
 }
 

@@ -5,7 +5,7 @@ import type { AverageSnapshot } from '@/types/average-snapshot';
 import { fetcher } from '@/utilities/fetcher';
 
 export const useAverageSnapshot = (since?: string): SWRResponse<AverageSnapshot, Error> => {
-  const url = import.meta.env.VITE_API_URL + '/api/snapshot/average';
+  const url = `${import.meta.env.VITE_API_URL}/api/snapshot/average`;
   const params = new URLSearchParams();
 
   if (since) {
@@ -18,5 +18,5 @@ export const useAverageSnapshot = (since?: string): SWRResponse<AverageSnapshot,
     params.append('since', date.toISO());
   }
 
-  return useSWR<AverageSnapshot, Error>(url + '?' + params.toString(), fetcher);
+  return useSWR<AverageSnapshot, Error>(`${url}?${params.toString()}`, fetcher);
 };
