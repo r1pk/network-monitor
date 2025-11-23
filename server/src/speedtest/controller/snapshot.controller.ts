@@ -1,8 +1,8 @@
 import { Controller, Get, Query } from '@nestjs/common';
 
-import { Snapshot } from '../entity/snapshot.entity';
-import { SnapshotService } from '../service/snapshot.service';
-import { AverageSnapshot } from '../type/average-snapshot.type';
+import type { Snapshot } from '../entity/snapshot.entity';
+import type { SnapshotService } from '../service/snapshot.service';
+import type { AverageSnapshot } from '../type/average-snapshot.type';
 
 @Controller('snapshot')
 export class SnapshotController {
