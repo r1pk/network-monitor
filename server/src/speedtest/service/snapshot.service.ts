@@ -1,15 +1,14 @@
-import { ExecException, execFile } from 'node:child_process';
+import { type ExecException, execFile } from 'node:child_process';
 
 import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import type { ConfigService } from '@nestjs/config';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
-
-import { Repository } from 'typeorm';
+import type { Repository } from 'typeorm';
 
 import { Snapshot } from '../entity/snapshot.entity';
-import { AverageSnapshot } from '../type/average-snapshot.type';
-import { SpeedTestResult } from '../type/speed-test-result.type';
+import type { AverageSnapshot } from '../type/average-snapshot.type';
+import type { SpeedTestResult } from '../type/speed-test-result.type';
 
 @Injectable()
 export class SnapshotService {
@@ -87,6 +86,7 @@ export class SnapshotService {
     return customSpeedtestArgs.split(/\s+/).concat(defaultpeedtestArgs);
   }
 
+  // biome-ignore-start lint/correctness/noUnusedPrivateClassMembers: invoked by decorator
   @Cron(CronExpression.EVERY_5_MINUTES)
   private async runScheduledSpeedTest(): Promise<void> {
     try {
@@ -95,8 +95,9 @@ export class SnapshotService {
       await this.repository.save(snapshot);
     } catch (error) {
       if (error instanceof Error) {
-        this.logger.error('Failed to perform cyclic speedtest: ' + error.message);
+        this.logger.error(`Failed to perform cyclic speedtest: ${error.message}`);
       }
     }
   }
+  // biome-ignore-end lint/correctness/noUnusedPrivateClassMembers: invoked by decorator
 }

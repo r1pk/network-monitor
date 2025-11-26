@@ -13,7 +13,7 @@ export const Dashboard = () => {
     <main className="container mx-auto p-4">
       <header className="mb-4">
         <h2 className="flex items-center gap-x-2">
-          <span className="text-lg font-bold uppercase">network-monitor</span>
+          <span className="font-bold text-lg uppercase">network-monitor</span>
           <span>::</span>
           <span className="font-medium uppercase">dashboard</span>
         </h2>

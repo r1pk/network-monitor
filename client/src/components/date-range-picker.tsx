@@ -16,7 +16,7 @@ export const DateRangePicker = ({ defaultStartDate, onStartDateChange }: DateRan
   return (
     <div className="inline-flex flex-wrap gap-2 rounded-lg bg-neutral-800 px-4 py-2">
       <div className="flex flex-1 items-center gap-2">
-        <span className="text-center text-xs font-bold uppercase sm:text-sm">from</span>
+        <span className="text-center font-bold text-xs uppercase sm:text-sm">from</span>
         <input
           type="date"
           defaultValue={defaultStartDate}
@@ -26,7 +26,7 @@ export const DateRangePicker = ({ defaultStartDate, onStartDateChange }: DateRan
         />
       </div>
       <div className="flex flex-1 items-center gap-2">
-        <span className="text-xs font-bold uppercase sm:text-sm">to</span>
+        <span className="font-bold text-xs uppercase sm:text-sm">to</span>
         <input
           type="date"
           defaultValue={maxEndDate}
