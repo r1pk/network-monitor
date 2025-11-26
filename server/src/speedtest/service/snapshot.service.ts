@@ -4,7 +4,6 @@ import { Injectable, Logger } from '@nestjs/common';
 import type { ConfigService } from '@nestjs/config';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
-
 import type { Repository } from 'typeorm';
 
 import { Snapshot } from '../entity/snapshot.entity';
