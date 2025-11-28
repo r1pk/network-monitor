@@ -1,10 +1,11 @@
-import { type ExecException, execFile } from 'node:child_process';
+import type { ExecException } from 'node:child_process';
+import { execFile } from 'node:child_process';
 
 import { Injectable, Logger } from '@nestjs/common';
-import type { ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
-import type { Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 import { Snapshot } from '../entity/snapshot.entity';
 import type { AverageSnapshot } from '../type/average-snapshot.type';
