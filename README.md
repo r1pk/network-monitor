@@ -1,150 +1,139 @@
 <div align="center">
-  <h2>Network Monitor</h2>
+  <h1>Network Monitor</h1>
   <p>
-    A simple, lightweight web application for monitoring network connection stability, built with <strong>Nest.js</strong>, <strong>React.js</strong>, <strong>TypeScript</strong>, <strong>Tailwind CSS</strong>, and <strong>Ookla Speedtest CLI</strong>. Automatically perform periodic network connection statistics measurements, store the results in a local database, and provide straightforward data visualizations in the form of charts.
+    Network Monitor is a simple application for monitoring network connection stability. It periodically measures connection statistics and visualizes the results in charts. Built with <b>TypeScript</b>, <b>React</b>, <b>Tailwind CSS</b>, <b>Nest.js</b>, and <b>Ookla Speedtest CLI</b>.
   </p>
-
   <p>
-    <img alt="Node.js" src="https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white" />
-    <img alt="Nest.js" src="https://img.shields.io/badge/Nest.js-%23E0234E.svg?logo=nestjs&logoColor=white" />
-    <img alt="React" src="https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB" />
-    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" />
-    <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white" />
-    <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff" />
-    <img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg" />
+    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+    <img alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+    <img alt="Tailwind" src="https://img.shields.io/badge/Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white">
+    <img alt="Nest.js" src="https://img.shields.io/badge/Nest.js-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
+    <img alt="Docker ready" src="https://img.shields.io/badge/Docker-ready-2496ED?style=for-the-badge&logo=docker">
+    <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-42b883?style=for-the-badge">
   </p>
 </div>
 
-## 🚀 Features
+## Features
 
-- 🔁 **Periodic measurements** - Regular measurements of key network parameters, including download speed, upload speed, latency, and packet loss.
-- 📊 **Interactive charts** - Clear, interactive visualizations and statistics based on collected data.
-- 💾 **Persistent data storage** - Store historical results in a local database to enable long-term analysis.
-- 🐳 **Docker support** - Ready-to-use configuration for running both modules in a containerized environment.
-- ⚙️ **Flexible configuration** - Application settings can be customized by editing local environment variable files.
+- Periodic measurements of network parameters such as download and upload speed, latency, and packet loss.
+- Interactive charts for visualizing historical connection statistics.
+- Persistent storage of measurement results in a local database.
+- Separate server and client modules for data collection and visualization.
 
-## 🖼️ Preview
+## Preview
 
-![Dashboard](https://i.imgur.com/88VahqX.png)
+![Network Monitor Dashboard](https://i.imgur.com/88VahqX.png)
 
-## 📥 Download
+## Requirements
 
-Clone the repository using the CLI or web interface.
+- **Node.js**: version 24.7 or higher
+- **MySQL**: version 9.0 or higher
+- **Ookla Speedtest CLI**: required for performing network measurements
+- **Docker** (optional, for containerized setup)
 
-```
-git clone https://github.com/r1pk/network-monitor.git
-cd network-monitor
-```
+## Quick start
 
-## ⚙️ Configuration
+Network Monitor provides a ready-to-use Docker configuration for both modules, but it can also be set up manually.
 
-Configure the application by editing the local environment variable files (`.env`) located in each module’s root directory.
+### Docker setup (recommended)
 
-### Client configuration (`client/.env`)
+1. Clone the repository:
 
-| Variable         | Default                 | Description        |
-| ---------------- | ----------------------- | ------------------ |
-| **VITE_API_URL** | `http://localhost:8080` | Server module URL. |
+   ```bash
+   git clone https://github.com/r1pk/network-monitor.git
+   cd network-monitor
+   ```
 
-### Server configuration (`server/.env`)
+2. Start the server module:
 
-| Variable                  | Default      | Description                                                                 |
-| ------------------------- | ------------ | --------------------------------------------------------------------------- |
-| **NODE_ENV**              | `production` | Application mode (`development` or `production`).                           |
-| **SERVER_PORT**           | `8080`       | Server port number.                                                         |
-| **DATABASE_HOST**         | _(required)_ | MySQL database hostname or IP address.                                      |
-| **DATABASE_PORT**         | _(required)_ | MySQL database port number.                                                 |
-| **DATABASE_NAME**         | _(required)_ | MySQL database name.                                                        |
-| **DATABASE_USER**         | _(required)_ | MySQL database username.                                                    |
-| **DATABASE_PASSWORD**     | _(required)_ | MySQL database password for the specified user.                             |
-| **DATABASE_SYNC_ENABLED** | `true`       | Enable automatic synchronization of database structure with local entities. |
-| **SPEEDTEST_CLI_ARGS**    | _(optional)_ | Specifies additional arguments passed to Ookla Speedtest CLI.               |
+   ```bash
+   cd server
+   docker compose up -d --build
+   ```
 
-## 🧪 Usage
+3. Start the client module:
 
-Install all dependencies and configure required environment variables before running the project manually.
+   ```bash
+   cd client
+   docker compose up -d --build
+   ```
 
-### Requirements
+### Manual setup
 
-- [Node.js](https://nodejs.org/en) (>= 24.7)
-- [Ookla Speedtest CLI](https://www.speedtest.net/apps/cli)
+1. [Install Ookla Speedtest CLI](https://www.speedtest.net/apps/cli)
 
-### Client module
+2. Clone the repository:
 
-The client module provides a simple web interface for analyzing data collected by the server module.
+   ```bash
+   git clone https://github.com/r1pk/network-monitor.git
+   cd network-monitor
+   ```
 
-#### Install dependencies for the client module
+3. Install dependencies for the server module:
 
-```
-cd client
-npm install
-```
+   ```bash
+   cd server
+   npm install
+   ```
 
-#### Start the module
+4. Start the server:
 
-```
-# development mode
-npm run start:dev
+   ```bash
+   npm run build
+   npm run start:prod
+   ```
 
-# production mode
-npm run build
-npm run start:prod
-```
+5. Install dependencies for the client module:
 
-Once started, the client will be available at **http://localhost:3000**
+   ```bash
+   cd client
+   npm install
+   ```
 
-### Server module
+6. Start the client:
 
-The server module collects network connection statistics measurements and exposes them through an API for the client module.
+   ```bash
+   npm run build
+   npm run start:prod
+   ```
 
-#### Install dependencies for the server module
+## Usage
 
-```
-cd server
-npm install
-```
+Once both modules are started, open the client application in your browser:
 
-The server module relies on the [Ookla Speedtest CLI](https://www.speedtest.net/apps/cli), which is required for it to work properly.
+- http://127.0.0.1:3000 - web interface with charts and statistics
+- http://127.0.0.1:8080 - server API providing collected network measurement results
 
-#### Start the module
+The server module periodically runs network measurements using the Ookla Speedtest CLI and stores the results in the configured database. The client module retrieves this data from the API and displays it using charts.
 
-```
-# development mode
-npm run start:dev
+## Configuration
 
-# production mode
-npm run build
-npm run start:prod
-```
+Each module includes its own environment file with a default configuration for quick setup, which can be adjusted to match your environment or preferences.
 
-Once started, the server will be available at **http://localhost:8080**
+### Client configuration
 
-## 🐳 Docker
+Location: `client/.env`
 
-This project provides a ready-to-use docker configuration for both modules, allowing the application to run immediately after downloading, without installing additional dependencies, with consistent behavior across environments.
+- **VITE_API_URL** - URL of the server API used by the client application.
 
-### Client module
+### Server configuration
 
-```
-cd client
-docker compose up -d --build
-```
+Location: `server/.env`
 
-Once started, the client will be available at **http://localhost:3000**
+- **NODE_ENV** - Application mode (`development` or `production`).
+- **SERVER_PORT** - Server port number.
+- **DATABASE_HOST** - Hostname or IP address of the MySQL database server.
+- **DATABASE_PORT** - Port number of the MySQL database server.
+- **DATABASE_NAME** - Name of the MySQL database used by the application.
+- **DATABASE_USER** - Username used to connect to the database.
+- **DATABASE_PASSWORD** - Password for the specified database user.
+- **DATABASE_SYNC_ENABLED** - Enables automatic synchronization of the database schema with application entities.
+- **SPEEDTEST_CLI_ARGS** - Optional additional arguments passed to the Ookla Speedtest CLI.
 
-### Server module
+## Author
 
-```
-cd server
-docker compose up -d --build
-```
+**Patryk Krawczyk** - [@r1pk](https://github.com/r1pk)
 
-Once started, the server will be available at **http://localhost:8080**
-
-## 👤 Author
-
-- **Patryk Krawczyk** - [@r1pk](https://github.com/r1pk)
-
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
