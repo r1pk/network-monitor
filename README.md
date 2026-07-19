@@ -44,14 +44,21 @@ Network Monitor provides a ready-to-use Docker configuration for both modules, b
    cd network-monitor
    ```
 
-2. Start the server module:
+2. Create `.env` files from the provided templates:
+
+   ```bash
+   cp server/.env.default server/.env
+   cp client/.env.default client/.env
+   ```
+
+3. Start the server module:
 
    ```bash
    cd server
    docker compose up -d --build
    ```
 
-3. Start the client module:
+4. Start the client module:
 
    ```bash
    cd client
@@ -69,28 +76,35 @@ Network Monitor provides a ready-to-use Docker configuration for both modules, b
    cd network-monitor
    ```
 
-3. Install dependencies for the server module:
+3. Create `.env` files from the provided templates:
+
+   ```bash
+   cp server/.env.default server/.env
+   cp client/.env.default client/.env
+   ```
+
+4. Install dependencies for the server module:
 
    ```bash
    cd server
    npm install
    ```
 
-4. Start the server:
+5. Start the server:
 
    ```bash
    npm run build
    npm run start:prod
    ```
 
-5. Install dependencies for the client module:
+6. Install dependencies for the client module:
 
    ```bash
    cd client
    npm install
    ```
 
-6. Start the client:
+7. Start the client:
 
    ```bash
    npm run build
@@ -112,13 +126,13 @@ Each module includes its own environment file with a default configuration for q
 
 ### Client configuration
 
-Location: `client/.env`
+Location: `client/.env` (created from `client/.env.default`)
 
 - **VITE_API_URL** - URL of the server API used by the client application.
 
 ### Server configuration
 
-Location: `server/.env`
+Location: `server/.env` (created from `server/.env.default`)
 
 - **NODE_ENV** - Application mode (`development` or `production`).
 - **SERVER_PORT** - Server port number.

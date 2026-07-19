@@ -9,5 +9,6 @@ node_modules/
 dist/
 
 # environment files
-.env.*.local
-.env.local
+.env
+.env.*
+!.env.default

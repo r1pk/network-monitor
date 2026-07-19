@@ -28,7 +28,7 @@ FROM base AS runner
 WORKDIR /usr/src/app
 
 COPY --from=builder /usr/src/app/package*.json .
-COPY --from=builder /usr/src/app/.env .
+COPY --from=builder /usr/src/app/.env* .
 COPY --from=builder /usr/src/app/dist ./dist
 
 RUN npm ci --omit=dev && npm cache clean --force
