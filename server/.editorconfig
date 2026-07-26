@@ -15,3 +15,7 @@ insert_final_newline = true
 [*.md]
 max_line_length = 0
 trim_trailing_whitespace = false
+
+[*.{yml,yaml}]
+quote_type = double
+indent_size = 4

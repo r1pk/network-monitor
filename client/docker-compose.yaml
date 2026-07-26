@@ -1,8 +1,11 @@
-name: network-monitor__client
+name: "network-monitor__client"
 
 services:
-  client:
-    build:
-      target: runner
-    ports:
-      - '${DOCKER_HOST_PORT:-3000}:3000'
+    node:
+        container_name: network-monitor__client-node
+        build:
+            context: .
+            target: runner
+            dockerfile: ./Dockerfile
+        ports:
+            - "${DOCKER_HOST_PORT:-3000}:3000"
