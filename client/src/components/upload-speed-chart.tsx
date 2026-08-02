@@ -18,9 +18,18 @@ export const UploadSpeedChart = ({ config, snapshots }: UploadSpeedChartProps) =
       title: {
         text: 'Time',
       },
-      tickformat: '%m-%d %H:%M',
-      tickmode: 'auto',
       type: 'date',
+      nticks: 8,
+      tickformatstops: [
+        {
+          dtickrange: [null, 1000 * 60 * 60 * 6],
+          value: '%H:%M',
+        },
+        {
+          dtickrange: [1000 * 60 * 60 * 6, null],
+          value: '%Y-%m-%d',
+        },
+      ],
     },
     yaxis: {
       title: {
@@ -32,7 +41,7 @@ export const UploadSpeedChart = ({ config, snapshots }: UploadSpeedChartProps) =
   };
   const data: Data[] = [
     {
-      type: 'scatter',
+      type: 'scattergl',
       mode: 'lines',
       x: snapshots.map((snapshot) => new Date(snapshot.timestamp)),
       y: snapshots.map((snapshot) => convertBytesToMegabits(snapshot.upload ?? 0)),
