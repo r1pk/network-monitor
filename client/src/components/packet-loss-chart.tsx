@@ -48,7 +48,7 @@ export const PacketLossChart = ({ config, snapshots }: PacketLossChartProps) => 
       title: {
         text: '%',
       },
-      range: [0, null],
+      range: [0, 100],
     },
     height: 360,
   };

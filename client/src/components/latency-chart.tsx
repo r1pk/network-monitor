@@ -48,7 +48,7 @@ export const LatencyChart = ({ config, snapshots }: LatencyChartProps) => {
       title: {
         text: 'ms',
       },
-      range: [0, null],
+      range: [Math.max(0, Math.min(...y) * 0.75), Math.max(...y) * 1.25],
     },
     height: 360,
   };

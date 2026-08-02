@@ -49,7 +49,7 @@ export const DownloadSpeedChart = ({ config, snapshots }: DownloadSpeedChartProp
       title: {
         text: 'Mbps',
       },
-      range: [0, null],
+      range: [Math.max(0, Math.min(...y) * 0.75), Math.max(...y) * 1.25],
     },
     height: 360,
   };
