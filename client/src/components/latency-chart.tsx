@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import type { Config, Data, Layout } from 'plotly.js';
 import Plot from 'react-plotly.js';
 
@@ -9,6 +11,18 @@ export type LatencyChartProps = {
 };
 
 export const LatencyChart = ({ config, snapshots }: LatencyChartProps) => {
+  const { x, y } = useMemo(() => {
+    const x: Date[] = [];
+    const y: number[] = [];
+
+    for (const snapshot of snapshots) {
+      x.push(new Date(snapshot.timestamp));
+      y.push(snapshot.ping ?? 0);
+    }
+
+    return { x: x, y: y };
+  }, [snapshots]);
+
   const layout: Partial<Layout> = {
     title: {
       text: 'Latency',
@@ -17,24 +31,33 @@ export const LatencyChart = ({ config, snapshots }: LatencyChartProps) => {
       title: {
         text: 'Time',
       },
-      tickformat: '%m-%d %H:%M',
-      tickmode: 'auto',
       type: 'date',
+      nticks: 8,
+      tickformatstops: [
+        {
+          dtickrange: [null, 1000 * 60 * 60 * 6],
+          value: '%H:%M',
+        },
+        {
+          dtickrange: [1000 * 60 * 60 * 6, null],
+          value: '%Y-%m-%d',
+        },
+      ],
     },
     yaxis: {
       title: {
         text: 'ms',
       },
-      range: [0, null],
+      range: [Math.max(0, Math.min(...y) * 0.75), Math.max(...y) * 1.25],
     },
     height: 360,
   };
   const data: Data[] = [
     {
-      type: 'scatter',
+      type: 'scattergl',
       mode: 'lines',
-      x: snapshots.map((snapshot) => new Date(snapshot.timestamp)),
-      y: snapshots.map((snapshot) => snapshot.ping ?? 0),
+      x: x,
+      y: y,
       line: {
         width: 1,
         color: '#181818',
