@@ -15,25 +15,25 @@
 
 ## Features
 
-- Periodic measurements of network parameters such as download and upload speed, latency, and packet loss.
+- Periodic measurements of network parameters such as download/upload speed, latency, and packet loss.
 - Interactive charts for visualizing historical connection statistics.
-- Persistent storage of measurement results in a local database.
+- Persistent storage of measurement results in a MySQL database.
 - Separate server and client modules for data collection and visualization.
 
 ## Preview
 
-![Network Monitor Dashboard](https://i.imgur.com/88VahqX.png)
+![Network Monitor Dashboard](https://i.imgur.com/g2SLYrZ.png)
 
 ## Requirements
 
 - **Node.js**: version 24.7 or higher
-- **MySQL**: version 9.0 or higher
-- **Ookla Speedtest CLI**: required for performing network measurements
+- **MySQL**: version 9.4 or higher
+- **Ookla Speedtest CLI**: required to perform network measurements
 - **Docker** (optional, for containerized setup)
 
 ## Quick start
 
-Network Monitor provides a ready-to-use Docker configuration for both modules, but it can also be set up manually.
+Network Monitor provides a ready-to-use Docker configuration, but it can also be set up manually.
 
 ### Docker setup (recommended)
 
@@ -44,24 +44,16 @@ Network Monitor provides a ready-to-use Docker configuration for both modules, b
    cd network-monitor
    ```
 
-2. Create `.env` files from the provided templates:
+2. Create `.env` files based on the provided templates:
 
    ```bash
    cp server/.env.default server/.env
    cp client/.env.default client/.env
    ```
 
-3. Start the server module:
+3. Start the Docker environment:
 
    ```bash
-   cd server
-   docker compose up -d --build
-   ```
-
-4. Start the client module:
-
-   ```bash
-   cd client
    docker compose up -d --build
    ```
 
@@ -76,12 +68,14 @@ Network Monitor provides a ready-to-use Docker configuration for both modules, b
    cd network-monitor
    ```
 
-3. Create `.env` files from the provided templates:
+3. Create `.env` files based on the provided templates:
 
    ```bash
    cp server/.env.default server/.env
    cp client/.env.default client/.env
    ```
+
+   Update the values in the created `.env` files before starting the application.
 
 4. Install dependencies for the server module:
 
@@ -90,7 +84,7 @@ Network Monitor provides a ready-to-use Docker configuration for both modules, b
    npm install
    ```
 
-5. Start the server:
+5. Build and start the server:
 
    ```bash
    npm run build
@@ -104,7 +98,7 @@ Network Monitor provides a ready-to-use Docker configuration for both modules, b
    npm install
    ```
 
-7. Start the client:
+7. Build and start the client:
 
    ```bash
    npm run build
@@ -113,12 +107,11 @@ Network Monitor provides a ready-to-use Docker configuration for both modules, b
 
 ## Usage
 
-Once both modules are started, open the client application in your browser:
+Once the application is started, open it in your browser:
 
 - http://127.0.0.1:3000 - web interface with charts and statistics
-- http://127.0.0.1:8080 - server API providing collected network measurement results
 
-The server module periodically runs network measurements using the Ookla Speedtest CLI and stores the results in the configured database. The client module retrieves this data from the API and displays it using charts.
+The application automatically collects network measurements and presents the results through the web interface.
 
 ## Configuration
 
