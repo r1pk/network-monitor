@@ -1,0 +1,48 @@
+name: network-monitor
+
+services:
+    nginx:
+        image: nginx:alpine
+        ports:
+            - "${DOCKER_HOST_PORT:-3000}:80"
+        volumes:
+            - "./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro"
+        depends_on:
+            - server-node
+            - client-node
+
+    client-node:
+        build:
+            context: ./client
+            target: runner
+            dockerfile: Dockerfile
+
+    server-node:
+        build:
+            context: ./server
+            target: runner
+            dockerfile: Dockerfile
+        environment:
+            - "SERVER_PORT=8080"
+            - "DATABASE_HOST=mysql"
+            - "DATABASE_PORT=3306"
+            - "DATABASE_NAME=network-monitor"
+            - "DATABASE_USER=root"
+        depends_on:
+            mysql:
+                condition: service_healthy
+
+    mysql:
+        image: mysql:9.4
+        environment:
+            - "MYSQL_DATABASE=network-monitor"
+            - "MYSQL_ALLOW_EMPTY_PASSWORD=true"
+        volumes:
+            - "mysql:/var/lib/mysql"
+        healthcheck:
+            test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+            timeout: 10s
+            retries: 10
+
+volumes:
+    mysql:
