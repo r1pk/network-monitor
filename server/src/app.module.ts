@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 
 import { DatabaseModule } from './database/database.module';
-import { SpeedTestModule } from './speedtest/speedtest.module';
+import { SnapshotModule } from './snapshot/snapshot.module';
 
 @Module({
   imports: [
@@ -11,9 +11,9 @@ import { SpeedTestModule } from './speedtest/speedtest.module';
       isGlobal: true,
       envFilePath: ['.env'],
     }),
-    DatabaseModule,
     ScheduleModule.forRoot(),
-    SpeedTestModule,
+    DatabaseModule,
+    SnapshotModule,
   ],
   controllers: [],
   providers: [],

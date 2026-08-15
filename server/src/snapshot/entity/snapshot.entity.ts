@@ -3,26 +3,26 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeor
 @Entity()
 export class Snapshot {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ nullable: true })
-  download: number;
+  download: number | null = null;
 
   @Column({ nullable: true })
-  upload: number;
+  upload: number | null = null;
 
   @Column({ nullable: true })
-  ping: number;
+  ping: number | null = null;
 
   @Column({ nullable: true })
-  loss: number;
+  loss: number | null = null;
 
   @Column({ nullable: true })
-  host: string;
+  host: string | null = null;
 
   @Column({ nullable: true })
-  url: string;
+  url: string | null = null;
 
   @CreateDateColumn()
-  timestamp: Date;
+  timestamp!: Date;
 }

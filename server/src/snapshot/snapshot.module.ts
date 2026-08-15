@@ -10,4 +10,4 @@ import { SnapshotService } from './service/snapshot.service';
   controllers: [SnapshotController],
   providers: [SnapshotService],
 })
-export class SpeedTestModule {}
+export class SnapshotModule {}
