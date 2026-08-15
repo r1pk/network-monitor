@@ -4,6 +4,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 
 import { DatabaseModule } from './database/database.module';
 import { SnapshotModule } from './snapshot/snapshot.module';
+import { SpeedtestModule } from './speedtest/speedtest.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { SnapshotModule } from './snapshot/snapshot.module';
     ScheduleModule.forRoot(),
     DatabaseModule,
     SnapshotModule,
+    SpeedtestModule,
   ],
   controllers: [],
   providers: [],
