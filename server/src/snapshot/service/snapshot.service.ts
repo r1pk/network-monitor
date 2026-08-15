@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 
 import { Snapshot } from '../entity/snapshot.entity';
 import type { AverageSnapshot } from '../type/average-snapshot.type';
+import type { SnapshotData } from '../type/snapshot-data.type';
 
 @Injectable()
 export class SnapshotService {
@@ -41,5 +42,11 @@ export class SnapshotService {
     }
 
     return builder.getRawOne() as Promise<AverageSnapshot>;
+  }
+
+  public create(data: SnapshotData): Promise<Snapshot> {
+    const snapshot = this.repository.create(data);
+
+    return this.repository.save(snapshot);
   }
 }
