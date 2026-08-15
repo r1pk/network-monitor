@@ -6,6 +6,7 @@ import databaseConfig from './database.config';
 
 @Module({
   imports: [
+    ConfigModule.forFeature(databaseConfig),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [databaseConfig.KEY],
