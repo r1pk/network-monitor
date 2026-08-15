@@ -7,6 +7,6 @@ import { SpeedtestService } from './service/speedtest.service';
 
 @Module({
   imports: [ConfigModule, SnapshotModule],
-  providers: [SpeedtestService, SpeedtestScheduler],
+  providers: [SpeedtestScheduler, SpeedtestService],
 })
 export class SpeedtestModule {}

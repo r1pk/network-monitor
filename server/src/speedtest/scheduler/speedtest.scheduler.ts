@@ -10,8 +10,8 @@ export class SpeedtestScheduler {
   private readonly logger = new Logger(SpeedtestScheduler.name);
 
   constructor(
-    private readonly speedtestService: SpeedtestService,
     private readonly snapshotService: SnapshotService,
+    private readonly speedtestService: SpeedtestService,
   ) {}
 
   @Cron(CronExpression.EVERY_5_MINUTES)
