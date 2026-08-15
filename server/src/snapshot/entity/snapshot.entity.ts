@@ -5,22 +5,22 @@ export class Snapshot {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'double', nullable: true })
   download: number | null = null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'double', nullable: true })
   upload: number | null = null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'double', nullable: true })
   ping: number | null = null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'double', nullable: true })
   loss: number | null = null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   host: string | null = null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', length: 2048, nullable: true })
   url: string | null = null;
 
   @CreateDateColumn()

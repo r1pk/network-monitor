@@ -1,30 +1,27 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigType } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
-import databaseConfig from './database.config';
 
 @Module({
   imports: [
-    ConfigModule.forFeature(databaseConfig),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      inject: [databaseConfig.KEY],
-      useFactory: (config: ConfigType<typeof databaseConfig>) => ({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
         type: 'mysql',
 
         extra: {
           decimalNumbers: true,
         },
 
-        host: config.host,
-        port: config.port,
-        database: config.name,
-        username: config.username,
-        password: config.password,
+        host: config.get('DATABASE_HOST'),
+        port: +config.get('DATABASE_PORT'),
+        database: config.get('DATABASE_NAME'),
+        username: config.get('DATABASE_USER'),
+        password: config.get('DATABASE_PASSWORD'),
 
         autoLoadEntities: true,
-        synchronize: config.synchronize,
+        synchronize: config.get('DATABASE_SYNC_ENABLED') === 'true',
       }),
     }),
   ],

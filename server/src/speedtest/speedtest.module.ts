@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { SnapshotService } from '../snapshot/service/snapshot.service';
+import { SnapshotModule } from '../snapshot/snapshot.module';
 import { SpeedtestScheduler } from './scheduler/speedtest.scheduler';
 import { SpeedtestService } from './service/speedtest.service';
-import speedtestConfig from './speedtest.config';
 
 @Module({
-  imports: [ConfigModule.forFeature(speedtestConfig), SnapshotService],
+  imports: [ConfigModule, SnapshotModule],
   providers: [SpeedtestService, SpeedtestScheduler],
 })
 export class SpeedtestModule {}
