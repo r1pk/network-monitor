@@ -132,9 +132,9 @@ Location: `server/.env` (created from `server/.env.default`)
 - **DATABASE_HOST** - Hostname or IP address of the MySQL database server.
 - **DATABASE_PORT** - Port number of the MySQL database server.
 - **DATABASE_NAME** - Name of the MySQL database used by the application.
-- **DATABASE_USER** - Username used to connect to the database.
+- **DATABASE_USERNAME** - Username used to connect to the database.
 - **DATABASE_PASSWORD** - Password for the specified database user.
-- **DATABASE_SYNC_ENABLED** - Enables automatic synchronization of the database schema with application entities.
+- **DATABASE_SYNCHRONIZE** - Enables automatic synchronization of the database schema with application entities.
 - **SPEEDTEST_CLI_ARGS** - Optional additional arguments passed to the Ookla Speedtest CLI.
 
 ## Author

@@ -1,4 +1,4 @@
-export type SpeedTestResult = {
+export type SpeedtestResult = {
   download: {
     bandwidth: number;
   };
