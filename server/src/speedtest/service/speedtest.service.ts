@@ -1,13 +1,17 @@
 import { execFile } from 'node:child_process';
 
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { Inject, Injectable } from '@nestjs/common';
+import { ConfigType } from '@nestjs/config';
 
+import configuration from '../speedtest.config';
 import type { SpeedtestResult } from '../type/speedtest-result.type';
 
 @Injectable()
 export class SpeedtestService {
-  constructor(private readonly config: ConfigService) {}
+  constructor(
+    @Inject(configuration.KEY)
+    private readonly config: ConfigType<typeof configuration>,
+  ) {}
 
   public run(): Promise<SpeedtestResult | null> {
     return new Promise((resolve) => {
@@ -21,7 +25,7 @@ export class SpeedtestService {
     });
   }
   private getSpeedtestArguments(): string[] {
-    const customSpeedtestArguments = this.config.get('SPEEDTEST_CLI_ARGS');
+    const customSpeedtestArguments = this.config.arguments;
     const defaultSpeedtestArguments = ['--format=json'];
 
     if (!customSpeedtestArguments) {
