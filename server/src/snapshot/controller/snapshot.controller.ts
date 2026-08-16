@@ -1,5 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 
+import { SnapshotQueryDto } from '../dto/snapshot-query.dto';
 import type { Snapshot } from '../entity/snapshot.entity';
 import { SnapshotService } from '../service/snapshot.service';
 import type { AverageSnapshot } from '../type/average-snapshot.type';
@@ -9,12 +10,12 @@ export class SnapshotController {
   constructor(private readonly service: SnapshotService) {}
 
   @Get()
-  public getSnapshots(@Query('since') since?: string): Promise<Snapshot[]> {
-    return this.service.getSnapshots(since);
+  public getSnapshots(@Query() query: SnapshotQueryDto): Promise<Snapshot[]> {
+    return this.service.getSnapshots(query.since);
   }
 
   @Get('average')
-  public getAverageSnapshot(@Query('since') since?: string): Promise<AverageSnapshot> {
-    return this.service.getAverageSnapshot(since);
+  public getAverageSnapshot(@Query() query: SnapshotQueryDto): Promise<AverageSnapshot> {
+    return this.service.getAverageSnapshot(query.since);
   }
 }
