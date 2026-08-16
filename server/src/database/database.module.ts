@@ -17,11 +17,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         host: config.get('DATABASE_HOST'),
         port: +config.get('DATABASE_PORT'),
         database: config.get('DATABASE_NAME'),
-        username: config.get('DATABASE_USER'),
+        username: config.get('DATABASE_USERNAME'),
         password: config.get('DATABASE_PASSWORD'),
 
         autoLoadEntities: true,
-        synchronize: config.get('DATABASE_SYNC_ENABLED') === 'true',
+        synchronize: config.get('DATABASE_SYNCHRONIZE') === 'true',
       }),
     }),
   ],

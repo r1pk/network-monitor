@@ -27,7 +27,7 @@ services:
             - "DATABASE_HOST=mysql"
             - "DATABASE_PORT=3306"
             - "DATABASE_NAME=network-monitor"
-            - "DATABASE_USER=root"
+            - "DATABASE_USERNAME=root"
         depends_on:
             mysql:
                 condition: service_healthy
