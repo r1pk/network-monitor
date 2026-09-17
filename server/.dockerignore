@@ -12,15 +12,9 @@ dist/
 storage/*
 !storage/.gitkeep
 
-# version control and docker metadata
+# version control metadata
 .git/
 .gitignore
+
+# docker metadata
 .dockerignore
-
-# npm debug logs
-*.log
-npm-debug.log*
-
-# operating system files
-.DS_Store
-Thumbs.db

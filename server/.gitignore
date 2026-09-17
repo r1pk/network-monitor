@@ -12,14 +12,6 @@ dist/
 storage/*
 !storage/.gitkeep
 
-# npm debug logs
-*.log
-npm-debug.log*
-
-# operating system files
-.DS_Store
-Thumbs.db
-
 # environment files
 .env
 .env.*

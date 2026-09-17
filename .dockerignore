@@ -11,22 +11,16 @@
 # sqlite database files
 **/storage/
 
-# version control and docker metadata
+# version control metadata
 .git/
 .gitignore
-.dockerignore
-Dockerfile
-docker-compose.yaml
+
+# docker metadata
 docker/
-
-# npm debug logs
-**/*.log
-**/npm-debug.log*
-
-# operating system files
-.DS_Store
-Thumbs.db
+docker-compose.yaml
+Dockerfile
+.dockerignore
 
 # documentation
-README.md
 LICENSE.md
+README.md
