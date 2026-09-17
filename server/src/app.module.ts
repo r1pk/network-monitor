@@ -16,7 +16,7 @@ import { SpeedtestModule } from './speedtest/speedtest.module';
       envFilePath: ['.env'],
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, 'client'),
+      rootPath: join(__dirname, 'public'),
       exclude: ['/api/{*path}'],
     }),
     ScheduleModule.forRoot(),
