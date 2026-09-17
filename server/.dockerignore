@@ -1,9 +1,25 @@
-# editor directories
+# editor and ide settings
 .idea/
 .vscode/
 
-# dependency directories
+# installed dependencies
 node_modules/
 
-# output directory
+# compiled build output
 dist/
+
+# sqlite database files
+storage/
+
+# version control and docker metadata
+.git/
+.gitignore
+.dockerignore
+
+# npm debug logs
+*.log
+npm-debug.log*
+
+# operating system files
+.DS_Store
+Thumbs.db
