@@ -1,11 +1,12 @@
 import { DateTime } from 'luxon';
 import useSWR, { type SWRResponse } from 'swr';
 
+import { API_BASE_URL } from '@/constants/api';
 import type { AverageSnapshot } from '@/types/average-snapshot';
 import { fetcher } from '@/utilities/fetcher';
 
 export const useAverageSnapshot = (since?: string): SWRResponse<AverageSnapshot, Error> => {
-  const url = `${import.meta.env.VITE_API_URL}/api/snapshot/average`;
+  const url = `${API_BASE_URL}/api/snapshot/average`;
   const params = new URLSearchParams();
 
   if (since) {

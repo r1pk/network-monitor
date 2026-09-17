@@ -1,11 +1,12 @@
 import { DateTime } from 'luxon';
 import useSWR, { type SWRResponse } from 'swr';
 
+import { API_BASE_URL } from '@/constants/api';
 import type { Snapshot } from '@/types/snapshot';
 import { fetcher } from '@/utilities/fetcher';
 
 export const useSnapshotList = (since?: string): SWRResponse<Snapshot[], Error> => {
-  const url = `${import.meta.env.VITE_API_URL}/api/snapshot`;
+  const url = `${API_BASE_URL}/api/snapshot`;
   const params = new URLSearchParams();
 
   if (since) {
