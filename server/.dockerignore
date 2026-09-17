@@ -9,7 +9,8 @@ node_modules/
 dist/
 
 # sqlite database files
-storage/
+storage/*
+!storage/.gitkeep
 
 # version control and docker metadata
 .git/
