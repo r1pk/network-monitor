@@ -17,9 +17,9 @@
     "@nestjs/platform-express": "^11.1.6",
     "@nestjs/schedule": "^6.0.0",
     "@nestjs/typeorm": "^11.0.0",
+    "better-sqlite3": "^12.11.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
-    "mysql2": "^3.14.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
     "typeorm": "^0.3.26"
@@ -30,5 +30,8 @@
     "@nestjs/schematics": "^11.0.7",
     "@types/node": "^24.3.0",
     "typescript": "^5.9.2"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true
   }
 }
