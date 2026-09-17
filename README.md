@@ -17,7 +17,7 @@
 
 - Periodic measurements of network parameters such as download/upload speed, latency, and packet loss.
 - Interactive charts for visualizing historical connection statistics.
-- Persistent storage of measurement results in a MySQL database.
+- Persistent storage of measurement results in a SQLite database.
 - Separate server and client modules for data collection and visualization.
 
 ## Preview
@@ -27,7 +27,6 @@
 ## Requirements
 
 - **Node.js**: version 24.7 or higher
-- **MySQL**: version 9.4 or higher
 - **Ookla Speedtest CLI**: required to perform network measurements
 - **Docker** (optional, for containerized setup)
 
@@ -129,11 +128,7 @@ Location: `server/.env` (created from `server/.env.default`)
 
 - **NODE_ENV** - Application mode (`development` or `production`).
 - **SERVER_PORT** - Server port number.
-- **DATABASE_HOST** - Hostname or IP address of the MySQL database server.
-- **DATABASE_PORT** - Port number of the MySQL database server.
-- **DATABASE_NAME** - Name of the MySQL database used by the application.
-- **DATABASE_USERNAME** - Username used to connect to the database.
-- **DATABASE_PASSWORD** - Password for the specified database user.
+- **DATABASE_PATH** - Path to the SQLite database file used by the application.
 - **DATABASE_SYNCHRONIZE** - Enables automatic synchronization of the database schema with application entities.
 - **SPEEDTEST_CLI_ARGS** - Optional additional arguments passed to the Ookla Speedtest CLI.
 

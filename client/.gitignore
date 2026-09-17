@@ -1,12 +1,23 @@
-# editor directories
+# editor and ide settings
 .idea/
 .vscode/
 
-# dependency directories
+# installed dependencies
 node_modules/
 
-# output directory
+# compiled build output
 dist/
+
+# typescript incremental build cache
+*.tsbuildinfo
+
+# npm debug logs
+*.log
+npm-debug.log*
+
+# operating system files
+.DS_Store
+Thumbs.db
 
 # environment files
 .env

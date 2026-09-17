@@ -24,25 +24,9 @@ services:
             dockerfile: Dockerfile
         environment:
             - "SERVER_PORT=8080"
-            - "DATABASE_HOST=mysql"
-            - "DATABASE_PORT=3306"
-            - "DATABASE_NAME=network-monitor"
-            - "DATABASE_USERNAME=root"
-        depends_on:
-            mysql:
-                condition: service_healthy
-
-    mysql:
-        image: mysql:9.4
-        environment:
-            - "MYSQL_DATABASE=network-monitor"
-            - "MYSQL_ALLOW_EMPTY_PASSWORD=true"
+            - "DATABASE_PATH=/usr/src/app/storage/sqlite.db"
         volumes:
-            - "mysql:/var/lib/mysql"
-        healthcheck:
-            test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-            timeout: 10s
-            retries: 10
+            - "sqlite:/usr/src/app/storage"
 
 volumes:
-    mysql:
+    sqlite:
