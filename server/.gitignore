@@ -7,6 +7,7 @@ node_modules/
 
 # compiled build output
 dist/
+*.tsbuildinfo
 
 # sqlite database files
 storage/*
