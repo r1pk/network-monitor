@@ -9,21 +9,17 @@ node_modules/
 dist/
 *.tsbuildinfo
 
-# served static files
-public/*
-!public/.gitkeep
+# server static files
+server/public/*
+!server/public/.gitkeep
 
-# sqlite database files
-storage/*
-!storage/.gitkeep
+# server storage files
+server/storage/*
+!server/storage/.gitkeep
 
 # npm debug logs
 *.log
 npm-debug.log*
-
-# operating system files
-.DS_Store
-Thumbs.db
 
 # environment files
 .env
