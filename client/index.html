@@ -1,13 +1,97 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Network Monitor</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Network Monitor</title>
+    </head>
+    <body class="bg-noise-backdrop bg-zinc-950 text-zinc-100">
+        <div id="app">
+            <main class="container mx-auto flex flex-col gap-4 p-4 md:px-0">
+                <header>
+                    <h1 class="flex items-center gap-2">
+                        <span class="text-lg font-bold tracking-tight uppercase">network-monitor</span>
+                        <span class="text-zinc-600">::</span>
+                        <span class="font-medium text-zinc-400 uppercase">dashboard</span>
+                    </h1>
+                </header>
+                <section class="grid gap-4 md:grid-cols-2 lg:grid-cols-4" aria-label="Network parameters" data-parameters>
+                    <article class="flex items-center justify-between gap-4 rounded-sm bg-zinc-900 p-4" data-metric="download">
+                        <div class="flex size-14 items-center justify-center rounded-sm bg-gradient-to-tr from-emerald-800 to-emerald-600">
+                            <img src="/icons/download.svg" class="size-8" alt="">
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-semibold tracking-tight">
+                                <span data-value>--</span>
+                                <span class="text-base text-zinc-500" data-unit>Mbps</span>
+                            </p>
+                            <p class="text-sm text-zinc-400" data-label>Download Speed</p>
+                        </div>
+                    </article>
+                    <article class="flex items-center justify-between gap-4 rounded-sm bg-zinc-900 p-4" data-metric="upload">
+                        <div class="flex size-14 items-center justify-center rounded-sm bg-gradient-to-tr from-sky-800 to-sky-600">
+                            <img src="/icons/upload.svg" class="size-8" alt="">
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-semibold tracking-tight">
+                                <span data-value>--</span>
+                                <span class="text-base text-zinc-500" data-unit>Mbps</span>
+                            </p>
+                            <p class="text-sm text-zinc-400" data-label>Upload Speed</p>
+                        </div>
+                    </article>
+                    <article class="flex items-center justify-between gap-4 rounded-sm bg-zinc-900 p-4" data-metric="ping">
+                        <div class="flex size-14 items-center justify-center rounded-sm bg-gradient-to-tr from-amber-800 to-amber-600">
+                            <img src="/icons/ping.svg" class="size-8" alt="">
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-semibold tracking-tight">
+                                <span data-value>--</span>
+                                <span class="text-base text-zinc-500" data-unit>ms</span>
+                            </p>
+                            <p class="text-sm text-zinc-400" data-label>Latency</p>
+                        </div>
+                    </article>
+                    <article class="flex items-center justify-between gap-4 rounded-sm bg-zinc-900 p-4" data-metric="loss">
+                        <div class="flex size-14 items-center justify-center rounded-sm bg-gradient-to-tr from-rose-800 to-rose-600">
+                            <img src="/icons/loss.svg" class="size-8" alt="">
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-semibold tracking-tight">
+                                <span data-value>--</span>
+                                <span class="text-base text-zinc-500" data-unit>%</span>
+                            </p>
+                            <p class="text-sm text-zinc-400" data-label>Packet Loss</p>
+                        </div>
+                    </article>
+                </section>
+                <section class="flex flex-wrap items-center justify-end gap-4" aria-label="Filters" data-filters>
+                    <div class="flex items-center gap-2 rounded-sm border border-zinc-800 bg-zinc-900 px-4 py-2 focus-within:border-emerald-500" data-filter>
+                        <label for="since" class="text-sm text-zinc-400">Since</label>
+                        <input type="date" id="since" class="bg-transparent text-sm text-zinc-100 focus:outline-none" data-filter-since>
+                    </div>
+                </section>
+                <section class="grid gap-4 lg:grid-cols-2" aria-label="Charts" data-charts>
+                    <div class="flex h-72 flex-col gap-2 rounded-sm bg-zinc-900 p-4" data-chart="download">
+                        <span class="text-sm text-zinc-400">Download Speed</span>
+                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-800"></div>
+                    </div>
+                    <div class="flex h-72 flex-col gap-2 rounded-sm bg-zinc-900 p-4" data-chart="upload">
+                        <span class="text-sm text-zinc-400">Upload Speed</span>
+                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-800"></div>
+                    </div>
+                    <div class="flex h-72 flex-col gap-2 rounded-sm bg-zinc-900 p-4" data-chart="ping">
+                        <span class="text-sm text-zinc-400">Latency</span>
+                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-800"></div>
+                    </div>
+                    <div class="flex h-72 flex-col gap-2 rounded-sm bg-zinc-900 p-4" data-chart="loss">
+                        <span class="text-sm text-zinc-400">Packet Loss</span>
+                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-800"></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
 </html>
