@@ -11,6 +11,10 @@
     "lint": "biome lint --write .",
     "check": "biome check --write ."
   },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.5.14",
     "typescript": "~6.0.2",
