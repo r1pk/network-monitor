@@ -26,11 +26,6 @@
       }
     }
   },
-  "html": {
-    "formatter": {
-      "enabled": true
-    }
-  },
   "javascript": {
     "parser": {
       "unsafeParameterDecoratorsEnabled": true
