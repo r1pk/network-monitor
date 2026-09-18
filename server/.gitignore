@@ -9,6 +9,10 @@ node_modules/
 dist/
 *.tsbuildinfo
 
+# served static files
+public/*
+!public/.gitkeep
+
 # sqlite database files
 storage/*
 !storage/.gitkeep
