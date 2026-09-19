@@ -8,7 +8,7 @@
     </head>
     <body class="bg-noise-backdrop min-h-dvh bg-zinc-950 text-zinc-100 antialiased">
         <div id="app">
-            <main class="mx-auto flex max-w-7xl flex-col gap-12 px-4 py-10 md:px-6 md:py-16">
+            <main class="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-10 md:px-6 md:py-16">
                 <header class="border-b border-zinc-800 pb-6">
                     <h1 class="flex items-baseline gap-2">
                         <span class="text-xl font-semibold tracking-tight">Network Monitor</span>
@@ -16,6 +16,12 @@
                         <span class="text-base font-medium tracking-wide text-zinc-500">Dashboard</span>
                     </h1>
                 </header>
+                <section class="flex flex-wrap items-center justify-end gap-4" data-filters>
+                    <div class="flex items-center gap-2 rounded-md border border-zinc-800 bg-zinc-900 px-4 py-2 transition-colors focus-within:border-emerald-500" data-filter>
+                        <label for="since" class="text-xs font-medium tracking-wide text-zinc-500 uppercase">Since</label>
+                        <input type="date" id="since" class="bg-transparent font-mono text-sm text-zinc-100 focus:outline-none" data-filter-since>
+                    </div>
+                </section>
                 <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label="Network parameters" data-parameters>
                     <article class="flex flex-col gap-6 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-parameter="download">
                         <div class="flex items-center justify-between">
@@ -66,37 +72,29 @@
                         </p>
                     </article>
                 </section>
-                <section class="flex flex-col gap-6" aria-label="Charts" data-charts>
-                    <div class="flex flex-wrap items-center justify-end gap-4" data-filters>
-                        <div class="flex items-center gap-2 rounded-md border border-zinc-800 bg-zinc-900 px-4 py-2 transition-colors focus-within:border-emerald-500" data-filter>
-                            <label for="since" class="text-xs font-medium tracking-wide text-zinc-500 uppercase">Since</label>
-                            <input type="date" id="since" class="bg-transparent font-mono text-sm text-zinc-100 focus:outline-none" data-filter-since>
+                <section class="grid grid-cols-1 gap-4 lg:grid-cols-2" aria-label="Charts" data-charts>
+                    <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="download">
+                        <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Download Speed</span>
+                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
+                            <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-                        <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="download">
-                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Download Speed</span>
-                            <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
-                                <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
-                            </div>
+                    <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="upload">
+                        <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Upload Speed</span>
+                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
+                            <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
                         </div>
-                        <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="upload">
-                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Upload Speed</span>
-                            <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
-                                <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
-                            </div>
+                    </div>
+                    <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="ping">
+                        <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Latency</span>
+                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
+                            <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
                         </div>
-                        <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="ping">
-                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Latency</span>
-                            <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
-                                <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
-                            </div>
-                        </div>
-                        <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="loss">
-                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Packet Loss</span>
-                            <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
-                                <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
-                            </div>
+                    </div>
+                    <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="loss">
+                        <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Packet Loss</span>
+                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
+                            <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
                         </div>
                     </div>
                 </section>
