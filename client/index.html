@@ -6,88 +6,98 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Network Monitor</title>
     </head>
-    <body class="bg-noise-backdrop bg-zinc-950 text-zinc-100">
+    <body class="bg-noise-backdrop min-h-dvh bg-zinc-950 text-zinc-100 antialiased">
         <div id="app">
-            <main class="container mx-auto flex flex-col gap-4 p-4 md:px-0">
-                <header>
-                    <h1 class="flex items-center gap-2">
-                        <span class="text-lg font-bold tracking-tight uppercase">network-monitor</span>
-                        <span class="text-zinc-600">::</span>
-                        <span class="font-medium text-zinc-400 uppercase">dashboard</span>
+            <main class="mx-auto flex max-w-7xl flex-col gap-12 px-4 py-10 md:px-6 md:py-16">
+                <header class="border-b border-zinc-800 pb-6">
+                    <h1 class="flex items-baseline gap-2">
+                        <span class="text-xl font-semibold tracking-tight">Network Monitor</span>
+                        <span aria-hidden="true" class="font-mono text-base text-zinc-700">/</span>
+                        <span class="text-base font-medium tracking-wide text-zinc-500">Dashboard</span>
                     </h1>
                 </header>
-                <section class="grid gap-4 md:grid-cols-2 lg:grid-cols-4" aria-label="Network parameters" data-parameters>
-                    <article class="flex items-center justify-between gap-4 rounded-sm bg-zinc-900 p-4" data-metric="download">
-                        <div class="flex size-14 items-center justify-center rounded-sm bg-gradient-to-tr from-emerald-800 to-emerald-600">
-                            <img src="/icons/download.svg" class="size-8" alt="">
+                <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label="Network parameters" data-parameters>
+                    <article class="flex flex-col gap-6 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-metric="download">
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs font-medium tracking-wide text-zinc-500 uppercase" data-label>Download</p>
+                            <div class="flex size-10 items-center justify-center rounded-sm bg-zinc-950 ring-1 ring-emerald-500/50 ring-inset">
+                                <img src="/icons/download.svg" alt="" width="24" height="24" class="size-6">
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <p class="text-2xl font-semibold tracking-tight">
-                                <span data-value>--</span>
-                                <span class="text-base text-zinc-500" data-unit>Mbps</span>
-                            </p>
-                            <p class="text-sm text-zinc-400" data-label>Download Speed</p>
-                        </div>
+                        <p class="font-mono text-3xl leading-none font-semibold tracking-tight tabular-nums">
+                            <span data-value>--</span>
+                            <span class="text-base font-normal text-zinc-500" data-unit>Mbps</span>
+                        </p>
                     </article>
-                    <article class="flex items-center justify-between gap-4 rounded-sm bg-zinc-900 p-4" data-metric="upload">
-                        <div class="flex size-14 items-center justify-center rounded-sm bg-gradient-to-tr from-sky-800 to-sky-600">
-                            <img src="/icons/upload.svg" class="size-8" alt="">
+                    <article class="flex flex-col gap-6 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-metric="upload">
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs font-medium tracking-wide text-zinc-500 uppercase" data-label>Upload</p>
+                            <div class="flex size-10 items-center justify-center rounded-sm bg-zinc-950 ring-1 ring-sky-500/50 ring-inset">
+                                <img src="/icons/upload.svg" alt="" width="24" height="24" class="size-6">
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <p class="text-2xl font-semibold tracking-tight">
-                                <span data-value>--</span>
-                                <span class="text-base text-zinc-500" data-unit>Mbps</span>
-                            </p>
-                            <p class="text-sm text-zinc-400" data-label>Upload Speed</p>
-                        </div>
+                        <p class="font-mono text-3xl leading-none font-semibold tracking-tight tabular-nums">
+                            <span data-value>--</span>
+                            <span class="text-base font-normal text-zinc-500" data-unit>Mbps</span>
+                        </p>
                     </article>
-                    <article class="flex items-center justify-between gap-4 rounded-sm bg-zinc-900 p-4" data-metric="ping">
-                        <div class="flex size-14 items-center justify-center rounded-sm bg-gradient-to-tr from-amber-800 to-amber-600">
-                            <img src="/icons/ping.svg" class="size-8" alt="">
+                    <article class="flex flex-col gap-6 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-metric="ping">
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs font-medium tracking-wide text-zinc-500 uppercase" data-label>Latency</p>
+                            <div class="flex size-10 items-center justify-center rounded-sm bg-zinc-950 ring-1 ring-amber-500/50 ring-inset">
+                                <img src="/icons/ping.svg" alt="" width="24" height="24" class="size-6">
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <p class="text-2xl font-semibold tracking-tight">
-                                <span data-value>--</span>
-                                <span class="text-base text-zinc-500" data-unit>ms</span>
-                            </p>
-                            <p class="text-sm text-zinc-400" data-label>Latency</p>
-                        </div>
+                        <p class="font-mono text-3xl leading-none font-semibold tracking-tight tabular-nums">
+                            <span data-value>--</span>
+                            <span class="text-base font-normal text-zinc-500" data-unit>ms</span>
+                        </p>
                     </article>
-                    <article class="flex items-center justify-between gap-4 rounded-sm bg-zinc-900 p-4" data-metric="loss">
-                        <div class="flex size-14 items-center justify-center rounded-sm bg-gradient-to-tr from-rose-800 to-rose-600">
-                            <img src="/icons/loss.svg" class="size-8" alt="">
+                    <article class="flex flex-col gap-6 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-metric="loss">
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs font-medium tracking-wide text-zinc-500 uppercase" data-label>Packet Loss</p>
+                            <div class="flex size-10 items-center justify-center rounded-sm bg-zinc-950 ring-1 ring-rose-500/50 ring-inset">
+                                <img src="/icons/loss.svg" alt="" width="24" height="24" class="size-6">
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <p class="text-2xl font-semibold tracking-tight">
-                                <span data-value>--</span>
-                                <span class="text-base text-zinc-500" data-unit>%</span>
-                            </p>
-                            <p class="text-sm text-zinc-400" data-label>Packet Loss</p>
-                        </div>
+                        <p class="font-mono text-3xl leading-none font-semibold tracking-tight tabular-nums">
+                            <span data-value>--</span>
+                            <span class="text-base font-normal text-zinc-500" data-unit>%</span>
+                        </p>
                     </article>
                 </section>
-                <section class="flex flex-wrap items-center justify-end gap-4" aria-label="Filters" data-filters>
-                    <div class="flex items-center gap-2 rounded-sm border border-zinc-800 bg-zinc-900 px-4 py-2 focus-within:border-emerald-500" data-filter>
-                        <label for="since" class="text-sm text-zinc-400">Since</label>
-                        <input type="date" id="since" class="bg-transparent text-sm text-zinc-100 focus:outline-none" data-filter-since>
+                <section class="flex flex-col gap-6" aria-label="Charts" data-charts>
+                    <div class="flex flex-wrap items-center justify-end gap-4" data-filters>
+                        <div class="flex items-center gap-2 rounded-md border border-zinc-800 bg-zinc-900 px-4 py-2 transition-colors focus-within:border-emerald-500" data-filter>
+                            <label for="since" class="text-xs font-medium tracking-wide text-zinc-500 uppercase">Since</label>
+                            <input type="date" id="since" class="bg-transparent font-mono text-sm text-zinc-100 focus:outline-none" data-filter-since>
+                        </div>
                     </div>
-                </section>
-                <section class="grid gap-4 lg:grid-cols-2" aria-label="Charts" data-charts>
-                    <div class="flex h-72 flex-col gap-2 rounded-sm bg-zinc-900 p-4" data-chart="download">
-                        <span class="text-sm text-zinc-400">Download Speed</span>
-                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-800"></div>
-                    </div>
-                    <div class="flex h-72 flex-col gap-2 rounded-sm bg-zinc-900 p-4" data-chart="upload">
-                        <span class="text-sm text-zinc-400">Upload Speed</span>
-                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-800"></div>
-                    </div>
-                    <div class="flex h-72 flex-col gap-2 rounded-sm bg-zinc-900 p-4" data-chart="ping">
-                        <span class="text-sm text-zinc-400">Latency</span>
-                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-800"></div>
-                    </div>
-                    <div class="flex h-72 flex-col gap-2 rounded-sm bg-zinc-900 p-4" data-chart="loss">
-                        <span class="text-sm text-zinc-400">Packet Loss</span>
-                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-800"></div>
+                    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                        <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="download">
+                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Download Speed</span>
+                            <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
+                                <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
+                            </div>
+                        </div>
+                        <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="upload">
+                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Upload Speed</span>
+                            <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
+                                <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
+                            </div>
+                        </div>
+                        <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="ping">
+                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Latency</span>
+                            <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
+                                <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
+                            </div>
+                        </div>
+                        <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="loss">
+                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Packet Loss</span>
+                            <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
+                                <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </main>
