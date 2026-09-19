@@ -1,3 +1,5 @@
+import type { FilterValues } from '../types/filter-values.type';
+
 export interface Section {
-  refresh(since?: string): Promise<void>;
+  refresh(filters?: FilterValues): Promise<void>;
 }
