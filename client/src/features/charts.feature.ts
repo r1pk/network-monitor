@@ -106,7 +106,7 @@ export class ChartsSection implements Section {
           points: { show: false },
           stroke: ChartsSection.LINE_COLOR,
           fill: fill,
-          value: (_self, value) => (value === null ? '--' : `${value} ${unit}`),
+          value: (_self, value) => value ?? '--',
           paths: uPlot.paths.spline?.(),
         },
       ],
