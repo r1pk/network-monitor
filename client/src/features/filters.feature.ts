@@ -1,9 +1,7 @@
-import type { FilterState } from '../types/filter-state.type';
-
-type FilterKey = keyof FilterState;
+import type { FilterState, FilterStateKey } from '../types/filter-state.type';
 
 export class Filters {
-  private static readonly keys: FilterKey[] = ['since'];
+  private static readonly keys: FilterStateKey[] = ['since'];
 
   private readonly root: HTMLElement | null;
 
@@ -30,7 +28,7 @@ export class Filters {
     this.root?.addEventListener('change', handler);
   }
 
-  private isFilterKey(key: string): key is FilterKey {
+  private isFilterKey(key: string): key is FilterStateKey {
     return (Filters.keys as string[]).includes(key);
   }
 }

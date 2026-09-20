@@ -1,6 +1,3 @@
-export type AverageSnapshot = {
-  download: number | null;
-  upload: number | null;
-  ping: number | null;
-  loss: number | null;
-};
+import type { SnapshotMetrics } from './snapshot-metrics.type';
+
+export type AverageSnapshot = SnapshotMetrics;

@@ -1,9 +1,7 @@
-export type Snapshot = {
+import type { SnapshotMetrics } from './snapshot-metrics.type';
+
+export type Snapshot = SnapshotMetrics & {
   id: number;
-  download: number | null;
-  upload: number | null;
-  ping: number | null;
-  loss: number | null;
   host: string | null;
   url: string | null;
   timestamp: string;

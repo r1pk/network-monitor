@@ -2,21 +2,19 @@ import { getAverageSnapshot } from '../api/client';
 import type { Section } from '../interfaces/section.interface';
 import type { AverageSnapshot } from '../types/average-snapshot.type';
 import type { FilterState } from '../types/filter-state.type';
+import type { SnapshotMetricKey } from '../types/snapshot-metrics.type';
 import { convertBytesToMegabits } from '../utilities/convert-bytes-to-megabits.utility';
 import { formatNumericValue } from '../utilities/format-numeric-value.utility';
 
-type AverageMetricKey = keyof AverageSnapshot;
-type Formatter = (value: number | null) => string;
-
 export class AverageMetricsSection implements Section {
-  private static readonly formatters: Record<AverageMetricKey, Formatter> = {
+  private static readonly formatters: Record<SnapshotMetricKey, (value: number | null) => string> = {
     download: (value) => formatNumericValue(value === null ? null : convertBytesToMegabits(value)),
     upload: (value) => formatNumericValue(value === null ? null : convertBytesToMegabits(value)),
     ping: (value) => formatNumericValue(value, 2),
     loss: (value) => formatNumericValue(value, 2),
   };
 
-  private readonly values = new Map<AverageMetricKey, HTMLElement>();
+  private readonly values = new Map<SnapshotMetricKey, HTMLElement>();
 
   constructor(root: ParentNode = document) {
     for (const item of root.querySelectorAll<HTMLElement>('[data-average-metric]')) {
@@ -41,7 +39,7 @@ export class AverageMetricsSection implements Section {
     this.render(snapshot);
   }
 
-  private isAverageMetricKey(key: string): key is AverageMetricKey {
+  private isAverageMetricKey(key: string): key is SnapshotMetricKey {
     return Object.hasOwn(AverageMetricsSection.formatters, key);
   }
 }

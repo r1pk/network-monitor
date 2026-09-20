@@ -2,30 +2,27 @@ import uPlot from 'uplot';
 
 import { getSnapshots } from '../api/client';
 import type { Section } from '../interfaces/section.interface';
-import type { AverageSnapshot } from '../types/average-snapshot.type';
 import type { FilterState } from '../types/filter-state.type';
 import type { Snapshot } from '../types/snapshot.type';
+import type { SnapshotMetricKey } from '../types/snapshot-metrics.type';
 import { convertBytesToMegabits } from '../utilities/convert-bytes-to-megabits.utility';
 
-type ChartKey = keyof AverageSnapshot;
-type Mapper = (value: number | null) => number | null;
-
 export class ChartsSection implements Section {
-  private static readonly mappers: Record<ChartKey, Mapper> = {
+  private static readonly mappers: Record<SnapshotMetricKey, (value: number | null) => number | null> = {
     download: (value) => (value === null ? null : convertBytesToMegabits(value)),
     upload: (value) => (value === null ? null : convertBytesToMegabits(value)),
     ping: (value) => value,
     loss: (value) => value,
   };
 
-  private static readonly units: Record<ChartKey, string> = {
+  private static readonly units: Record<SnapshotMetricKey, string> = {
     download: 'Mbps',
     upload: 'Mbps',
     ping: 'ms',
     loss: '%',
   };
 
-  private readonly charts = new Map<ChartKey, uPlot>();
+  private readonly charts = new Map<SnapshotMetricKey, uPlot>();
 
   constructor(root: ParentNode = document) {
     for (const item of root.querySelectorAll<HTMLElement>('[data-chart]')) {
@@ -56,7 +53,7 @@ export class ChartsSection implements Section {
     this.render(snapshots);
   }
 
-  private isChartKey(key: string): key is ChartKey {
+  private isChartKey(key: string): key is SnapshotMetricKey {
     return Object.hasOwn(ChartsSection.mappers, key);
   }
 
