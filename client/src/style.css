@@ -10,3 +10,8 @@
 
   z-index: -1;
 }
+
+[data-chart] [data-value] > .uplot {
+  position: absolute;
+  inset: 0;
+}

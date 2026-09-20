@@ -1,18 +1,26 @@
 import { API_BASE_URL } from '../constants/api-base-url.constant';
 import type { AverageSnapshot } from '../types/average-snapshot.type';
 import type { FilterValues } from '../types/filter-values.type';
+import type { Snapshot } from '../types/snapshot.type';
 import { request } from '../utilities/request.utility';
 import { toISOString } from '../utilities/to-iso-string.utility';
 
 export const getAverageSnapshot = (filters?: FilterValues): Promise<AverageSnapshot> => {
-  const base = `${API_BASE_URL}/api/snapshot/average`;
-  const parameters = new URLSearchParams();
+  const url = new URL('/api/snapshot/average', API_BASE_URL);
 
   if (filters?.since) {
-    parameters.set('since', toISOString(filters.since));
+    url.searchParams.set('since', toISOString(filters.since));
   }
 
-  const query = parameters.toString();
+  return request<AverageSnapshot>(url.toString());
+};
 
-  return request<AverageSnapshot>(`${base}${query ? `?${query}` : ''}`);
+export const getSnapshots = (filters?: FilterValues): Promise<Snapshot[]> => {
+  const url = new URL('/api/snapshot', API_BASE_URL);
+
+  if (filters?.since) {
+    url.searchParams.set('since', toISOString(filters.since));
+  }
+
+  return request<Snapshot[]>(url.toString());
 };

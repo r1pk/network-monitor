@@ -1,11 +1,13 @@
+import { ChartsSection } from './features/charts.feature';
 import { Filters } from './features/filters.feature';
 import { ParametersSection } from './features/parameters.feature';
 import type { Section } from './interfaces/section.interface';
 
+import 'uplot/dist/uPlot.min.css';
 import './style.css';
 
 const filters = new Filters();
-const sections: Section[] = [new ParametersSection()];
+const sections: Section[] = [new ParametersSection(), new ChartsSection()];
 
 const refresh = (): void => {
   const values = filters.getValues();

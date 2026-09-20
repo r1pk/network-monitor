@@ -74,28 +74,32 @@
                 </section>
                 <section class="grid grid-cols-1 gap-4 lg:grid-cols-2" aria-label="Charts" data-charts>
                     <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="download">
-                        <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Download Speed</span>
-                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
-                            <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Download Speed</span>
+                            <span class="font-size-xs text-zinc-400" data-legend></span>
                         </div>
+                        <div class="relative flex flex-1 items-center justify-center overflow-hidden rounded-sm bg-zinc-950" data-value></div>
                     </div>
                     <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="upload">
-                        <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Upload Speed</span>
-                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
-                            <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Upload Speed</span>
+                            <span class="font-size-xs text-zinc-400" data-legend></span>
                         </div>
+                        <div class="relative flex flex-1 items-center justify-center overflow-hidden rounded-sm bg-zinc-950" data-value></div>
                     </div>
                     <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="ping">
-                        <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Latency</span>
-                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
-                            <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Latency</span>
+                            <span class="font-size-xs text-zinc-400" data-legend></span>
                         </div>
+                        <div class="relative flex flex-1 items-center justify-center overflow-hidden rounded-sm bg-zinc-950" data-value></div>
                     </div>
                     <div class="flex h-96 flex-col gap-4 rounded-md border border-zinc-800 bg-zinc-900 p-6" data-chart="loss">
-                        <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Packet Loss</span>
-                        <div class="flex flex-1 items-center justify-center rounded-sm bg-zinc-950">
-                            <span class="font-mono text-xs text-zinc-600">Waiting for data</span>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-medium tracking-wide text-zinc-400 uppercase">Packet Loss</span>
+                            <span class="font-size-xs text-zinc-400" data-legend></span>
                         </div>
+                        <div class="relative flex flex-1 items-center justify-center overflow-hidden rounded-sm bg-zinc-950" data-value></div>
                     </div>
                 </section>
             </main>
