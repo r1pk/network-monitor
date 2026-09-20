@@ -5,25 +5,25 @@ import type { FilterValues } from '../types/filter-values.type';
 import { convertBytesToMegabits } from '../utilities/convert-bytes-to-megabits.utility';
 import { formatNumericValue } from '../utilities/format-numeric-value.utility';
 
-type ParameterKey = keyof AverageSnapshot;
+type AverageMetricKey = keyof AverageSnapshot;
 type Formatter = (value: number | null) => string;
 
-export class ParametersSection implements Section {
-  private static readonly formatters: Record<ParameterKey, Formatter> = {
+export class AverageMetricsSection implements Section {
+  private static readonly formatters: Record<AverageMetricKey, Formatter> = {
     download: (value) => formatNumericValue(value === null ? null : convertBytesToMegabits(value)),
     upload: (value) => formatNumericValue(value === null ? null : convertBytesToMegabits(value)),
     ping: (value) => formatNumericValue(value, 2),
     loss: (value) => formatNumericValue(value, 2),
   };
 
-  private readonly values = new Map<ParameterKey, HTMLElement>();
+  private readonly values = new Map<AverageMetricKey, HTMLElement>();
 
   constructor(root: ParentNode = document) {
-    for (const item of root.querySelectorAll<HTMLElement>('[data-parameter]')) {
-      const key = item.dataset.parameter;
+    for (const item of root.querySelectorAll<HTMLElement>('[data-average-metric]')) {
+      const key = item.dataset.averageMetric;
       const element = item.querySelector<HTMLElement>('[data-value]');
 
-      if (key && this.isParameterKey(key) && element) {
+      if (key && this.isAverageMetricKey(key) && element) {
         this.values.set(key, element);
       }
     }
@@ -31,7 +31,7 @@ export class ParametersSection implements Section {
 
   render(snapshot: AverageSnapshot): void {
     for (const [key, element] of this.values) {
-      element.textContent = ParametersSection.formatters[key](snapshot[key]);
+      element.textContent = AverageMetricsSection.formatters[key](snapshot[key]);
     }
   }
 
@@ -41,7 +41,7 @@ export class ParametersSection implements Section {
     this.render(snapshot);
   }
 
-  private isParameterKey(key: string): key is ParameterKey {
-    return Object.hasOwn(ParametersSection.formatters, key);
+  private isAverageMetricKey(key: string): key is AverageMetricKey {
+    return Object.hasOwn(AverageMetricsSection.formatters, key);
   }
 }
