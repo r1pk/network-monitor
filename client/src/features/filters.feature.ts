@@ -1,6 +1,6 @@
-import type { FilterValues } from '../types/filter-values.type';
+import type { FilterState } from '../types/filter-state.type';
 
-type FilterKey = keyof FilterValues;
+type FilterKey = keyof FilterState;
 
 export class Filters {
   private static readonly keys: FilterKey[] = ['since'];
@@ -11,8 +11,8 @@ export class Filters {
     this.root = root.querySelector<HTMLElement>('[data-filters]');
   }
 
-  getValues(): FilterValues {
-    const filters: FilterValues = {};
+  getValues(): FilterState {
+    const filters: FilterState = {};
 
     for (const item of this.root?.querySelectorAll<HTMLElement>('[data-filter]') ?? []) {
       const key = item.dataset.filter;

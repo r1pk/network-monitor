@@ -3,7 +3,7 @@ import uPlot from 'uplot';
 import { getSnapshots } from '../api/client';
 import type { Section } from '../interfaces/section.interface';
 import type { AverageSnapshot } from '../types/average-snapshot.type';
-import type { FilterValues } from '../types/filter-values.type';
+import type { FilterState } from '../types/filter-state.type';
 import type { Snapshot } from '../types/snapshot.type';
 import { convertBytesToMegabits } from '../utilities/convert-bytes-to-megabits.utility';
 
@@ -50,7 +50,7 @@ export class ChartsSection implements Section {
     }
   }
 
-  async refresh(filters?: FilterValues): Promise<void> {
+  async refresh(filters?: FilterState): Promise<void> {
     const snapshots = await getSnapshots(filters);
 
     this.render(snapshots);

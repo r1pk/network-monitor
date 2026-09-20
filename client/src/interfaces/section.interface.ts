@@ -1,5 +1,5 @@
-import type { FilterValues } from '../types/filter-values.type';
+import type { FilterState } from '../types/filter-state.type';
 
 export interface Section {
-  refresh(filters?: FilterValues): Promise<void>;
+  refresh(filters?: FilterState): Promise<void>;
 }
