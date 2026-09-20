@@ -8,6 +8,11 @@ import type { SnapshotMetricKey } from '../types/snapshot-metrics.type';
 import { convertBytesToMegabits } from '../utilities/convert-bytes-to-megabits.utility';
 
 export class ChartsSection implements Section {
+  private static readonly AXIS_COLOR = 'oklch(44.2% 0.017 285.786)';
+  private static readonly LINE_COLOR = 'oklch(59.6% 0.145 163.225)';
+  private static readonly FILL_COLOR_TOP = 'oklch(59.6% 0.145 163.225 / 0.25)';
+  private static readonly FILL_COLOR_BOTTOM = 'oklch(59.6% 0.145 163.225 / 0)';
+
   private static readonly mappers: Record<SnapshotMetricKey, (value: number | null) => number | null> = {
     download: (value) => (value === null ? null : convertBytesToMegabits(value)),
     upload: (value) => (value === null ? null : convertBytesToMegabits(value)),
@@ -62,13 +67,13 @@ export class ChartsSection implements Section {
       const { top, height } = self.bbox;
 
       if (!Number.isFinite(top) || !Number.isFinite(height) || height <= 0) {
-        return 'oklch(59.6% 0.145 163.225 / 0.25)';
+        return ChartsSection.FILL_COLOR_TOP;
       }
 
       const gradient = self.ctx.createLinearGradient(0, top, 0, top + height);
 
-      gradient.addColorStop(0, 'oklch(59.6% 0.145 163.225 / 0.25)');
-      gradient.addColorStop(1, 'oklch(59.6% 0.145 163.225 / 0)');
+      gradient.addColorStop(0, ChartsSection.FILL_COLOR_TOP);
+      gradient.addColorStop(1, ChartsSection.FILL_COLOR_BOTTOM);
 
       return gradient;
     };
@@ -84,11 +89,11 @@ export class ChartsSection implements Section {
       },
       axes: [
         {
-          stroke: 'oklch(44.2% 0.017 285.786)',
+          stroke: ChartsSection.AXIS_COLOR,
           values: '{HH}:{mm}',
         },
         {
-          stroke: 'oklch(44.2% 0.017 285.786)',
+          stroke: ChartsSection.AXIS_COLOR,
           values: (_self, splits) => splits.map((value) => `${value} ${unit}`),
         },
       ],
@@ -99,7 +104,7 @@ export class ChartsSection implements Section {
         {
           label: unit,
           points: { show: false },
-          stroke: 'oklch(59.6% 0.145 163.225 / 1)',
+          stroke: ChartsSection.LINE_COLOR,
           fill: fill,
           value: (_self, value) => (value === null ? '--' : `${value} ${unit}`),
           paths: uPlot.paths.spline?.(),
