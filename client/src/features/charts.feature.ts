@@ -6,6 +6,7 @@ import { SNAPSHOT_METRIC_UNITS } from '../constants/snapshot-metric-units.consta
 import type { Section } from '../interfaces/section.interface';
 import type { FilterState } from '../types/filter-state.type';
 import type { Snapshot } from '../types/snapshot.type';
+import type { SnapshotMetricUnit } from '../types/snapshot-metric-unit.type';
 import type { SnapshotMetricKey } from '../types/snapshot-metrics.type';
 import { convertBytesToMegabits } from '../utilities/convert-bytes-to-megabits.utility';
 
@@ -59,7 +60,7 @@ export class Charts implements Section {
     return Object.hasOwn(Charts.mappers, key);
   }
 
-  private createChart(element: HTMLElement, unit: string, legend: HTMLElement | null): uPlot {
+  private createChart(element: HTMLElement, unit: SnapshotMetricUnit, legend: HTMLElement | null): uPlot {
     const fill = (self: uPlot): CanvasGradient | string => {
       const { top, height } = self.bbox;
 
