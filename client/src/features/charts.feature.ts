@@ -1,7 +1,7 @@
 import uPlot from 'uplot';
 
 import { getSnapshots } from '../api/client';
-import { MISSING_VALUE_LABEL } from '../constants/missing-value-label';
+import { MISSING_VALUE_LABEL } from '../constants/missing-value-label.constant';
 import { SNAPSHOT_METRIC_UNITS } from '../constants/snapshot-metric-units.constant';
 import type { Section } from '../interfaces/section.interface';
 import type { FilterState } from '../types/filter-state.type';

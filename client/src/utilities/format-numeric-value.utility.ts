@@ -1,4 +1,4 @@
-import { MISSING_VALUE_LABEL } from '../constants/missing-value-label';
+import { MISSING_VALUE_LABEL } from '../constants/missing-value-label.constant';
 
 export const formatNumericValue = (value: number | null, digits = 0): string => {
   if (value === null || Number.isNaN(value)) {
