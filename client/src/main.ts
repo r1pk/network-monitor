@@ -1,5 +1,5 @@
-import { AverageMetricsSection } from './features/average-metrics.feature';
-import { ChartsSection } from './features/charts.feature';
+import { AverageMetrics } from './features/average-metrics.feature';
+import { Charts } from './features/charts.feature';
 import { Filters } from './features/filters.feature';
 import type { Section } from './interfaces/section.interface';
 
@@ -7,7 +7,7 @@ import 'uplot/dist/uPlot.min.css';
 import './style.css';
 
 const filters = new Filters();
-const sections: Section[] = [new AverageMetricsSection(), new ChartsSection()];
+const sections: Section[] = [new AverageMetrics(), new Charts()];
 
 const refresh = (): void => {
   const values = filters.getValues();

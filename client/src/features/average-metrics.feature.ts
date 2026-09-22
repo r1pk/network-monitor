@@ -6,7 +6,7 @@ import type { SnapshotMetricKey } from '../types/snapshot-metrics.type';
 import { convertBytesToMegabits } from '../utilities/convert-bytes-to-megabits.utility';
 import { formatNumericValue } from '../utilities/format-numeric-value.utility';
 
-export class AverageMetricsSection implements Section {
+export class AverageMetrics implements Section {
   private static readonly formatters: Record<SnapshotMetricKey, (value: number | null) => string> = {
     download: (value) => formatNumericValue(value === null ? null : convertBytesToMegabits(value)),
     upload: (value) => formatNumericValue(value === null ? null : convertBytesToMegabits(value)),
@@ -29,7 +29,7 @@ export class AverageMetricsSection implements Section {
 
   render(snapshot: AverageSnapshot): void {
     for (const [key, element] of this.values) {
-      element.textContent = AverageMetricsSection.formatters[key](snapshot[key]);
+      element.textContent = AverageMetrics.formatters[key](snapshot[key]);
     }
   }
 
@@ -40,6 +40,6 @@ export class AverageMetricsSection implements Section {
   }
 
   private isAverageMetricKey(key: string): key is SnapshotMetricKey {
-    return Object.hasOwn(AverageMetricsSection.formatters, key);
+    return Object.hasOwn(AverageMetrics.formatters, key);
   }
 }

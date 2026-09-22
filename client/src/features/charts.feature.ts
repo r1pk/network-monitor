@@ -7,7 +7,7 @@ import type { Snapshot } from '../types/snapshot.type';
 import type { SnapshotMetricKey } from '../types/snapshot-metrics.type';
 import { convertBytesToMegabits } from '../utilities/convert-bytes-to-megabits.utility';
 
-export class ChartsSection implements Section {
+export class Charts implements Section {
   private static readonly AXIS_COLOR = 'oklch(44.2% 0.017 285.786)';
   private static readonly LINE_COLOR = 'oklch(59.6% 0.145 163.225)';
   private static readonly FILL_COLOR_TOP = 'oklch(59.6% 0.145 163.225 / 0.25)';
@@ -36,7 +36,7 @@ export class ChartsSection implements Section {
       const element = item.querySelector<HTMLElement>('[data-value]');
 
       if (key && this.isChartKey(key) && element) {
-        this.charts.set(key, this.createChart(element, ChartsSection.units[key], legend));
+        this.charts.set(key, this.createChart(element, Charts.units[key], legend));
       }
     }
   }
@@ -45,7 +45,7 @@ export class ChartsSection implements Section {
     const timestamps = snapshots.map((snapshot) => Date.parse(snapshot.timestamp) / 1000);
 
     for (const [key, chart] of this.charts) {
-      const mapper = ChartsSection.mappers[key];
+      const mapper = Charts.mappers[key];
       const values = snapshots.map((snapshot) => mapper(snapshot[key]));
 
       chart.setData([timestamps, values]);
@@ -59,7 +59,7 @@ export class ChartsSection implements Section {
   }
 
   private isChartKey(key: string): key is SnapshotMetricKey {
-    return Object.hasOwn(ChartsSection.mappers, key);
+    return Object.hasOwn(Charts.mappers, key);
   }
 
   private createChart(element: HTMLElement, unit: string, legend: HTMLElement | null): uPlot {
@@ -67,13 +67,13 @@ export class ChartsSection implements Section {
       const { top, height } = self.bbox;
 
       if (!Number.isFinite(top) || !Number.isFinite(height) || height <= 0) {
-        return ChartsSection.FILL_COLOR_TOP;
+        return Charts.FILL_COLOR_TOP;
       }
 
       const gradient = self.ctx.createLinearGradient(0, top, 0, top + height);
 
-      gradient.addColorStop(0, ChartsSection.FILL_COLOR_TOP);
-      gradient.addColorStop(1, ChartsSection.FILL_COLOR_BOTTOM);
+      gradient.addColorStop(0, Charts.FILL_COLOR_TOP);
+      gradient.addColorStop(1, Charts.FILL_COLOR_BOTTOM);
 
       return gradient;
     };
@@ -89,11 +89,11 @@ export class ChartsSection implements Section {
       },
       axes: [
         {
-          stroke: ChartsSection.AXIS_COLOR,
+          stroke: Charts.AXIS_COLOR,
           values: '{HH}:{mm}',
         },
         {
-          stroke: ChartsSection.AXIS_COLOR,
+          stroke: Charts.AXIS_COLOR,
           values: (_self, splits) => splits.map((value) => `${value} ${unit}`),
         },
       ],
@@ -104,7 +104,7 @@ export class ChartsSection implements Section {
         {
           label: unit,
           points: { show: false },
-          stroke: ChartsSection.LINE_COLOR,
+          stroke: Charts.LINE_COLOR,
           fill: fill,
           value: (_self, value) => value ?? '--',
           paths: uPlot.paths.spline?.(),
