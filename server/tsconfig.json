@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "rootDir": "./src",
     "outDir": "./dist",
 
-    "target": "ES2021",
+    "target": "ES2023",
     "module": "commonjs",
     "incremental": true,
     "declaration": true,
@@ -11,18 +11,18 @@
     "removeComments": true,
     "skipLibCheck": true,
 
+    /* Type checking */
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "noFallthroughCasesInSwitch": true,
+
     /* Decorators */
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
 
     /* Interop */
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-
-    /* Linting */
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "strictBindCallApply": true,
-    "noFallthroughCasesInSwitch": true
+    "forceConsistentCasingInFileNames": true
   }
 }

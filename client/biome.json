@@ -1,12 +1,14 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
-    "useIgnoreFile": true
+    "useIgnoreFile": true,
+    "root": "../"
   },
   "files": {
-    "ignoreUnknown": false
+    "ignoreUnknown": false,
+    "includes": ["**", "!**/*.svg"]
   },
   "formatter": {
     "enabled": true,
@@ -18,21 +20,19 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
-      "nursery": {
-        "useSortedClasses": "error"
+      "preset": "recommended",
+      "style": {
+        "useImportType": "off"
       }
     }
   },
   "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    },
     "formatter": {
       "quoteStyle": "single",
       "lineWidth": 120
-    }
-  },
-  "css": {
-    "formatter": {
-      "quoteStyle": "single"
     }
   },
   "assist": {
@@ -44,8 +44,6 @@
           "options": {
             "groups": [
               ":NODE:",
-              ":BLANK_LINE:",
-              ["react", "react-dom/**"],
               ":BLANK_LINE:",
               ":PACKAGE_WITH_PROTOCOL:",
               ":BLANK_LINE:",
