@@ -1,6 +1,7 @@
 import uPlot from 'uplot';
 
 import { getSnapshots } from '../api/client';
+import { MISSING_VALUE_LABEL } from '../constants/missing-value-label';
 import type { Section } from '../interfaces/section.interface';
 import type { FilterState } from '../types/filter-state.type';
 import type { Snapshot } from '../types/snapshot.type';
@@ -106,7 +107,7 @@ export class Charts implements Section {
           points: { show: false },
           stroke: Charts.LINE_COLOR,
           fill: fill,
-          value: (_self, value) => value ?? '--',
+          value: (_self, value) => value ?? MISSING_VALUE_LABEL,
           paths: uPlot.paths.spline?.(),
         },
       ],
