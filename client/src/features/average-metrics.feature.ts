@@ -14,22 +14,25 @@ export class AverageMetrics implements Section {
     loss: (value) => formatNumericValue(value, 2),
   };
 
-  private readonly values = new Map<SnapshotMetricKey, HTMLElement>();
+  private readonly elements = new Map<SnapshotMetricKey, HTMLElement>();
 
   constructor(root: ParentNode = document) {
     for (const item of root.querySelectorAll<HTMLElement>('[data-average-metric]')) {
       const key = item.dataset.averageMetric;
       const element = item.querySelector<HTMLElement>('[data-value]');
 
-      if (key && this.isAverageMetricKey(key) && element) {
-        this.values.set(key, element);
+      if (key && this.isSupportedKey(key) && element) {
+        this.elements.set(key, element);
       }
     }
   }
 
   render(snapshot: AverageSnapshot): void {
-    for (const [key, element] of this.values) {
-      element.textContent = AverageMetrics.formatters[key](snapshot[key]);
+    for (const [key, element] of this.elements) {
+      const formatter = AverageMetrics.formatters[key];
+      const value = formatter(snapshot[key]);
+
+      element.textContent = value;
     }
   }
 
@@ -39,7 +42,7 @@ export class AverageMetrics implements Section {
     this.render(snapshot);
   }
 
-  private isAverageMetricKey(key: string): key is SnapshotMetricKey {
+  private isSupportedKey(key: string): key is SnapshotMetricKey {
     return Object.hasOwn(AverageMetrics.formatters, key);
   }
 }

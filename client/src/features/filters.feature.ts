@@ -16,7 +16,7 @@ export class Filters {
       const key = item.dataset.filter;
       const value = item.querySelector<HTMLInputElement>('[data-value]')?.value;
 
-      if (key && this.isFilterKey(key) && value) {
+      if (key && this.isSupportedKey(key) && value) {
         filters[key] = value;
       }
     }
@@ -28,7 +28,7 @@ export class Filters {
     this.root?.addEventListener('change', handler);
   }
 
-  private isFilterKey(key: string): key is FilterStateKey {
+  private isSupportedKey(key: string): key is FilterStateKey {
     return (Filters.keys as string[]).includes(key);
   }
 }

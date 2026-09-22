@@ -2,6 +2,7 @@ import uPlot from 'uplot';
 
 import { getSnapshots } from '../api/client';
 import { MISSING_VALUE_LABEL } from '../constants/missing-value-label';
+import { SNAPSHOT_METRIC_UNITS } from '../constants/snapshot-metric-units.constant';
 import type { Section } from '../interfaces/section.interface';
 import type { FilterState } from '../types/filter-state.type';
 import type { Snapshot } from '../types/snapshot.type';
@@ -21,23 +22,18 @@ export class Charts implements Section {
     loss: (value) => value,
   };
 
-  private static readonly units: Record<SnapshotMetricKey, string> = {
-    download: 'Mbps',
-    upload: 'Mbps',
-    ping: 'ms',
-    loss: '%',
-  };
-
   private readonly charts = new Map<SnapshotMetricKey, uPlot>();
 
   constructor(root: ParentNode = document) {
     for (const item of root.querySelectorAll<HTMLElement>('[data-chart]')) {
       const key = item.dataset.chart;
-      const legend = item.querySelector<HTMLElement>('[data-legend]');
       const element = item.querySelector<HTMLElement>('[data-value]');
 
-      if (key && this.isChartKey(key) && element) {
-        this.charts.set(key, this.createChart(element, Charts.units[key], legend));
+      if (key && this.isSupportedKey(key) && element) {
+        const legend = item.querySelector<HTMLElement>('[data-legend]');
+        const chart = this.createChart(element, SNAPSHOT_METRIC_UNITS[key], legend);
+
+        this.charts.set(key, chart);
       }
     }
   }
@@ -59,7 +55,7 @@ export class Charts implements Section {
     this.render(snapshots);
   }
 
-  private isChartKey(key: string): key is SnapshotMetricKey {
+  private isSupportedKey(key: string): key is SnapshotMetricKey {
     return Object.hasOwn(Charts.mappers, key);
   }
 
