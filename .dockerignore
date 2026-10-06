@@ -1,0 +1,39 @@
+# version control
+.git/
+
+# editor and ide settings
+.idea/
+.vscode/
+
+# installed dependencies
+**/node_modules/
+
+# compiled build output
+**/dist/
+**/*.tsbuildinfo
+
+# server static files
+server/public/*
+!server/public/.gitkeep
+
+# server storage files
+server/storage/*
+!server/storage/.gitkeep
+
+# npm debug logs
+**/*.log
+**/npm-debug.log*
+
+# environment files
+**/.env
+**/.env.*
+!**/.env.default
+
+# docker
+.dockerignore
+docker-compose.yml
+Dockerfile
+
+# other
+README.md
+LICENSE.md

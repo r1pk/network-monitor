@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+.bg-noise-backdrop::after {
+  position: absolute;
+  inset: 0;
+
+  content: "";
+
+  background: url(/images/noise-texture.png);
+
+  z-index: -1;
+}
+
+[data-chart] [data-value] > .uplot {
+  position: absolute;
+  inset: 0;
+}
