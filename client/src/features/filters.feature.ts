@@ -10,6 +10,7 @@ export class Filters {
 
   constructor(root: ParentNode = document) {
     this.root = root.querySelector<HTMLElement>('[data-filters]');
+
     this.applyDefaults();
   }
 
