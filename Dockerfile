@@ -11,12 +11,6 @@ RUN apt-get update \
     && apt-get purge -y curl \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
-
-RUN timeout 4 speedtest --accept-license --accept-gdpr || true
-
-RUN mkdir -p /home/node/.config/ookla \
-    && cp /root/.config/ookla/speedtest-cli.json /home/node/.config/ookla/speedtest-cli.json \
-    && chown -R node:node /home/node/.config
 # ==== base ====
 
 # ==== development ====
