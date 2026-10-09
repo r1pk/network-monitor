@@ -52,9 +52,9 @@ Once the container is running, the dashboard becomes available at [http://127.0.
 
 Everything is set through environment variables. Each variable has a sensible default, so no further configuration is typically required.
 
-| Variable             | Default | Description                                                                                          |
-| -------------------- | ------- | ---------------------------------------------------------------------------------------------------- |
-| `SPEEDTEST_CLI_ARGS` | -       | Extra arguments passed to the Speedtest CLI, e.g. `--server-id=1234` to always test the same server. |
+| Variable             | Default                          | Description                                                                                                                                                                                                                                                                                  |
+| -------------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SPEEDTEST_CLI_ARGS` | `--accept-license --accept-gdpr` | Arguments passed to the Speedtest CLI. Defaults to accepting the license and GDPR prompts, which the CLI requires on first run. Once accepted, the choice is stored and these flags are no longer needed, so you can override the variable with your own arguments, e.g. `--server-id=1234`. |
 
 ## Development
 
