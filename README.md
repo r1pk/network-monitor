@@ -13,7 +13,7 @@
 
 ## Overview
 
-Network Monitor is a small application for tracking the quality of an internet connection over time. It runs the [Ookla Speedtest CLI](https://www.speedtest.net/apps/cli) every 5 minutes, stores the results in a local SQLite database and presents them on a dashboard with charts and averages for a selected time range. It's designed to be minimal and easy to run in a container.
+Network Monitor is a small application for tracking the quality of an internet connection over time. It runs the [Ookla Speedtest CLI](https://www.speedtest.net/apps/cli) every 30 minutes, stores the results in a local SQLite database and presents them on a dashboard with charts and averages for a selected time range. It's designed to be minimal and easy to run in a container.
 
 - Measures download speed, upload speed, ping and packet loss.
 - Keeps the full measurement history in a local SQLite database.
@@ -46,7 +46,7 @@ Once launched, the application is available on the host's port `8080`, with one 
 Once the container is running, the dashboard becomes available at [http://127.0.0.1:8080](http://127.0.0.1:8080).
 
 > [!NOTE]
-> The first data point appears after the first scheduled measurement, which takes up to 5 minutes.
+> The first data point appears after the first scheduled measurement, which takes up to 30 minutes.
 
 ## Configuration
 

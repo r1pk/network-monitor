@@ -13,7 +13,7 @@ export class SpeedtestScheduler {
     private readonly speedtestService: SpeedtestService,
   ) {}
 
-  @Cron(CronExpression.EVERY_5_MINUTES)
+  @Cron(CronExpression.EVERY_30_MINUTES)
   async run(): Promise<void> {
     try {
       const result = await this.speedtestService.run();
