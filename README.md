@@ -13,7 +13,7 @@
 
 ## Overview
 
-Network Monitor is a small application for tracking the quality of an internet connection over time. It runs the [Ookla Speedtest CLI](https://www.speedtest.net/apps/cli) every 30 minutes, stores the results in a local SQLite database and presents them on a dashboard with charts and averages for a selected time range. It's designed to be minimal and easy to run in a container.
+Network Monitor is a small application for tracking the quality of an internet connection over time. It runs the [Ookla Speedtest CLI](https://www.speedtest.net/apps/cli) on a configurable schedule (by default every 30 minutes), stores the results in a local SQLite database and presents them on a dashboard with charts and averages for a selected time range. It's designed to be minimal and easy to run in a container.
 
 - Measures download speed, upload speed, ping and packet loss.
 - Keeps the full measurement history in a local SQLite database.
@@ -54,6 +54,7 @@ Everything is set through environment variables. Each variable has a sensible de
 
 | Variable             | Default                          | Description                                                                                                                                                                                                                                                                                  |
 | -------------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SPEEDTEST_CRON_EXPRESSION` | `0 */30 * * * *` | Cron expression (6-field, seconds first) that decides how often the Speedtest CLI runs. Defaults to every 30 minutes. An invalid expression stops the application at startup instead of silently skipping measurements. |
 | `SPEEDTEST_CLI_ARGS` | `--accept-license --accept-gdpr` | Arguments passed to the Speedtest CLI. Defaults to accepting the license and GDPR prompts, which the CLI requires on first run. Once accepted, the choice is stored and these flags are no longer needed, so you can override the variable with your own arguments, e.g. `--server-id=1234`. |
 
 ## Development
