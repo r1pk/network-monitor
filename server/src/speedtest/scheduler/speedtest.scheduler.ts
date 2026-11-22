@@ -1,19 +1,36 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { Cron, CronExpression } from '@nestjs/schedule';
+import { Inject, Injectable, Logger, type OnApplicationBootstrap } from '@nestjs/common';
+import { ConfigType } from '@nestjs/config';
+import { SchedulerRegistry } from '@nestjs/schedule';
+
+import { CronJob } from 'cron';
 
 import { SnapshotService } from '../../snapshot/service/snapshot.service';
 import { SpeedtestService } from '../service/speedtest.service';
+import configuration from '../speedtest.config';
 
 @Injectable()
-export class SpeedtestScheduler {
+export class SpeedtestScheduler implements OnApplicationBootstrap {
   private readonly logger = new Logger(SpeedtestScheduler.name);
 
   constructor(
     private readonly snapshotService: SnapshotService,
     private readonly speedtestService: SpeedtestService,
+    private readonly schedulerRegistry: SchedulerRegistry,
+    @Inject(configuration.KEY)
+    private readonly config: ConfigType<typeof configuration>,
   ) {}
 
-  @Cron(CronExpression.EVERY_30_MINUTES)
+  public onApplicationBootstrap(): void {
+    this.schedulerRegistry.addCronJob(
+      'speedtest',
+      CronJob.from({
+        cronTime: this.config.cron,
+        onTick: () => void this.run(),
+        start: true,
+      }),
+    );
+  }
+
   async run(): Promise<void> {
     try {
       const result = await this.speedtestService.run();
